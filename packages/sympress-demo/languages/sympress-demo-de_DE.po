@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SymPress Demo 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/SymPress/demo/issues\n"
+"POT-Creation-Date: 2026-06-10 00:00+0000\n"
+"PO-Revision-Date: 2026-06-10 00:00+0000\n"
+"Last-Translator: SymPress Demo\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: SymPress Demo\n"
+"X-Domain: sympress-demo\n"
+
+msgid "SymPress Demo"
+msgstr "SymPress Demo"
+
+msgid "A reference WordPress plugin demonstrating structured development with SymPress and Symfony components."
+msgstr "Ein Referenz-WordPress-Plugin fuer strukturierte Entwicklung mit SymPress und Symfony-Komponenten."
+
+msgid "Published notes"
+msgstr "Veroeffentlichte Notizen"
+
+msgid "Topics"
+msgstr "Themen"
+
+msgid "Recorded demo events"
+msgstr "Aufgezeichnete Demo-Ereignisse"
+
+msgid "SymPress components"
+msgstr "SymPress-Komponenten"
+
+msgid "Developer entry points"
+msgstr "Entwickler-Einstiege"
+
+msgid "Source code map"
+msgstr "Source-Code-Karte"
+
+msgid "Profiler extension point"
+msgstr "Profiler-Erweiterungspunkt"
+
+msgid "No knowledge notes found."
+msgstr "Keine Knowledge Notes gefunden."
+
+msgid "Maximum number of notes to return."
+msgstr "Maximale Anzahl der zurueckgegebenen Notizen."
+
+msgid "Optional topic slug used to filter notes."
+msgstr "Optionaler Themen-Slug zum Filtern der Notizen."
+
+msgid "SymPress Notes"
+msgstr "SymPress Notes"
+
+msgid "Notes query"
+msgstr "Notizen-Abfrage"
+
+msgid "Limit"
+msgstr "Limit"
+
+msgid "Topic slug"
+msgstr "Themen-Slug"

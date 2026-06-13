@@ -1,0 +1,4 @@
+services:
+    SymPress\Demo\Profiler\DemoProfilerCollector:
+        tags:
+            - { name: profiler.collector, priority: 45 }

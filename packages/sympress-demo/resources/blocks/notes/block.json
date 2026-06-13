@@ -1,0 +1,25 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "sympress-demo/notes",
+    "version": "1.0.0",
+    "title": "SymPress Notes",
+    "category": "widgets",
+    "icon": "welcome-learn-more",
+    "description": "Render Knowledge Notes through the SymPress Demo service layer.",
+    "textdomain": "sympress-demo",
+    "attributes": {
+        "limit": {
+            "type": "number",
+            "default": 5
+        },
+        "topic": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "html": false
+    },
+    "editorScript": "sympress-demo-block-editor"
+}

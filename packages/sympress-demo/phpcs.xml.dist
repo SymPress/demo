@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ruleset name="SymPress Demo Plugin">
+    <description>SymPress and WordPress coding standard audit for the demo plugin.</description>
+
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <arg name="basepath" value="."/>
+
+    <config name="testVersion" value="8.5-"/>
+    <config name="text_domain" value="sympress-demo"/>
+
+    <file>src</file>
+    <file>tests</file>
+    <file>sympress-demo.php</file>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>var/*</exclude-pattern>
+    <exclude-pattern>.phpunit.cache/*</exclude-pattern>
+
+    <rule ref="SymPress-WordPress">
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+    </rule>
+
+    <rule ref="SymPress.Namespaces.Psr4">
+        <properties>
+            <property name="psr4" type="array">
+                <element key="SymPress\Demo" value="src"/>
+                <element key="SymPress\Demo\Tests" value="tests"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>

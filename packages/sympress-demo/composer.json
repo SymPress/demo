@@ -1,0 +1,103 @@
+{
+    "name": "sympress/demo-plugin",
+    "type": "wordpress-plugin",
+    "description": "Reference WordPress plugin demonstrating structured development with SymPress and Symfony components.",
+    "license": "MIT",
+    "require": {
+        "php": "^8.5",
+        "ext-json": "*",
+        "monolog/monolog": "^3.0",
+        "psr/event-dispatcher": "^1.0",
+        "psr/log": "^3.0",
+        "symfony/console": "^8.0",
+        "symfony/dependency-injection": "^8.0",
+        "sympress/assets": "dev-main",
+        "sympress/event-dispatcher": "dev-main",
+        "sympress/kernel": "dev-main",
+        "sympress/migration": "dev-main",
+        "sympress/monolog-bundle": "dev-main",
+        "sympress/wp-cli-console": "dev-main"
+    },
+    "require-dev": {
+        "brain/monkey": "^2.6",
+        "php-stubs/wordpress-stubs": ">=7.0",
+        "phpstan/phpstan": "^2.2",
+        "phpunit/phpunit": "^11.5",
+        "sympress/coding-standards": "dev-main",
+        "sympress/profiler": "dev-main",
+        "szepeviktor/phpstan-wordpress": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SymPress\\Demo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SymPress\\Demo\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "installer-name": "sympress-demo",
+        "kernel": {
+            "bundle": "SymPress\\Demo\\SymPressDemoBundle",
+            "entry": "sympress-demo/sympress-demo.php"
+        },
+        "sympress": {
+            "asset-compiler": {
+                "script": "build",
+                "dependencies": "install",
+                "package-manager": "npm",
+                "src-paths": [
+                    "resources",
+                    "webpack.config.js",
+                    "package.json",
+                    "package-lock.json",
+                    "tsconfig.json"
+                ]
+            }
+        }
+    },
+    "scripts": {
+        "cs": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpcs ]; then ../../vendor/bin/phpcs --standard=phpcs.xml.dist; else vendor/bin/phpcs --standard=phpcs.xml.dist; fi"
+        ],
+        "cs:fix": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpcbf ]; then ../../vendor/bin/phpcbf --standard=phpcs.xml.dist; else vendor/bin/phpcbf --standard=phpcs.xml.dist; fi"
+        ],
+        "static-analysis": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpstan ]; then ../../vendor/bin/phpstan analyse --memory-limit=1G --no-progress -c phpstan.neon; else vendor/bin/phpstan analyse --memory-limit=1G --no-progress -c phpstan.neon; fi"
+        ],
+        "tests": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpunit ]; then ../../vendor/bin/phpunit --configuration phpunit.xml.dist --no-coverage; else vendor/bin/phpunit --configuration phpunit.xml.dist --no-coverage; fi"
+        ],
+        "qa": [
+            "@cs",
+            "@static-analysis",
+            "@tests"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./../*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
