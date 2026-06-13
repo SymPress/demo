@@ -54,7 +54,9 @@ final class PluginBootstrapTest extends TestCase
             json_encode($composer['scripts'], JSON_THROW_ON_ERROR),
         );
         self::assertContains(
-            'if [ -x ../../vendor/bin/phpcs ]; then ../../vendor/bin/phpcs --standard=phpcs.xml.dist; else vendor/bin/phpcs --standard=phpcs.xml.dist; fi',
+            'if [ -x ../../vendor/bin/phpcs ]; then '
+                . '../../vendor/bin/phpcs --standard=phpcs.xml.dist; '
+                . 'else vendor/bin/phpcs --standard=phpcs.xml.dist; fi',
             $composer['scripts']['cs'],
         );
     }
@@ -132,7 +134,10 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('SymPress\\Demo\\Repository\\NoteRepositoryInterface', $services);
         self::assertStringContainsString('SymPress\\Demo\\Repository\\WordPressNoteRepository', $services);
         self::assertStringContainsString('SymPress\\Demo\\Application\\Seed\\DemoNoteWriterInterface', $services);
-        self::assertStringContainsString('SymPress\\Demo\\Infrastructure\\WordPress\\WordPressDemoNoteWriter', $services);
+        self::assertStringContainsString(
+            'SymPress\\Demo\\Infrastructure\\WordPress\\WordPressDemoNoteWriter',
+            $services,
+        );
         self::assertStringContainsString('SymPress\\Demo\\Support\\PluginAssetLocator', $services);
         self::assertStringContainsString('kernel.hook', $services);
         self::assertStringContainsString('EventSystem::REGISTER_HOOK', $services);
@@ -149,18 +154,18 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('SymPress.Namespaces.Psr4', $phpcs);
     }
 
-    public function testDemoProfilerCollectorUsesGetterStyleCollectorMetadata(): void
+    public function testDemoProfilerCollectorSupportsCurrentAndLegacyCollectorMetadata(): void
     {
         $collector = (string) file_get_contents(
             dirname(__DIR__, 2) . '/src/Profiler/DemoProfilerCollector.php',
         );
 
+        self::assertStringContainsString('function key(): string', $collector);
+        self::assertStringContainsString('function label(): string', $collector);
+        self::assertStringContainsString('function icon(): string', $collector);
         self::assertStringContainsString('function getKey(): string', $collector);
         self::assertStringContainsString('function getLabel(): string', $collector);
         self::assertStringContainsString('function getIcon(): string', $collector);
-        self::assertStringNotContainsString('function key(): string', $collector);
-        self::assertStringNotContainsString('function label(): string', $collector);
-        self::assertStringNotContainsString('function icon(): string', $collector);
     }
 
     public function testDemoSeedCommandDelegatesToApplicationServices(): void

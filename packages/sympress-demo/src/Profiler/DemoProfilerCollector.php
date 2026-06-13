@@ -23,62 +23,71 @@ final class DemoProfilerCollector extends AbstractCollector implements DataColle
     ) {
     }
 
-    public function getKey(): string
+    public function key(): string
     {
         return 'sympress_demo';
     }
 
-    public function getLabel(): string
+    public function label(): string
     {
         return 'SymPress Demo';
     }
 
-    public function getIcon(): string
+    public function icon(): string
     {
         return 'wordpress';
     }
 
-    /**
-     * @return array<string, mixed>
-     */
+    public function getKey(): string
+    {
+        return $this->key();
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label();
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon();
+    }
+
+    /** @return array<string, mixed> */
     public function collect(ProfileContext $context): array
     {
         return [
-            'notes' => $this->publishedNotes(),
-            'topics' => $this->topics(),
-            'events' => $this->events->count(),
-            'post_type' => Note::POST_TYPE,
-            'taxonomy' => Topic::TAXONOMY,
-            'block' => BlockRegistrar::BLOCK_NAME,
+            'notes'            => $this->publishedNotes(),
+            'topics'           => $this->topics(),
+            'events'           => $this->events->count(),
+            'post_type'        => Note::POST_TYPE,
+            'taxonomy'         => Topic::TAXONOMY,
+            'block'            => BlockRegistrar::BLOCK_NAME,
             'block_registered' => $this->blockRegistered(),
-            'collector_key' => $this->getKey(),
-            'duration_ms' => $context->durationMs(),
-            'captured_at' => $context->finishedAtIso(),
+            'collector_key'    => $this->key(),
+            'duration_ms'      => $context->durationMs(),
+            'captured_at'      => $context->finishedAtIso(),
         ];
     }
 
-    /**
-     * @param array<string, mixed> $payload
-     */
+    /** @param array<string, mixed> $payload */
     public function createToolbarBlock(array $payload, ProfileRecord $profile): ToolbarBlock
     {
         return new ToolbarBlock(
-            $this->getKey(),
-            $this->getLabel(),
+            $this->key(),
+            $this->label(),
             sprintf('%d notes', $this->intValue($payload, 'notes')),
             sprintf(
                 '%d topics · %d events',
                 $this->intValue($payload, 'topics'),
                 $this->intValue($payload, 'events'),
             ),
-            $this->profileUrl($profile, $this->getKey()),
+            $this->profileUrl($profile, $this->key()),
             'green',
         );
     }
 
-    /**
-     * @param array<string, mixed> $payload
-     */
+    /** @param array<string, mixed> $payload */
     public function renderPanel(array $payload, ProfileRecord $profile): CollectorPanel
     {
         unset($profile);
@@ -91,22 +100,22 @@ final class DemoProfilerCollector extends AbstractCollector implements DataColle
             ['label' => 'Request duration', 'value' => sprintf('%.2f ms', $this->floatValue($payload, 'duration_ms'))],
         ]);
         $html .= Html::section('WordPress Surface', Html::keyValueTable([
-            'post_type' => Html::dumpValue($this->stringValue($payload, 'post_type')),
-            'taxonomy' => Html::dumpValue($this->stringValue($payload, 'taxonomy')),
-            'block' => Html::dumpValue($this->stringValue($payload, 'block')),
+            'post_type'        => Html::dumpValue($this->stringValue($payload, 'post_type')),
+            'taxonomy'         => Html::dumpValue($this->stringValue($payload, 'taxonomy')),
+            'block'            => Html::dumpValue($this->stringValue($payload, 'block')),
             'block_registered' => Html::dumpValue($this->boolValue($payload, 'block_registered')),
         ]));
         $html .= Html::section('Profiler Extension Point', Html::keyValueTable([
             'collector_service' => Html::dumpValue(self::class),
-            'collector_key' => Html::dumpValue($this->stringValue($payload, 'collector_key')),
-            'service_tag' => Html::dumpValue('profiler.collector'),
-            'captured_at' => Html::dumpValue($this->stringValue($payload, 'captured_at')),
+            'collector_key'     => Html::dumpValue($this->stringValue($payload, 'collector_key')),
+            'service_tag'       => Html::dumpValue('profiler.collector'),
+            'captured_at'       => Html::dumpValue($this->stringValue($payload, 'captured_at')),
         ]));
 
         return $this->panel(
-            $this->getKey(),
-            $this->getLabel(),
-            $this->getIcon(),
+            $this->key(),
+            $this->label(),
+            $this->icon(),
             $html,
             (string) $this->intValue($payload, 'notes'),
         );
@@ -132,7 +141,7 @@ final class DemoProfilerCollector extends AbstractCollector implements DataColle
         }
 
         $count = wp_count_terms([
-            'taxonomy' => Topic::TAXONOMY,
+            'taxonomy'   => Topic::TAXONOMY,
             'hide_empty' => false,
         ]);
 
