@@ -29,7 +29,6 @@ final class AllowedHtmlAttributesManager
 
     /**
      * @param array<string, array<string, array<mixed>>> $tags
-     *
      * @return array<string, array<string, array<mixed>>>
      */
     public static function addAllowedTags(array $tags, mixed $context): array

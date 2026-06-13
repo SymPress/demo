@@ -52,9 +52,7 @@ final class ErrorReportingManager
 
     public static function isIgnoredDeprecation(int $errno): bool
     {
-        $isDeprecation = $errno === E_DEPRECATED || $errno === E_USER_DEPRECATED;
-
-        return $isDeprecation && !self::shouldDisplayDeprecated();
+        return ($errno === E_DEPRECATED || $errno === E_USER_DEPRECATED) && !self::shouldDisplayDeprecated();
     }
 
     private static function setupEarlyErrorReporting(): void

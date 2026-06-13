@@ -20,6 +20,10 @@
 
     <rule ref="SymPress-WordPress">
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+        <exclude name="PSR12.Files.FileHeader.IncorrectOrder"/>
+        <exclude name="Squiz.Classes.ClassFileName.NoMatch"/>
+        <exclude name="SymPress.Namespaces.Psr4.WrongFilename"/>
+        <exclude name="SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable"/>
         <exclude name="WordPress.Files.FileName"/>
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
         <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler"/>
