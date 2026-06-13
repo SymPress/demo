@@ -27,7 +27,7 @@ final readonly class ZenQuotesQuoteProvider implements RemoteQuoteProviderInterf
         $response = wp_remote_get(self::API_URL, [
             'timeout' => 8,
             'headers' => [
-                'Accept' => 'application/json',
+                'Accept'     => 'application/json',
                 'User-Agent' => 'SymPress Demo/1.0; https://github.com/SymPress/demo',
             ],
         ]);

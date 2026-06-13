@@ -18,9 +18,7 @@ final readonly class LogRenderedNoteSubscriber implements EventSubscriberInterfa
     ) {
     }
 
-    /**
-     * @return array<class-string, string>
-     */
+    /** @return array<class-string, string> */
     public static function getSubscribedEvents(): array
     {
         return [
@@ -37,9 +35,9 @@ final readonly class LogRenderedNoteSubscriber implements EventSubscriberInterfa
     {
         $context = [
             'note_id' => $event->note->id,
-            'title' => $event->note->title,
-            'topic' => $event->note->topic?->slug,
-            'source' => $event->context['source'] ?? null,
+            'title'   => $event->note->title,
+            'topic'   => $event->note->topic?->slug,
+            'source'  => $event->context['source'] ?? null,
         ];
 
         $this->logger->info('SymPress Demo note processed.', $context);

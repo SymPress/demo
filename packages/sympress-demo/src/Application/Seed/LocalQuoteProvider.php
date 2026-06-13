@@ -15,29 +15,29 @@ final readonly class LocalQuoteProvider implements QuoteProviderInterface
     {
         $quotes = [
             [
-                'quote' => 'The public is wonderfully tolerant. It forgives everything except genius.',
-                'author' => 'Oscar Wilde',
-                'context' => 'A literature note from Oscar Wilde, bundled as a local fallback for the quote seed command.',
+                'quote'   => 'The public is wonderfully tolerant. It forgives everything except genius.',
+                'author'  => 'Oscar Wilde',
+                'context' => 'A literature note bundled as a local fallback for the quote seed command.',
             ],
             [
-                'quote' => 'Without music, life would be a mistake.',
-                'author' => 'Friedrich Nietzsche',
-                'context' => 'A music note from Friedrich Nietzsche, bundled as a local fallback for the quote seed command.',
+                'quote'   => 'Without music, life would be a mistake.',
+                'author'  => 'Friedrich Nietzsche',
+                'context' => 'A music note bundled as a local fallback for the quote seed command.',
             ],
             [
-                'quote' => 'The road of excess leads to the palace of wisdom.',
-                'author' => 'William Blake',
-                'context' => 'An artist-poet note from William Blake, bundled as a local fallback for the quote seed command.',
+                'quote'   => 'The road of excess leads to the palace of wisdom.',
+                'author'  => 'William Blake',
+                'context' => 'An artist-poet note bundled as a local fallback for the quote seed command.',
             ],
             [
-                'quote' => 'Beware; for I am fearless, and therefore powerful.',
-                'author' => 'Mary Shelley',
-                'context' => 'A literature note from Mary Shelley, bundled as a local fallback for the quote seed command.',
+                'quote'   => 'Beware; for I am fearless, and therefore powerful.',
+                'author'  => 'Mary Shelley',
+                'context' => 'A literature note bundled as a local fallback for the quote seed command.',
             ],
             [
-                'quote' => 'Great things are done by a series of small things brought together.',
-                'author' => 'Vincent van Gogh',
-                'context' => 'An artist note from Vincent van Gogh, bundled as a local fallback for the quote seed command.',
+                'quote'   => 'Great things are done by a series of small things brought together.',
+                'author'  => 'Vincent van Gogh',
+                'context' => 'An artist note bundled as a local fallback for the quote seed command.',
             ],
         ];
 

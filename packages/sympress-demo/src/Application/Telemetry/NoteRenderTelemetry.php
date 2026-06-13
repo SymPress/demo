@@ -17,9 +17,7 @@ final readonly class NoteRenderTelemetry
     ) {
     }
 
-    /**
-     * @param list<Note> $notes
-     */
+    /** @param list<Note> $notes */
     public function record(NoteListQuery $query, array $notes, string $surface): void
     {
         if (!$this->enabled) {
@@ -27,7 +25,7 @@ final readonly class NoteRenderTelemetry
         }
 
         $context = [
-            'source' => $query->hasTopic() ? 'topic' : 'latest',
+            'source'  => $query->hasTopic() ? 'topic' : 'latest',
             'surface' => $surface,
         ];
 

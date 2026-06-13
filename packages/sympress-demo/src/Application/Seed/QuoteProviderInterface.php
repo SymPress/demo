@@ -6,8 +6,6 @@ namespace SymPress\Demo\Application\Seed;
 
 interface QuoteProviderInterface
 {
-    /**
-     * @return list<DemoNoteFixture>
-     */
+    /** @return list<DemoNoteFixture> */
     public function quotes(int $limit): array;
 }

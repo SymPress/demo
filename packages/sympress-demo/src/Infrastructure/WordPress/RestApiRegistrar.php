@@ -31,24 +31,24 @@ final readonly class RestApiRegistrar
 
         register_rest_route(self::ROUTE_NAMESPACE, self::ROUTE_NOTES, [
             [
-                'methods' => \WP_REST_Server::READABLE,
-                'callback' => [$this, 'listNotes'],
+                'methods'             => \WP_REST_Server::READABLE,
+                'callback'            => [$this, 'listNotes'],
                 'permission_callback' => static fn (): bool => true,
-                'args' => [
+                'args'                => [
                     'limit' => [
-                        'description' => __('Maximum number of notes to return.', 'sympress-demo'),
-                        'type' => 'integer',
-                        'default' => 10,
-                        'minimum' => 1,
-                        'maximum' => 50,
+                        'description'       => __('Maximum number of notes to return.', 'sympress-demo'),
+                        'type'              => 'integer',
+                        'default'           => 10,
+                        'minimum'           => 1,
+                        'maximum'           => 50,
                         'sanitize_callback' => static fn (mixed $value): int => function_exists('absint')
                             ? absint($value)
                             : max(0, (int) $value),
                     ],
                     'topic' => [
-                        'description' => __('Optional topic slug used to filter notes.', 'sympress-demo'),
-                        'type' => 'string',
-                        'default' => '',
+                        'description'       => __('Optional topic slug used to filter notes.', 'sympress-demo'),
+                        'type'              => 'string',
+                        'default'           => '',
                         'sanitize_callback' => static fn (mixed $value): string => function_exists('sanitize_title')
                             ? sanitize_title((string) $value)
                             : trim((string) $value),

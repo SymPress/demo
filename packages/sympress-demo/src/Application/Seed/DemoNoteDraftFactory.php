@@ -12,6 +12,7 @@ final readonly class DemoNoteDraftFactory
         string $setSlug,
         string $topicOverride = '',
     ): DemoNoteDraft {
+
         return new DemoNoteDraft(
             topicSlug: $topicOverride !== '' ? $topicOverride : $fixture->topicSlug,
             title: $this->title($fixture, $index),

@@ -15,11 +15,11 @@ final class CreateDemoNotesRequestFactoryTest extends TestCase
         $factory = new CreateDemoNotesRequestFactory(new SlugNormalizer());
 
         $request = $factory->fromWpCliArgs([
-            'count' => '500',
-            'set' => 'Frontend',
+            'count'  => '500',
+            'set'    => 'Frontend',
             'source' => 'Local',
-            'topic' => 'Design Systems',
-            'reset' => true,
+            'topic'  => 'Design Systems',
+            'reset'  => true,
         ]);
 
         self::assertSame(50, $request->count);

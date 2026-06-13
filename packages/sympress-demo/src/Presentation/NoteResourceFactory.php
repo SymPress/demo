@@ -37,11 +37,11 @@ final readonly class NoteResourceFactory
     public function item(Note $note): array
     {
         return [
-            'id' => $note->id,
-            'title' => $note->title,
-            'excerpt' => $note->excerpt,
-            'url' => $note->url,
-            'topic' => $note->topic === null
+            'id'           => $note->id,
+            'title'        => $note->title,
+            'excerpt'      => $note->excerpt,
+            'url'          => $note->url,
+            'topic'        => $note->topic === null
                 ? null
                 : [
                     'name' => $note->topic->name,

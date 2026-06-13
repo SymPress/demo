@@ -26,11 +26,11 @@ final class WordPressNoteRepository implements NoteRepositoryInterface
     {
         return $this->find([
             'posts_per_page' => $limit,
-            'tax_query' => [
+            'tax_query'      => [
                 [
                     'taxonomy' => Topic::TAXONOMY,
-                    'field' => 'slug',
-                    'terms' => $topicSlug,
+                    'field'    => 'slug',
+                    'terms'    => $topicSlug,
                 ],
             ],
         ]);
@@ -46,15 +46,13 @@ final class WordPressNoteRepository implements NoteRepositoryInterface
             return [];
         }
 
-        $posts = get_posts(array_merge([
-            'post_type' => Note::POST_TYPE,
-            'post_status' => 'publish',
-            'orderby' => 'date',
-            'order' => 'DESC',
+        return array_values(array_filter(array_map([$this, 'mapPost'], get_posts(array_merge([
+            'post_type'        => Note::POST_TYPE,
+            'post_status'      => 'publish',
+            'orderby'          => 'date',
+            'order'            => 'DESC',
             'suppress_filters' => false,
-        ], $queryArgs));
-
-        return array_values(array_filter(array_map([$this, 'mapPost'], $posts)));
+        ], $queryArgs)))));
     }
 
     private function mapPost(object $post): ?Note
@@ -94,7 +92,7 @@ final class WordPressNoteRepository implements NoteRepositoryInterface
             return (string) wp_trim_words(wp_strip_all_tags($content), 32);
         }
 
-        return trim(strip_tags($content));
+        return trim((string) preg_replace('/<[^>]*>/', '', $content));
     }
 
     private function postUrl(int $postId): string

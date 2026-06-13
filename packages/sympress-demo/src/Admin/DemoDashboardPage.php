@@ -40,12 +40,13 @@ final readonly class DemoDashboardPage
 
     public function render(): void
     {
+        // phpcs:ignore SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable -- The included dashboard view consumes this array.
         $data = [
-            'noteCount' => $this->noteCount(),
-            'topicCount' => $this->topicCount(),
-            'eventCount' => $this->events->count(),
-            'components' => $this->components(),
-            'profiler' => $this->profiler(),
+            'noteCount'   => $this->noteCount(),
+            'topicCount'  => $this->topicCount(),
+            'eventCount'  => $this->events->count(),
+            'components'  => $this->components(),
+            'profiler'    => $this->profiler(),
             'sourceLinks' => $this->sourceLinks(),
         ];
 
@@ -58,9 +59,7 @@ final readonly class DemoDashboardPage
             return 0;
         }
 
-        $counts = wp_count_posts(Note::POST_TYPE);
-
-        return (int) ($counts->publish ?? 0);
+        return (int) (wp_count_posts(Note::POST_TYPE)->publish ?? 0);
     }
 
     private function topicCount(): int
@@ -70,29 +69,25 @@ final readonly class DemoDashboardPage
         }
 
         $count = wp_count_terms([
-            'taxonomy' => Topic::TAXONOMY,
+            'taxonomy'   => Topic::TAXONOMY,
             'hide_empty' => false,
         ]);
 
         return is_int($count) ? $count : 0;
     }
 
-    /**
-     * @return array{collector: class-string, key: string, tag: string, status: string}
-     */
+    /** @return array{collector: class-string, key: string, tag: string, status: string} */
     private function profiler(): array
     {
         return [
             'collector' => DemoProfilerCollector::class,
-            'key' => 'sympress_demo',
-            'tag' => 'profiler.collector',
-            'status' => class_exists(ProfilerBundle::class) ? 'available' : 'missing',
+            'key'       => 'sympress_demo',
+            'tag'       => 'profiler.collector',
+            'status'    => class_exists(ProfilerBundle::class) ? 'available' : 'missing',
         ];
     }
 
-    /**
-     * @return list<array{name: string, package: string, repository: string, status: string}>
-     */
+    /** @return list<array{name: string, package: string, repository: string, status: string}> */
     private function components(): array
     {
         return [
@@ -122,7 +117,12 @@ final readonly class DemoDashboardPage
                 'https://github.com/SymPress/monolog-bundle',
                 MonologBundle::class,
             ),
-            $this->component('Profiler', 'sympress/profiler', 'https://github.com/SymPress/profiler', ProfilerBundle::class),
+            $this->component(
+                'Profiler',
+                'sympress/profiler',
+                'https://github.com/SymPress/profiler',
+                ProfilerBundle::class,
+            ),
             $this->component(
                 'Coding Standards',
                 'sympress/coding-standards',
@@ -132,51 +132,49 @@ final readonly class DemoDashboardPage
         ];
     }
 
-    /**
-     * @return list<array{label: string, description: string, path: string, url: string}>
-     */
+    /** @return list<array{label: string, description: string, path: string, url: string}> */
     private function sourceLinks(): array
     {
         $links = [
             [
-                'label' => 'REST API adapter',
+                'label'       => 'REST API adapter',
                 'description' => '/wp-json/sympress-demo/v1/notes',
-                'path' => 'packages/sympress-demo/src/Infrastructure/WordPress/RestApiRegistrar.php',
+                'path'        => 'packages/sympress-demo/src/Infrastructure/WordPress/RestApiRegistrar.php',
             ],
             [
-                'label' => 'Block editor adapter',
+                'label'       => 'Block editor adapter',
                 'description' => BlockRegistrar::BLOCK_NAME,
-                'path' => 'packages/sympress-demo/src/Infrastructure/WordPress/BlockRegistrar.php',
+                'path'        => 'packages/sympress-demo/src/Infrastructure/WordPress/BlockRegistrar.php',
             ],
             [
-                'label' => 'Application service',
+                'label'       => 'Application service',
                 'description' => 'NoteService',
-                'path' => 'packages/sympress-demo/src/Service/NoteService.php',
+                'path'        => 'packages/sympress-demo/src/Service/NoteService.php',
             ],
             [
-                'label' => 'Seed command adapter',
+                'label'       => 'Seed command adapter',
                 'description' => 'wp sympress-demo:create-notes',
-                'path' => 'packages/sympress-demo/src/Command/CreateDemoNotesCommand.php',
+                'path'        => 'packages/sympress-demo/src/Command/CreateDemoNotesCommand.php',
             ],
             [
-                'label' => 'Seed use case',
+                'label'       => 'Seed use case',
                 'description' => 'DemoNoteSeeder',
-                'path' => 'packages/sympress-demo/src/Application/Seed/DemoNoteSeeder.php',
+                'path'        => 'packages/sympress-demo/src/Application/Seed/DemoNoteSeeder.php',
             ],
             [
-                'label' => 'WordPress writer adapter',
+                'label'       => 'WordPress writer adapter',
                 'description' => 'DemoNoteWriterInterface',
-                'path' => 'packages/sympress-demo/src/Infrastructure/WordPress/WordPressDemoNoteWriter.php',
+                'path'        => 'packages/sympress-demo/src/Infrastructure/WordPress/WordPressDemoNoteWriter.php',
             ],
             [
-                'label' => 'Profiler collector',
+                'label'       => 'Profiler collector',
                 'description' => 'sympress_demo',
-                'path' => 'packages/sympress-demo/src/Profiler/DemoProfilerCollector.php',
+                'path'        => 'packages/sympress-demo/src/Profiler/DemoProfilerCollector.php',
             ],
             [
-                'label' => 'Block TypeScript',
+                'label'       => 'Block TypeScript',
                 'description' => 'Encore entrypoint',
-                'path' => 'packages/sympress-demo/resources/ts/block-editor.ts',
+                'path'        => 'packages/sympress-demo/resources/ts/block-editor.ts',
             ],
         ];
 
@@ -196,10 +194,10 @@ final readonly class DemoDashboardPage
     private function component(string $name, string $package, string $repository, string $probeClass): array
     {
         return [
-            'name' => $name,
-            'package' => $package,
+            'name'       => $name,
+            'package'    => $package,
             'repository' => $repository,
-            'status' => class_exists($probeClass) ? 'available' : 'documented',
+            'status'     => class_exists($probeClass) ? 'available' : 'documented',
         ];
     }
 }

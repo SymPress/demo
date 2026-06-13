@@ -13,6 +13,7 @@ final readonly class QuoteFixtureFactory
         ?string $source = null,
         ?string $sourceUrl = null,
     ): DemoNoteFixture {
+
         return new DemoNoteFixture(
             topicSlug: 'quotes',
             title: $author,

@@ -21,9 +21,7 @@ final readonly class NoteService
     ) {
     }
 
-    /**
-     * @return list<Note>
-     */
+    /** @return list<Note> */
     public function list(NoteListQuery $query): array
     {
         if ($query->hasTopic()) {
@@ -33,17 +31,13 @@ final readonly class NoteService
         return $this->notes->findLatest($query->limit);
     }
 
-    /**
-     * @return list<Note>
-     */
+    /** @return list<Note> */
     public function getLatestNotes(int $limit = 10): array
     {
         return $this->list(NoteListQuery::create($limit));
     }
 
-    /**
-     * @return list<Note>
-     */
+    /** @return list<Note> */
     public function getNotesByTopic(string $topicSlug, int $limit = 10): array
     {
         return $this->list(NoteListQuery::create($limit, trim($topicSlug)));

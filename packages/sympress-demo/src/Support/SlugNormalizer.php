@@ -19,12 +19,14 @@ final readonly class SlugNormalizer
         }
 
         if (function_exists('sanitize_title')) {
-            $slug = sanitize_title($slug);
-        } else {
-            $slug = strtolower($slug);
-            $slug = preg_replace('/[^a-z0-9]+/', '-', $slug) ?: '';
-            $slug = trim($slug, '-');
+            $normalized = sanitize_title($slug);
+
+            return $normalized !== '' ? $normalized : $default;
         }
+
+        $slug = strtolower($slug);
+        $slug = preg_replace('/[^a-z0-9]+/', '-', $slug) ?: '';
+        $slug = trim($slug, '-');
 
         return $slug !== '' ? $slug : $default;
     }

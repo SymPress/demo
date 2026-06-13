@@ -13,9 +13,7 @@ final readonly class CreateDemoNotesRequestFactory
     ) {
     }
 
-    /**
-     * @param array<string, mixed> $assocArgs
-     */
+    /** @param array<string, mixed> $assocArgs */
     public function fromWpCliArgs(array $assocArgs): CreateDemoNotesRequest
     {
         return new CreateDemoNotesRequest(

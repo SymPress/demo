@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace SymPress\Demo;
 
 use SymPress\Kernel\App;
+
 use function add_action;
 use function esc_html__;
 

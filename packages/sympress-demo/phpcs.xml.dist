@@ -19,6 +19,24 @@
 
     <rule ref="SymPress-WordPress">
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+        <exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty.ForbiddenPublicProperty"/>
+        <exclude name="SymPress.Classes.AccessorNaming.GetterRequired"/>
+    </rule>
+
+    <rule ref="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.AlternativeFunctions.json_encode_json_encode">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.AlternativeFunctions.file_system_operations_fwrite">
+        <exclude-pattern>tests/*</exclude-pattern>
+    </rule>
+
+    <rule ref="WordPress.WP.CapitalPDangit">
+        <exclude-pattern>src/Profiler/DemoProfilerCollector.php</exclude-pattern>
     </rule>
 
     <rule ref="SymPress.Namespaces.Psr4">

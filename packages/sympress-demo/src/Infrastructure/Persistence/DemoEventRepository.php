@@ -12,9 +12,7 @@ namespace SymPress\Demo\Infrastructure\Persistence;
  */
 final readonly class DemoEventRepository
 {
-    /**
-     * @param array<string, mixed> $context
-     */
+    /** @param array<string, mixed> $context */
     public function record(string $eventName, array $context = []): void
     {
         $database = $this->database();
@@ -27,7 +25,7 @@ final readonly class DemoEventRepository
             $this->table($database),
             [
                 'event_name' => $eventName,
-                'context' => wp_json_encode($context),
+                'context'    => wp_json_encode($context),
                 'created_at' => current_time('mysql', true),
             ],
             ['%s', '%s', '%s'],
@@ -47,6 +45,7 @@ final readonly class DemoEventRepository
 
     private function database(): ?\wpdb
     {
+        // phpcs:ignore SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable -- WordPress exposes wpdb through the global registry.
         $database = $GLOBALS['wpdb'] ?? null;
 
         return $database instanceof \wpdb ? $database : null;

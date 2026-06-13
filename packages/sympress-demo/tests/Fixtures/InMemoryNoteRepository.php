@@ -13,9 +13,7 @@ final class InMemoryNoteRepository implements NoteRepositoryInterface
     public int $topicLimit = 0;
     public string $topicSlug = '';
 
-    /**
-     * @param list<Note> $notes
-     */
+    /** @param list<Note> $notes */
     public function __construct(
         private readonly array $notes,
     ) {

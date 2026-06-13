@@ -42,9 +42,7 @@ final readonly class BlockRegistrar
         ]);
     }
 
-    /**
-     * @param array{limit?: mixed, topic?: mixed} $attributes
-     */
+    /** @param array{limit?: mixed, topic?: mixed} $attributes */
     public function render(array $attributes = [], string $content = '', ?object $block = null): string
     {
         unset($content, $block);
@@ -84,9 +82,7 @@ final readonly class BlockRegistrar
         return dirname(__DIR__, 3) . '/resources/blocks/notes';
     }
 
-    /**
-     * @return array{dependencies: list<string>, version: string}
-     */
+    /** @return array{dependencies: list<string>, version: string} */
     private function scriptMetadata(string $file): array
     {
         $metadata = [
@@ -98,7 +94,7 @@ final readonly class BlockRegistrar
                 'wp-i18n',
                 'wp-server-side-render',
             ],
-            'version' => $this->assets->version('assets/' . $file),
+            'version'      => $this->assets->version('assets/' . $file),
         ];
 
         $assetFileName = preg_replace('/\.js$/', '.asset.php', $file) ?: $file;

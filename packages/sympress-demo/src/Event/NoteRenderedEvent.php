@@ -8,9 +8,7 @@ use SymPress\Demo\Entity\Note;
 
 final readonly class NoteRenderedEvent
 {
-    /**
-     * @param array<string, scalar|null> $context
-     */
+    /** @param array<string, scalar|null> $context */
     public function __construct(
         public Note $note,
         public array $context,
