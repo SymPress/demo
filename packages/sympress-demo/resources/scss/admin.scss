@@ -1,0 +1,105 @@
+.sympress-demo-admin {
+    max-width: 1120px;
+}
+
+.sympress-demo-admin__intro {
+    max-width: 760px;
+    color: #3f4a54;
+    font-size: 15px;
+}
+
+.sympress-demo-admin__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+}
+
+.sympress-demo-admin__stats section {
+    border: 1px solid #dcdcde;
+    border-radius: 6px;
+    background: #fff;
+    padding: 18px;
+}
+
+.sympress-demo-admin__stats strong {
+    display: block;
+    color: #1d2327;
+    font-size: 32px;
+    line-height: 1;
+}
+
+.sympress-demo-admin__stats span {
+    display: block;
+    margin-top: 8px;
+    color: #50575e;
+}
+
+.sympress-demo-admin__components {
+    max-width: 920px;
+}
+
+.sympress-demo-admin__status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+    border-radius: 999px;
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sympress-demo-admin__status--available {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.sympress-demo-admin__status--documented {
+    background: #fff3cd;
+    color: #664d03;
+}
+
+.sympress-demo-admin__usage,
+.sympress-demo-admin__source,
+.sympress-demo-admin__profiler {
+    max-width: 920px;
+    margin-top: 28px;
+    border-left: 4px solid #2271b1;
+    background: #fff;
+    padding: 16px 20px;
+}
+
+.sympress-demo-admin__profiler {
+    border-left-color: #3858e9;
+}
+
+.sympress-demo-admin__source {
+    border-left-color: #008a20;
+}
+
+.sympress-demo-admin__source table {
+    margin-top: 12px;
+}
+
+.sympress-demo-admin__source a {
+    overflow-wrap: anywhere;
+}
+
+.sympress-demo-admin__code-list {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0 0;
+}
+
+.sympress-demo-admin__code-list code {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 782px) {
+    .sympress-demo-admin__stats {
+        grid-template-columns: 1fr;
+    }
+}

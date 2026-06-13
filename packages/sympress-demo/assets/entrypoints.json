@@ -1,0 +1,34 @@
+{
+  "entrypoints": {
+    "sympress-demo-backend": {
+      "css": [
+        "./sympress-demo-backend.css"
+      ],
+      "js": [
+        "./sympress-demo-backend.js"
+      ],
+      "php": [
+        "./sympress-demo-backend.asset.php"
+      ]
+    },
+    "sympress-demo-block-editor": {
+      "js": [
+        "./sympress-demo-block-editor.js"
+      ],
+      "php": [
+        "./sympress-demo-block-editor.asset.php"
+      ]
+    },
+    "sympress-demo-frontend": {
+      "css": [
+        "./sympress-demo-frontend.css"
+      ],
+      "js": [
+        "./sympress-demo-frontend.js"
+      ],
+      "php": [
+        "./sympress-demo-frontend.asset.php"
+      ]
+    }
+  }
+}

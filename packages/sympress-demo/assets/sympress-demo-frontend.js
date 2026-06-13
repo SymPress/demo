@@ -1,0 +1,1 @@
+(()=>{"use strict";var e=function(){document.querySelectorAll(".sympress-demo-notes").forEach(function(e){var t=e.querySelectorAll(".sympress-demo-notes__item");e.dataset.enhanced="true",e.style.setProperty("--sympress-demo-note-count",String(t.length))})};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e,{once:!0}):e()})();

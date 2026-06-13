@@ -1,0 +1,27 @@
+{
+    "name": "sympress-demo-plugin",
+    "version": "1.0.0",
+    "description": "Encore and TypeScript assets for the SymPress Demo WordPress plugin.",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "encore production",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "typecheck": "tsc --noEmit",
+        "audit": "npm audit --audit-level=moderate"
+    },
+    "devDependencies": {
+        "@symfony/webpack-encore": "^6.0.0",
+        "@wordpress/dependency-extraction-webpack-plugin": "^5.5.0",
+        "fork-ts-checker-webpack-plugin": "9.0.2",
+        "postcss": "^8",
+        "postcss-loader": "^8.2.1",
+        "sass": "^1.99.0",
+        "sass-loader": "^16.0.8",
+        "ts-loader": "9.5.1",
+        "typescript": "^5.4.3",
+        "webpack": "^5",
+        "webpack-cli": "^6.0.1"
+    }
+}

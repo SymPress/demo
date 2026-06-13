@@ -1,0 +1,1 @@
+(()=>{"use strict";var e=function(){var e=document.querySelector(".sympress-demo-admin");if(null!==e){var t=e.querySelectorAll('[data-component-status="available"]');e.dataset.ready="true",e.style.setProperty("--sympress-demo-available-components",String(t.length))}};"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e,{once:!0}):e()})();

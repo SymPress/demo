@@ -1,0 +1,10 @@
+{
+  "./sympress-demo-backend.css": "./sympress-demo-backend.css",
+  "./sympress-demo-backend.js": "./sympress-demo-backend.js",
+  "./sympress-demo-backend.php": "./sympress-demo-backend.asset.php",
+  "./sympress-demo-block-editor.js": "./sympress-demo-block-editor.js",
+  "./sympress-demo-block-editor.php": "./sympress-demo-block-editor.asset.php",
+  "./sympress-demo-frontend.css": "./sympress-demo-frontend.css",
+  "./sympress-demo-frontend.js": "./sympress-demo-frontend.js",
+  "./sympress-demo-frontend.php": "./sympress-demo-frontend.asset.php"
+}
