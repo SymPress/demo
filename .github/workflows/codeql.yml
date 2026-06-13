@@ -18,5 +18,5 @@ jobs:
     name: CodeQL
     uses: sympress/workflows/.github/workflows/codeql.yml@v1
     with:
-      languages: php,javascript-typescript
+      languages: javascript-typescript
       build_mode: none

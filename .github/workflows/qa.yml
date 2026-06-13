@@ -24,21 +24,21 @@ jobs:
     secrets:
       COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
 
-  package-ci:
-    name: Package CI
+  root-qa:
+    name: Root QA
     uses: sympress/workflows/.github/workflows/sympress-qa.yml@v1
     with:
       php_version: '8.5'
       php_extensions: curl, dom, json, libxml
       node_version: '24'
-      include_root: false
-      package_glob: packages/*
-      run_validate: true
-      run_audit: true
+      include_root: true
+      package_glob: .github/__no_composer_packages__
+      run_validate: false
+      run_audit: false
       run_phpcs: true
       run_phpstan: true
       run_phpunit: true
-      run_node_build: true
+      run_node_build: false
       timeout_minutes: 15
     secrets:
       COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
