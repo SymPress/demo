@@ -1,0 +1,21 @@
+name: sympress-demo
+type: php
+docroot: public
+php_version: "8.5"
+webserver_type: nginx-fpm
+xdebug_enabled: false
+additional_hostnames: []
+additional_fqdns: []
+database:
+    type: mariadb
+    version: "11.8"
+upload_dirs:
+    - wp-content/uploads
+host_db_port: "3336"
+project_tld: dev
+use_dns_when_possible: true
+composer_version: "2"
+web_environment:
+    - NO_COLOR=
+    - COMPOSER_ROOT_VERSION=dev-main
+corepack_enable: false

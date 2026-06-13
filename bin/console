@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use SymPress\Kernel\App;
+use SymPress\Kernel\Kernel\SiteKernel;
+use Symfony\Component\Console\Application;
+
+$projectDir = dirname(__DIR__);
+$autoload = $projectDir . '/vendor/autoload.php';
+
+if (!is_readable($autoload)) {
+    fwrite(STDERR, "Composer autoload file not found. Run composer install first.\n");
+    exit(1);
+}
+
+require_once $autoload;
+
+$wpLoad = $projectDir . '/public/wp/wp-load.php';
+
+if (is_readable($wpLoad)) {
+    if (!defined('WP_USE_THEMES')) {
+        define('WP_USE_THEMES', false);
+    }
+
+    require_once $wpLoad;
+}
+
+if (!App::kernel()) {
+    App::bootKernel(new SiteKernel($projectDir));
+}
+
+$application = App::make(Application::class);
+
+if (!$application instanceof Application) {
+    fwrite(STDERR, "Symfony Console application is not available from the kernel container.\n");
+    exit(1);
+}
+
+exit($application->run());
