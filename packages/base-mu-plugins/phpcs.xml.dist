@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="SymPress Demo Base MU Plugins">
+    <description>SymPress coding standard audit for the demo base MU plugin entrypoints.</description>
+
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <arg name="basepath" value="."/>
+
+    <config name="testVersion" value="8.5-"/>
+    <config name="text_domain" value="sympress-demo"/>
+
+    <file>000-error-reporting.php</file>
+    <file>allowed-html-tags.php</file>
+    <file>app-starter.php</file>
+    <file>phpstan-bootstrap.php</file>
+    <file>vardumper-integration.php</file>
+
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>var/*</exclude-pattern>
+
+    <rule ref="PSR12"/>
+    <rule ref="WordPress">
+        <exclude name="WordPress.Files.FileName"/>
+        <exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
+        <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler"/>
+        <exclude name="WordPress.PHP.DevelopmentFunctions.prevent_path_disclosure_error_reporting"/>
+        <exclude name="WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_error_reporting"/>
+        <exclude name="WordPress.PHP.IniSet.Risky"/>
+        <exclude name="WordPress.PHP.IniSet.display_errors_Disallowed"/>
+        <exclude name="WordPress.PHP.IniSet.log_errors_Disallowed"/>
+        <exclude name="WordPress.Security.SafeRedirect.wp_redirect_wp_redirect"/>
+    </rule>
+    <rule ref="WordPress-Extra"/>
+    <rule ref="WordPress-Docs"/>
+</ruleset>

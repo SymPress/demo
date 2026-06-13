@@ -1,0 +1,11 @@
+parameters:
+    level: 6
+    paths:
+        - 000-error-reporting.php
+        - allowed-html-tags.php
+        - app-starter.php
+        - vardumper-integration.php
+    tmpDir: var/cache/phpstan
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+    treatPhpDocTypesAsCertain: false

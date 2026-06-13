@@ -1,0 +1,47 @@
+{
+    "name": "sympress/demo-base-mu-plugins",
+    "description": "Must-use bootstrap plugins for the SymPress Demo website.",
+    "type": "wordpress-muplugin",
+    "license": "MIT",
+    "require": {
+        "php": "^8.5",
+        "sympress/kernel": "dev-main"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.2",
+        "sympress/coding-standards": "dev-main",
+        "szepeviktor/phpstan-wordpress": "^2.0"
+    },
+    "extra": {
+        "installer-name": "base-mu-plugins"
+    },
+    "scripts": {
+        "cs": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpcs ]; then ../../vendor/bin/phpcs --standard=phpcs.xml.dist; else vendor/bin/phpcs --standard=phpcs.xml.dist; fi"
+        ],
+        "cs:fix": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpcbf ]; then ../../vendor/bin/phpcbf --standard=phpcs.xml.dist; else vendor/bin/phpcbf --standard=phpcs.xml.dist; fi"
+        ],
+        "static-analysis": [
+            "Composer\\Config::disableProcessTimeout",
+            "if [ -x ../../vendor/bin/phpstan ]; then ../../vendor/bin/phpstan analyse --memory-limit=1G --no-progress -c phpstan.neon; else vendor/bin/phpstan analyse --memory-limit=1G --no-progress -c phpstan.neon; fi"
+        ],
+        "tests": "@php -r \"echo 'No tests configured for demo base MU plugins.' . PHP_EOL;\"",
+        "qa": [
+            "@cs",
+            "@static-analysis",
+            "@tests"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
