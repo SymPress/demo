@@ -32,7 +32,7 @@ jobs:
       php_extensions: curl, dom, json, libxml
       node_version: '24'
       include_root: true
-      package_glob: .github/__no_composer_packages__
+      package_glob: .
       run_validate: false
       run_audit: false
       run_phpcs: true

@@ -18,8 +18,8 @@
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>var/*</exclude-pattern>
 
-    <rule ref="PSR12"/>
-    <rule ref="WordPress">
+    <rule ref="SymPress-WordPress">
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
         <exclude name="WordPress.Files.FileName"/>
         <exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
         <exclude name="WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler"/>
@@ -30,6 +30,4 @@
         <exclude name="WordPress.PHP.IniSet.log_errors_Disallowed"/>
         <exclude name="WordPress.Security.SafeRedirect.wp_redirect_wp_redirect"/>
     </rule>
-    <rule ref="WordPress-Extra"/>
-    <rule ref="WordPress-Docs"/>
 </ruleset>
