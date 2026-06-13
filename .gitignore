@@ -1,0 +1,34 @@
+### IDE
+/.idea/
+
+### Composer
+/vendor/
+
+### WordPress / WP Starter
+/.env
+/.env.*
+!/.env.example
+/.env.cached.php
+/public/wp/
+/public/wp-content/
+/public/wp-config.php
+/wp-cli.yml
+
+### Runtime
+/var/
+!/var/cache/
+!/var/cache/.gitkeep
+!/var/log/
+!/var/log/.gitkeep
+/packages/*/vendor/
+/packages/*/node_modules/
+/packages/*/.phpunit.cache/
+/packages/*/.phpunit-cache/
+/packages/*/.pgpunit-cache/
+/packages/*/var/cache/*
+/packages/*/var/log/*
+!/packages/*/var/cache/.gitkeep
+!/packages/*/var/log/.gitkeep
+
+### System
+.DS_Store

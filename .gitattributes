@@ -1,0 +1,7 @@
+/.DS_Store export-ignore
+/.phpunit.cache export-ignore
+/coverage export-ignore
+/packages/*/.phpunit.cache export-ignore
+/packages/*/node_modules export-ignore
+/packages/*/var export-ignore
+/var export-ignore
