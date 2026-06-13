@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 use SymPress\Demo\Entity\Note;
 
-/** @var list<Note> $notes */
-/** @var string $topic */
-/** @var int $limit */
+/** @var array{notes?: list<Note>, topic?: string, limit?: int} $viewData */
+$notes = $viewData['notes'] ?? [];
+$topic = $viewData['topic'] ?? '';
+$limit = $viewData['limit'] ?? 0;
 
 ?>
 <div class="sympress-demo-notes" data-limit="<?php echo esc_attr((string) $limit); ?>" data-topic="<?php echo esc_attr($topic); ?>">

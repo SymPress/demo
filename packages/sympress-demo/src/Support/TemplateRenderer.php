@@ -11,15 +11,13 @@ final readonly class TemplateRenderer
     ) {
     }
 
-    /**
-     * @param array<string, mixed> $data
-     */
+    /** @param array<string, mixed> $data */
     public function render(string $template, array $data = []): string
     {
-        $path = sprintf('%s/%s', rtrim($this->viewPath, '/'), ltrim($template, '/'));
+        $path = $this->resolvePath($template);
 
-        if (!is_file($path)) {
-            throw new \RuntimeException(sprintf('View "%s" was not found.', $template));
+        if ($path === null) {
+            throw new \RuntimeException('Requested view was not found.');
         }
 
         ob_start();
@@ -35,14 +33,27 @@ final readonly class TemplateRenderer
         }
     }
 
-    /**
-     * @param array<string, mixed> $data
-     */
-    private function includeView(string $path, array $data): void
+    private function resolvePath(string $template): ?string
     {
-        (static function () use ($path, $data): void {
-            extract($data, EXTR_SKIP);
-            require $path;
-        })();
+        $rootPath = realpath($this->viewPath);
+
+        if ($rootPath === false) {
+            return null;
+        }
+
+        $templatePath = realpath($rootPath . '/' . ltrim($template, '/'));
+
+        if ($templatePath === false || !str_starts_with($templatePath, $rootPath . DIRECTORY_SEPARATOR)) {
+            return null;
+        }
+
+        return is_file($templatePath) ? $templatePath : null;
+    }
+
+    /** @param array<string, mixed> $viewData */
+    // phpcs:ignore SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter -- The included PHP view consumes $viewData.
+    private function includeView(string $path, array $viewData): void
+    {
+        require $path;
     }
 }

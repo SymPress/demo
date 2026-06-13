@@ -18,10 +18,10 @@ final class WordPressDemoNoteWriter implements DemoNoteWriterInterface
         }
 
         $postIds = get_posts([
-            'post_type' => Note::POST_TYPE,
+            'post_type'   => Note::POST_TYPE,
             'post_status' => 'any',
             'numberposts' => -1,
-            'fields' => 'ids',
+            'fields'      => 'ids',
         ]);
 
         if (!is_array($postIds)) {
@@ -31,9 +31,11 @@ final class WordPressDemoNoteWriter implements DemoNoteWriterInterface
         $deleted = 0;
 
         foreach ($postIds as $postId) {
-            if (wp_delete_post((int) $postId, true) !== false) {
-                $deleted++;
+            if (wp_delete_post((int) $postId, true) === false) {
+                continue;
             }
+
+            $deleted++;
         }
 
         return $deleted;
@@ -48,9 +50,9 @@ final class WordPressDemoNoteWriter implements DemoNoteWriterInterface
         }
 
         $postId = wp_insert_post([
-            'post_type' => Note::POST_TYPE,
-            'post_status' => 'publish',
-            'post_title' => $draft->title,
+            'post_type'    => Note::POST_TYPE,
+            'post_status'  => 'publish',
+            'post_title'   => $draft->title,
             'post_excerpt' => $draft->excerpt,
             'post_content' => $draft->content,
         ], true);
@@ -84,7 +86,7 @@ final class WordPressDemoNoteWriter implements DemoNoteWriterInterface
         );
 
         if (is_wp_error($created)) {
-            throw new \RuntimeException($created->get_error_message());
+            throw new \RuntimeException('Could not create demo topic.');
         }
 
         return (int) $created['term_id'];
