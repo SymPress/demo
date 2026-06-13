@@ -10,6 +10,7 @@ $autoloadCandidates = [
 foreach ($autoloadCandidates as $autoload) {
     if (is_readable($autoload)) {
         require $autoload;
+        require __DIR__ . '/Fixtures/InMemoryDemoNoteWriter.php';
         require __DIR__ . '/Fixtures/InMemoryNoteRepository.php';
         require __DIR__ . '/Fixtures/RecordingEventDispatcher.php';
 
