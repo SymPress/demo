@@ -1,0 +1,28 @@
+name: JavaScript
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  typecheck:
+    name: TypeScript
+    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@v1
+    with:
+      node_version: '24'
+      working_directory: packages/sympress-demo
+      script: typecheck
+
+  npm-audit:
+    name: npm audit
+    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@v1
+    with:
+      node_version: '24'
+      working_directory: packages/sympress-demo
+      script: audit

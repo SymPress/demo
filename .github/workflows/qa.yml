@@ -1,0 +1,45 @@
+name: QA
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  website-ci:
+    name: Website CI
+    uses: sympress/workflows/.github/workflows/composer-validate.yml@v1
+    with:
+      php_version: '8.5'
+      php_extensions: curl, dom, json, libxml
+      install: true
+      audit: true
+      validate_options: --strict --no-check-publish
+      timeout_minutes: 12
+    secrets:
+      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
+
+  package-ci:
+    name: Package CI
+    uses: sympress/workflows/.github/workflows/sympress-qa.yml@v1
+    with:
+      php_version: '8.5'
+      php_extensions: curl, dom, json, libxml
+      node_version: '24'
+      include_root: false
+      package_glob: packages/*
+      run_validate: true
+      run_audit: true
+      run_phpcs: true
+      run_phpstan: true
+      run_phpunit: true
+      run_node_build: true
+      timeout_minutes: 15
+    secrets:
+      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
+      NPM_REGISTRY_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
