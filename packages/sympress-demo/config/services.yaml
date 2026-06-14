@@ -20,10 +20,12 @@ services:
             - '../src/Application/Seed/DemoNoteDraft.php'
             - '../src/Application/Seed/DemoNoteFixture.php'
             - '../src/Application/Seed/DemoNoteFixtureSelection.php'
+            - '../src/Entity/DemoEventRecord.php'
             - '../src/Entity/Note.php'
             - '../src/Entity/Topic.php'
             - '../src/Event/NoteRenderedEvent.php'
             - '../src/Profiler/'
+            - '../src/Repository/DemoEventRecordRepository.php'
 
     SymPress\Demo\Repository\NoteRepositoryInterface:
         alias: SymPress\Demo\Repository\WordPressNoteRepository
@@ -51,45 +53,6 @@ services:
         arguments:
             $database: '@wpdb'
 
-    SymPress\Demo\Hook\DemoMigrations:
-        tags:
-            - { name: kernel.hook, hook: 'db_migration_register', method: register, accepted_args: 1 }
-            - { name: kernel.hook, hook: 'db_migration_registered', method: migrate, priority: 20, accepted_args: 1 }
-
-    SymPress\Demo\EventSubscriber\LogRenderedNoteSubscriber:
-        tags:
-            - { name: kernel.hook, hook: !php/const 'SymPress\EventDispatcher\Application\EventSystem::REGISTER_HOOK', method: register, accepted_args: 1 }
-
-    SymPress\Demo\Infrastructure\WordPress\CustomPostTypeRegistrar:
-        tags:
-            - { name: kernel.hook, hook: 'init', method: register }
-
-    SymPress\Demo\Infrastructure\WordPress\TaxonomyRegistrar:
-        tags:
-            - { name: kernel.hook, hook: 'init', method: register }
-
-    SymPress\Demo\Infrastructure\WordPress\RestApiRegistrar:
-        tags:
-            - { name: kernel.hook, hook: 'rest_api_init', method: register }
-
-    SymPress\Demo\Infrastructure\WordPress\BlockRegistrar:
-        tags:
-            - { name: kernel.hook, hook: 'init', method: register }
-
     SymPress\Demo\Infrastructure\WordPress\LocalizationRegistrar:
         arguments:
             $pluginBase: '%sympress_demo.plugin_file%'
-        tags:
-            - { name: kernel.hook, hook: 'plugins_loaded', method: load }
-
-    SymPress\Demo\Admin\DemoDashboardPage:
-        tags:
-            - { name: kernel.hook, hook: 'admin_menu', method: register }
-
-    SymPress\Demo\Asset\DemoAssetRegistrar:
-        tags:
-            - { name: kernel.hook, hook: !php/const 'SymPress\Assets\AssetManager::ACTION_SETUP', method: registerWithSymPressAssets }
-
-    SymPress\Demo\Command\CreateDemoNotesCommand:
-        tags:
-            - { name: kernel.hook, hook: 'cli_init', method: register }
