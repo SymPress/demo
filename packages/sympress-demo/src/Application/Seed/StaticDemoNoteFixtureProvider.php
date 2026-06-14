@@ -129,7 +129,7 @@ final readonly class StaticDemoNoteFixtureProvider
                 'Quality checks cover both package code and WordPress registrations.',
                 [
                     'Unit tests prove the service behavior without booting WordPress.',
-                    'The runtime smoke script confirms REST route and block registration in DDEV.',
+                    'The runtime smoke command confirms REST route and block registration in DDEV.',
                 ],
             ),
         ];
