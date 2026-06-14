@@ -16,6 +16,7 @@
         "sympress/kernel": "dev-main",
         "sympress/migration": "dev-main",
         "sympress/monolog-bundle": "dev-main",
+        "sympress/orm": "dev-main",
         "sympress/wp-cli-console": "dev-main"
     },
     "require-dev": {
@@ -45,7 +46,12 @@
         },
         "sympress": {
             "asset-compiler": {
-                "script": "build",
+                "script": {
+                    "$mode": {
+                        "$default": "build",
+                        "production": "build:production"
+                    }
+                },
                 "dependencies": "install",
                 "package-manager": "npm",
                 "src-paths": [

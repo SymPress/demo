@@ -6,6 +6,7 @@
     "private": true,
     "scripts": {
         "build": "encore production",
+        "build:production": "encore production",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "typecheck": "tsc --noEmit",
