@@ -1,4 +1,9 @@
 services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
     SymPress\Demo\Profiler\DemoProfilerCollector:
         tags:
             - { name: profiler.collector, priority: 45 }

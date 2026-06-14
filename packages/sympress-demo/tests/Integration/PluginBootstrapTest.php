@@ -214,6 +214,7 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertStringContainsString('profiler.collect: true', $profilerConfig);
         self::assertStringContainsString('SymPress\\Demo\\Profiler\\DemoProfilerCollector', $developmentServices);
+        self::assertStringContainsString('autowire: true', $developmentServices);
         self::assertStringContainsString('profiler.collector', $developmentServices);
         self::assertStringContainsString("- '../src/Profiler/'", $packageServices);
     }
