@@ -6,6 +6,7 @@ namespace SymPress\Demo\Command;
 
 use SymPress\Demo\Application\Seed\CreateDemoNotesRequestFactory;
 use SymPress\Demo\Application\Seed\DemoNoteSeeder;
+use SymPress\Kernel\Attribute\AsHook;
 
 /**
  * WP-CLI entry point for demo content.
@@ -21,6 +22,7 @@ final readonly class CreateDemoNotesCommand
     ) {
     }
 
+    #[AsHook('cli_init')]
     public function register(): void
     {
         if (!defined('WP_CLI') || !WP_CLI || !class_exists('WP_CLI')) {

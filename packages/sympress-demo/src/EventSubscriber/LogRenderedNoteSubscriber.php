@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace SymPress\Demo\EventSubscriber;
 
+use Monolog\Attribute\WithMonologChannel;
 use Psr\Log\LoggerInterface;
 use SymPress\Demo\Event\NoteRenderedEvent;
 use SymPress\Demo\Infrastructure\Persistence\DemoEventRepository;
-use SymPress\EventDispatcher\Contract\EventSubscriberInterface;
+use SymPress\EventDispatcher\Application\EventSystem;
+use SymPress\EventDispatcher\Attribute\AsEventListener;
 use SymPress\EventDispatcher\Contract\ListenerRegistryInterface;
+use SymPress\Kernel\Attribute\AsHook;
 
-final readonly class LogRenderedNoteSubscriber implements EventSubscriberInterface
+#[WithMonologChannel('sympress_demo')]
+final readonly class LogRenderedNoteSubscriber
 {
     public function __construct(
         private LoggerInterface $logger,
@@ -18,19 +22,13 @@ final readonly class LogRenderedNoteSubscriber implements EventSubscriberInterfa
     ) {
     }
 
-    /** @return array<class-string, string> */
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            NoteRenderedEvent::class => 'onNoteRendered',
-        ];
-    }
-
+    #[AsHook(EventSystem::REGISTER_HOOK, acceptedArgs: 1)]
     public function register(ListenerRegistryInterface $dispatcher): void
     {
-        $dispatcher->addSubscriber($this);
+        $dispatcher->register($this);
     }
 
+    #[AsEventListener(event: NoteRenderedEvent::class)]
     public function onNoteRendered(NoteRenderedEvent $event): void
     {
         $context = [

@@ -7,6 +7,7 @@ namespace SymPress\Demo\Infrastructure\WordPress;
 use SymPress\Demo\Application\Query\NoteListQueryFactory;
 use SymPress\Demo\Presentation\NoteResourceFactory;
 use SymPress\Demo\Service\NoteService;
+use SymPress\Kernel\Attribute\AsHook;
 
 /**
  * Exposes the demo application service through the WordPress REST API.
@@ -23,6 +24,7 @@ final readonly class RestApiRegistrar
     ) {
     }
 
+    #[AsHook('rest_api_init')]
     public function register(): void
     {
         if (!function_exists('register_rest_route')) {

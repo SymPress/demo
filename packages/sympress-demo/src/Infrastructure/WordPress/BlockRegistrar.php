@@ -9,6 +9,7 @@ use SymPress\Demo\Application\Telemetry\NoteRenderTelemetry;
 use SymPress\Demo\Service\NoteService;
 use SymPress\Demo\Support\PluginAssetLocator;
 use SymPress\Demo\Support\TemplateRenderer;
+use SymPress\Kernel\Attribute\AsHook;
 
 /**
  * Registers the dynamic block editor example for the notes application.
@@ -29,6 +30,7 @@ final readonly class BlockRegistrar
     ) {
     }
 
+    #[AsHook('init')]
     public function register(): void
     {
         if (!function_exists('register_block_type') || !is_readable($this->blockPath() . '/block.json')) {

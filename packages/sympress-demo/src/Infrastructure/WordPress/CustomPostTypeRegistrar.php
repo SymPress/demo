@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace SymPress\Demo\Infrastructure\WordPress;
 
 use SymPress\Demo\Entity\Note;
+use SymPress\Kernel\Attribute\AsHook;
 
 final readonly class CustomPostTypeRegistrar
 {
+    #[AsHook('init')]
     public function register(): void
     {
         register_post_type(Note::POST_TYPE, [

@@ -6,9 +6,11 @@ namespace SymPress\Demo\Infrastructure\WordPress;
 
 use SymPress\Demo\Entity\Note;
 use SymPress\Demo\Entity\Topic;
+use SymPress\Kernel\Attribute\AsHook;
 
 final readonly class TaxonomyRegistrar
 {
+    #[AsHook('init')]
     public function register(): void
     {
         register_taxonomy(Topic::TAXONOMY, [Note::POST_TYPE], [

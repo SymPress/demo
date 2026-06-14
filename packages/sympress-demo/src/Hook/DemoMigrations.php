@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SymPress\Demo\Hook;
 
 use SymPress\Demo\Migration\CreateDemoEventsTableMigration;
+use SymPress\Kernel\Attribute\AsHook;
 use SymPress\WordPress\Migration\Application\MigrationSystem;
 
 final readonly class DemoMigrations
@@ -16,6 +17,7 @@ final readonly class DemoMigrations
     ) {
     }
 
+    #[AsHook('db_migration_register', acceptedArgs: 1)]
     public function register(MigrationSystem $system): void
     {
         $system->registerMigrations(
@@ -26,6 +28,7 @@ final readonly class DemoMigrations
         );
     }
 
+    #[AsHook('db_migration_registered', priority: 20, acceptedArgs: 1)]
     public function migrate(MigrationSystem $system): void
     {
         $manager = $system->createMigrationManager(self::PLUGIN_SLUG);

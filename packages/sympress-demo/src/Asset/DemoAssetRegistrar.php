@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace SymPress\Demo\Asset;
 
+use SymPress\Assets\AssetManager;
 use SymPress\Assets\DependencyExtractionAwareAsset;
 use SymPress\Assets\Loader\EncoreEntrypointsLoader;
 use SymPress\Assets\Script;
 use SymPress\Demo\Support\PluginAssetLocator;
+use SymPress\Kernel\Attribute\AsHook;
 
 /**
  * Registers Encore-built demo assets through SymPress Assets.
@@ -21,6 +23,7 @@ final readonly class DemoAssetRegistrar
     ) {
     }
 
+    #[AsHook(AssetManager::ACTION_SETUP, acceptedArgs: 1)]
     public function registerWithSymPressAssets(object $assetManager): void
     {
         if (
