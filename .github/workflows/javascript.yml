@@ -26,3 +26,11 @@ jobs:
       node_version: '24'
       working_directory: packages/sympress-demo
       script: audit
+
+  production-build:
+    name: Production build
+    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@v1
+    with:
+      node_version: '24'
+      working_directory: packages/sympress-demo
+      script: build:production

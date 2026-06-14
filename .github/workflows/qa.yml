@@ -16,7 +16,7 @@ jobs:
     uses: sympress/workflows/.github/workflows/composer-validate.yml@v1
     with:
       php_version: '8.5'
-      php_extensions: curl, dom, json, libxml
+      php_extensions: curl, dom, json, libxml, zip
       install: true
       audit: true
       validate_options: --strict --no-check-publish
@@ -29,7 +29,7 @@ jobs:
     uses: sympress/workflows/.github/workflows/sympress-qa.yml@v1
     with:
       php_version: '8.5'
-      php_extensions: curl, dom, json, libxml
+      php_extensions: curl, dom, json, libxml, zip
       node_version: '24'
       include_root: true
       package_glob: .
@@ -38,7 +38,7 @@ jobs:
       run_phpcs: true
       run_phpstan: true
       run_phpunit: true
-      run_node_build: false
+      run_node_build: true
       timeout_minutes: 15
     secrets:
       COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
