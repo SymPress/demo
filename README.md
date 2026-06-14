@@ -2,7 +2,7 @@
 
 **A reference WordPress website for learning structured development with SymPress and Symfony components.**
 
-SymPress Demo is the central demo project for the public SymPress repositories. It is a complete Composer-based WordPress website with a real demo plugin, DDEV setup, WP-CLI seed workflow, admin UI, frontend output, migrations, optional event telemetry, logging, Encore/TypeScript assets and development profiler integration.
+SymPress Demo is the central demo project for the public SymPress repositories. It is a complete Composer-based WordPress website with a real demo plugin, DDEV setup, WP-CLI seed workflow, admin UI, frontend output, migrations, optional event telemetry, ORM-mapped demo event records, logging, Composer-driven Encore/TypeScript assets and development profiler integration.
 
 The goal is the same kind of learning value as the Symfony Demo application: a small realistic application that shows best practices in context. Here the runtime is WordPress, and SymPress brings Symfony-style architecture where it helps.
 
@@ -27,7 +27,7 @@ Use the project as a guided learning path:
 2. Open `WP Admin -> SymPress Demo` to see the component dashboard.
 3. Follow the block flow from `BlockRegistrar` to `Service\NoteService` to `Repository\WordPressNoteRepository`.
 4. Inspect `NoteRenderTelemetry`, `NoteRenderedEvent` and `LogRenderedNoteSubscriber` to see how optional side effects are separated from read queries.
-5. Enable profiler collection locally, then open the toolbar and select the `SymPress Demo` panel.
+5. Open the development profiler toolbar and select the `SymPress Demo` panel.
 6. Read the deeper documentation in [`docs/`](docs/README.md).
 
 Recommended deep dives:
@@ -49,7 +49,11 @@ The website contains a "Knowledge Notes" application:
 - Optional event dispatching when rendered notes are explicitly tracked.
 - Logging of tracked rendered notes.
 - Versioned SymPress migration for the demo event table.
+- ORM entity and repository access for the demo event table.
 - Admin dashboard showing component status.
+- Service container map showing aliases, adapters and parameterized services.
+- Composer asset compilation through `sympress/asset-compiler`.
+- Starter-compatible project conventions such as `bin/console`, WPStarter orchestration and a base MU package.
 - Source-code links in the admin dashboard.
 - Encore-built admin, frontend and block editor assets.
 - Multilingual plugin textdomain with POT and German PO example.
@@ -69,6 +73,7 @@ The website contains a "Knowledge Notes" application:
 | Services | Query and seed use cases with repository/writer contracts |
 | Events | Opt-in `NoteRenderTelemetry`, `NoteRenderedEvent` and subscriber |
 | Database changes | Versioned `sympress_demo_events` migration |
+| ORM | `DemoEventRecord` entity and `DemoEventRecordRepository` |
 | API | WordPress REST route backed by the service layer |
 | Editor integration | Dynamic block rendered by the same PHP callback |
 | Debug tooling | SymPress Profiler config and custom demo collector |
@@ -84,11 +89,12 @@ The parallel is conceptual, not cosmetic. Symfony Demo teaches framework convent
 | [`SymPress/event-dispatcher`](https://github.com/SymPress/event-dispatcher) | The note workflow keeps queries read-only and exposes optional telemetry through the SymPress event system. |
 | [`SymPress/migration`](https://github.com/SymPress/migration) | The demo event table is modeled as a versioned migration. |
 | [`SymPress/assets`](https://github.com/SymPress/assets) | Encore-built admin and frontend assets are registered through `EncoreEntrypointsLoader`. |
+| [`SymPress/asset-compiler`](https://github.com/SymPress/asset-compiler) | Composer discovers the demo package asset contract and runs its production build through `composer compile-assets`. |
 | [`SymPress/wp-cli-console`](https://github.com/SymPress/wp-cli-console) | The demo ships a WP-CLI command and can expose console workflows through the kernel. |
 | [`SymPress/monolog-bundle`](https://github.com/SymPress/monolog-bundle) | Root config defines Monolog handlers and the subscriber writes PSR-3 logs. |
+| [`SymPress/orm`](https://github.com/SymPress/orm) | The demo event table is mapped as an ORM entity and read/written through a repository. |
 | [`SymPress/profiler`](https://github.com/SymPress/profiler) | The development install can contribute the toolbar, profile pages and default collectors; the demo plugin adds one package-specific collector as an extension example. |
 | [`SymPress/coding-standards`](https://github.com/SymPress/coding-standards) | The package follows the same QA shape and can run the shared coding standard. |
-| [`SymPress/.github`](https://github.com/SymPress/.github) | Organization-level community and repository defaults. |
 
 For a deeper package-by-package explanation, read [SymPress Components](docs/sympress-components.md).
 
@@ -120,7 +126,7 @@ The runtime bootstrap is deliberately explicit:
 5. The kernel discovers active SymPress bundles through Composer metadata and WordPress plugin state.
 6. Bundle and site configuration register hooks, routes, commands, collectors and services.
 
-SymPress packages are resolved from Packagist. The only path repository points at local demo packages under `packages/*`, so the website can install the demo feature plugin and base MU package while they are developed in the same repository.
+Public SymPress packages are resolved from Packagist. The path repository points only at local demo packages under `packages/*`, so the website can install the demo feature plugin and base MU package while they are developed in the same repository.
 
 Open the site:
 
@@ -153,6 +159,7 @@ The repository includes fresh screenshots from the DDEV site:
 ddev start
 ddev composer install
 ddev composer compile-assets
+ddev composer build:production
 ddev exec 'vendor/bin/wp plugin activate sympress-demo'
 ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --count=18 --reset'
 ddev exec ./bin/console wp:plugin:list
@@ -197,7 +204,10 @@ The dashboard shows:
 - Published notes
 - Topics
 - Recorded demo events
+- Latest ORM event records
 - SymPress component status
+- Service container aliases and adapters
+- Starter project conventions
 - Developer entry points
 - Source code map linking UI concepts to repository files
 - Profiler package status and the demo-specific collector extension point
@@ -241,7 +251,7 @@ The demo plugin uses Symfony Webpack Encore with TypeScript:
 ddev composer compile-assets
 ```
 
-The website root owns asset compilation in `composer.json`: `composer compile-assets` currently installs the demo plugin frontend dependencies and runs its Encore build explicitly. The demo plugin also declares asset build inputs in Composer metadata so the intended package contract is visible to future compiler tooling.
+The website root owns asset compilation through `sympress/asset-compiler`. `composer compile-assets` discovers the demo plugin package, installs its frontend dependencies when needed and runs the configured build script. `composer build:production` calls the compiler in production mode and then runs the runtime smoke command.
 
 Encore writes `assets/entrypoints.json`, CSS, JS and WordPress dependency extraction metadata. `DemoAssetRegistrar` loads those entrypoints through `sympress/assets`, which keeps asset registration aligned with the real project packages.
 
@@ -261,7 +271,7 @@ sympress_demo
 
 Open a collected profile to inspect the built-in request, performance, database, hook, asset, template, block, option and kernel panels. Then select the `SymPress Demo` panel to see how a package can add its own runtime metrics.
 
-Profiler collection is disabled by default in `config/packages/development/profiler.yaml`; enable it locally when you want request profiles. This keeps the demo from normalizing debug collection as a production default while still showing how application packages can extend the profiler.
+Profiler collection is enabled in `config/packages/development/profiler.yaml`, which is loaded only for the development environment. This keeps profiling out of production while making the demo immediately inspectable after local setup.
 
 ## WP-CLI Examples
 
@@ -278,7 +288,7 @@ The command creates demo content without embedding fixture logic in the plugin b
 
 ## Testing And Quality
 
-Before running QA, install the site through DDEV and make sure the database is available. The runtime smoke test uses WP-CLI against the generated WordPress installation, so it expects the demo plugin, REST route and dynamic block to be registered.
+Before running QA, install the site through DDEV and make sure the database is available. The runtime smoke check uses the demo plugin's WP-CLI command against the generated WordPress installation, so it expects the demo plugin, REST route and dynamic block to be registered.
 
 ```bash
 ddev composer qa
@@ -293,15 +303,15 @@ The QA command runs repository and package checks:
 - PHPCS
 - PHPStan
 - PHPUnit
-- Runtime smoke test through WP-CLI
+- Runtime smoke command through WP-CLI
 
 The base MU package and feature plugin both run through the root QA command. JavaScript type checking and npm audit are exposed as separate npm scripts and GitHub workflow jobs.
 
-The tests focus on read-only service behavior, opt-in telemetry dispatching, bootstrap shape and live WordPress registration. The runtime smoke test verifies REST route registration, block registration and block rendering against the DDEV WordPress runtime.
+The tests focus on read-only service behavior, opt-in telemetry dispatching, bootstrap shape and live WordPress registration. The runtime smoke command verifies REST route registration, block registration and block rendering against the DDEV WordPress runtime.
 
 ## Troubleshooting
 
-If `ddev composer qa` fails before the runtime smoke test, run `ddev composer install` so Composer can install WordPress, generate the MU loader and build assets.
+If `ddev composer qa` fails before the runtime smoke command, run `ddev composer install` so Composer can install WordPress, generate the MU loader and build assets.
 
 If the homepage has no notes, run:
 
@@ -317,7 +327,7 @@ ddev exec 'vendor/bin/wp plugin activate sympress-demo'
 
 If the profiler toolbar is missing, check that the site runs in a local/development environment, `sympress/profiler` is installed through development dependencies, profiler collection is enabled locally and the SymPress kernel cache has been rebuilt after dependency changes.
 
-If generated CSS or JavaScript is stale, run:
+If generated CSS or JavaScript is stale, run the SymPress Asset Compiler:
 
 ```bash
 ddev composer compile-assets
@@ -334,6 +344,7 @@ php
 symfony
 dependency-injection
 composer-package
+composer-plugin
 wordpress-development
 wp-cli
 event-dispatcher

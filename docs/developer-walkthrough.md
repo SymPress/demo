@@ -107,10 +107,9 @@ packages/sympress-demo/src/EventSubscriber/LogRenderedNoteSubscriber.php
 
 The note query itself is read-only. If telemetry is explicitly enabled, `NoteRenderTelemetry` emits an event after a render surface has loaded notes. The subscriber reacts by logging and recording demo events.
 
-The subscriber is registered through:
+The subscriber is registered through hook and listener attributes:
 
 ```text
-packages/sympress-demo/config/services.yaml
 packages/sympress-demo/src/EventSubscriber/LogRenderedNoteSubscriber.php
 ```
 
@@ -122,11 +121,13 @@ Continue to:
 
 ```text
 packages/sympress-demo/src/Infrastructure/Persistence/DemoEventRepository.php
+packages/sympress-demo/src/Entity/DemoEventRecord.php
+packages/sympress-demo/src/Repository/DemoEventRecordRepository.php
 packages/sympress-demo/src/Migration/CreateDemoEventsTableMigration.php
 packages/sympress-demo/src/Hook/DemoMigrations.php
 ```
 
-The demo event table is visible as a project concern. The repository writes records; the migration owns the schema; the hook class registers and runs it through `sympress/migration`.
+The demo event table is visible as a project concern. The migration owns the schema; the hook class registers and runs it through `sympress/migration`; the ORM entity and repository provide object-oriented reads and writes through `sympress/orm`. The application-facing `DemoEventRepository` sits in front of that ORM repository and keeps a small `wpdb` fallback for early migration states.
 
 The idea is simple: when a plugin owns data outside standard posts and terms, that data should be understandable from code, not only from a database dump.
 
@@ -148,9 +149,10 @@ At website level, Composer is the build entry point:
 
 ```bash
 ddev composer compile-assets
+ddev composer build:production
 ```
 
-The root Composer script installs the demo plugin frontend dependencies and runs its Encore build. The plugin package also declares its asset build inputs in Composer metadata, so the package contract is visible even though this demo currently uses an explicit root script.
+`sympress/asset-compiler` is the Composer command provider behind `composer compile-assets`. It discovers the demo package from Composer metadata, installs frontend dependencies when needed and resolves `build` versus `build:production` through the configured mode. `build:production` follows that compiler run with the runtime smoke command.
 
 This split teaches an important production pattern:
 
@@ -160,7 +162,7 @@ This split teaches an important production pattern:
 
 ## 9. Runtime Understanding Comes From The Profiler
 
-The profiler package itself supplies the toolbar, profile pages and default collectors when `sympress/profiler` is installed, active and discovered by the kernel. Those built-in panels show request, performance, database, hook, asset, template, block, option and kernel information without a demo-specific collector.
+The profiler package itself supplies the toolbar, profile pages and default collectors when `sympress/profiler` is installed, active and discovered by the kernel. Development config enables collection, so those built-in panels show request, performance, database, hook, asset, template, block, option and kernel information without a demo-specific collector.
 
 Continue to:
 
@@ -218,7 +220,7 @@ Run:
 ddev composer qa
 ```
 
-The QA command runs PHPCS, PHPStan, PHPUnit and a runtime smoke test for the demo package. The tests are intentionally close to the architecture:
+The QA command runs PHPCS, PHPStan, PHPUnit and a runtime smoke command for the demo package. The tests are intentionally close to the architecture:
 
 - service behavior;
 - event dispatching;

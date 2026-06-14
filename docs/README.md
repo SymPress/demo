@@ -26,4 +26,4 @@ The short version: WordPress remains the runtime, editor, admin and content plat
 - Block: `sympress-demo/notes`
 - REST API: `/wp-json/sympress-demo/v1/notes?topic=architecture&limit=5`
 - Quote seed: `wp sympress-demo:create-notes --set=quotes --count=18 --reset`
-- Runtime smoke test: `ddev composer qa`
+- Runtime smoke command: `ddev composer qa`

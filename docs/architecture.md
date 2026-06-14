@@ -11,7 +11,7 @@ The goal is not to hide WordPress behind a framework. WordPress still owns the r
 - WordPress hooks become thin adapters;
 - domain code is separated from WordPress integration code;
 - events make side effects explicit;
-- migrations, CLI commands, assets, logs and profiler panels are first-class project concerns.
+- migrations, ORM records, CLI commands, compiled assets, logs and profiler panels are first-class project concerns.
 
 This is the guiding sentence:
 
@@ -32,7 +32,7 @@ demo/
 |   `-- sympress-demo/           The reference plugin package
 |-- public/                      Web root
 |-- composer.json                Website dependencies
-`-- composer.lock                Reproducible Packagist resolution
+`-- composer.lock                Reproducible Composer resolution
 ```
 
 The plugin package is the application package inside the website:
@@ -40,7 +40,7 @@ The plugin package is the application package inside the website:
 ```text
 packages/sympress-demo/
 |-- assets/                      Built Encore output consumed by WordPress
-|-- config/services.yaml         Package-level services, hooks and tags
+|-- config/services.yaml         Package-level services, aliases and parameters
 |-- languages/                   POT and German PO example
 |-- resources/
 |   |-- blocks/                  Dynamic block metadata
@@ -52,7 +52,7 @@ packages/sympress-demo/
 |   |-- Application/             Query and seed use cases
 |   |-- Asset/                   Asset registration adapter
 |   |-- Command/                 WP-CLI command
-|   |-- Entity/                  Plain PHP note and topic entities
+|   |-- Entity/                  Plain PHP note/topic entities and ORM records
 |   |-- Event/                   Application events
 |   |-- EventSubscriber/         Explicit side effects
 |   |-- Hook/                    Package hooks for migrations and integrations
@@ -75,6 +75,8 @@ The same base MU package also contains production-shaped WordPress runtime conce
 - `vardumper-integration.php` enables Symfony VarDumper output for frontend development when explicitly enabled.
 
 Project-specific MU plugins from the real website are intentionally not copied. The demo keeps only the generic runtime shape that developers can reuse.
+
+The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, WPStarter owns WordPress generation, DDEV provides the local runtime and the base MU package boots the site kernel.
 
 ## Bootstrap And Package Discovery
 
@@ -123,6 +125,7 @@ Each step has a purpose:
 - Application services are small and testable.
 - Read queries do not write data; optional side effects are explicit services and subscribers.
 - Built assets are registered by a dedicated asset adapter.
+- Frontend builds are discovered and run by the SymPress Asset Compiler.
 - Runtime understanding is exposed through the profiler.
 
 ## Boundaries
@@ -146,6 +149,7 @@ The demo uses boundaries that are useful in production WordPress projects:
 | Application telemetry | Optional event dispatching outside the query service | `NoteRenderTelemetry`, `NoteRenderedEvent` |
 | Subscriber | Logging and event-table writes | `LogRenderedNoteSubscriber` |
 | Asset adapter | Runtime registration of compiled frontend/admin assets | `DemoAssetRegistrar` |
+| Asset compiler | Composer-level frontend dependency installation and build orchestration | `sympress/asset-compiler` config in `composer.json` |
 | Profiler package | Built-in request, performance, WordPress and kernel diagnostics | `sympress/profiler` default collectors |
 | Profiler extension | Developer visibility into demo runtime state | `DemoProfilerCollector` |
 | Localization | WordPress textdomain loading and translation source files | `LocalizationRegistrar` |
@@ -170,7 +174,7 @@ The demo borrows Symfony ideas where they map well to WordPress:
 - Composer packages instead of manually copied plugin folders.
 - A kernel and service container instead of global setup scripts.
 - Configuration files instead of scattered imperative registration.
-- Tagged services for hooks and profiler collectors.
+- Attributes for hooks and event listeners; tagged services for profiler collectors.
 - Console commands for repeatable developer workflows.
 - Profiler and logs for runtime feedback.
 
@@ -178,9 +182,9 @@ The demo does not try to turn WordPress into Symfony. The content model, admin s
 
 ## Packagist First
 
-All public SymPress packages are resolved from Packagist. The root project does not use GitHub VCS repositories for SymPress packages.
+Public SymPress packages are resolved from Packagist. The demo keeps Composer repository configuration narrow: local path packages for the packages developed in this repository, plus WPackagist for WordPress themes and plugins.
 
-The only path repository is:
+The local path repository is:
 
 ```json
 {

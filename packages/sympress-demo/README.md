@@ -13,10 +13,12 @@ It demonstrates:
 - Service-oriented note retrieval
 - Event dispatching and subscribers
 - Versioned SymPress database migrations
+- ORM entity and repository access for demo event records
 - REST API route backed by the note service
 - Dynamic block editor example
 - WP-CLI seed command backed by a testable seeder
 - Admin, frontend and block editor assets built with Encore and TypeScript
+- Composer asset-compiler metadata for package-level builds
 - WordPress textdomain loading with translation source files
 - Monolog-compatible logging
 - Demo-specific SymPress Profiler collector extension
@@ -42,9 +44,9 @@ When WordPress marks the plugin active, the kernel can discover `SymPressDemoBun
 
 The code is organized around boundaries:
 
-- `Entity/` contains plain PHP note and topic entities.
+- `Entity/` contains plain PHP note/topic entities and the ORM-mapped demo event record.
 - `Application/` contains query, telemetry and seeding use cases plus request/result objects.
-- `Repository/` contains the note repository contract and WordPress-backed implementation.
+- `Repository/` contains the note repository contract, WordPress-backed implementation and ORM demo event repository.
 - `Service/` contains application use-case services.
 - `Presentation/` contains response/resource shaping for outward-facing adapters.
 - `Infrastructure/WordPress/` contains adapters that call WordPress APIs.
@@ -57,16 +59,19 @@ The code is organized around boundaries:
 
 When reading the package, start with `Infrastructure/WordPress/BlockRegistrar.php`, then follow the call into `Application/Query/NoteListQueryFactory.php` and `Service/NoteService.php`. After that, compare `RestApiRegistrar.php` and `BlockRegistrar.php`: both entry points reuse the same query/service flow instead of duplicating application behavior.
 
-## Service Tags
+## Service Container And Attributes
 
-The package declares runtime integration points in `config/services.yaml`:
+The package keeps container wiring in `config/services.yaml` and runtime hooks next to the methods that WordPress or the event dispatcher will call:
 
-- `kernel.hook` for WordPress hooks and filters such as `init`, `admin_menu`, `rest_api_init`, `cli_init` and migration hooks.
+- `#[AsHook]` for WordPress hooks and filters such as `init`, `admin_menu`, `rest_api_init`, `cli_init` and migration hooks.
+- `#[AsEventListener]` for the demo event subscriber.
+- `#[WithMonologChannel('sympress_demo')]` for channel-specific PSR-3 logging.
 - `profiler.collector` for the demo-specific profiler panel in `config/services_development.yaml`.
+- `extra.sympress.asset-compiler` for the package build script, production mode and hash inputs.
 - An alias from `NoteRepositoryInterface` to `WordPressNoteRepository` so the application service depends on a contract.
 - An alias from `DemoNoteWriterInterface` to `WordPressDemoNoteWriter` so the seed use case writes through a port.
 
-Those tags are the package's public integration surface. The plugin bootstrap stays thin because the container owns the runtime wiring.
+Those attributes and aliases are the package's public integration surface. The plugin bootstrap stays thin because the container owns the runtime wiring.
 
 ## Profiler Extension
 
@@ -88,7 +93,7 @@ ddev composer install
 ddev composer qa
 ```
 
-The package-level Composer scripts exist for focused checks, but the root workflow also runs the WordPress runtime smoke test.
+The package-level Composer scripts exist for focused checks, but the root workflow also runs the WordPress runtime smoke command.
 
 More context lives in the repository-level documentation:
 
