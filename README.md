@@ -294,6 +294,7 @@ Before running QA, install the site through DDEV and make sure the database is a
 ddev composer qa
 ddev npm --prefix packages/sympress-demo run typecheck
 ddev npm --prefix packages/sympress-demo run audit
+ddev playwright
 ```
 
 The QA command runs repository and package checks:
@@ -304,8 +305,9 @@ The QA command runs repository and package checks:
 - PHPStan
 - PHPUnit
 - Runtime smoke command through WP-CLI
+- Browser smoke test through Playwright in DDEV
 
-The base MU package and feature plugin both run through the root QA command. JavaScript type checking and npm audit are exposed as separate npm scripts and GitHub workflow jobs.
+The base MU package and feature plugin both run through the root QA command. JavaScript type checking and npm audit are exposed as separate npm scripts and GitHub workflow jobs. The DDEV Playwright smoke test opens the demo homepage and fails when the rendered response contains PHP or WordPress fatal errors.
 
 The tests focus on read-only service behavior, opt-in telemetry dispatching, bootstrap shape and live WordPress registration. The runtime smoke command verifies REST route registration, block registration and block rendering against the DDEV WordPress runtime.
 

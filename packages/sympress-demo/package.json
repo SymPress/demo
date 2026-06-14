@@ -9,10 +9,12 @@
         "build:production": "encore production",
         "dev": "encore dev",
         "watch": "encore dev --watch",
+        "test:browser": "playwright test",
         "typecheck": "tsc --noEmit",
         "audit": "npm audit --audit-level=moderate"
     },
     "devDependencies": {
+        "@playwright/test": "^1.60.0",
         "@symfony/webpack-encore": "^6.0.0",
         "@wordpress/dependency-extraction-webpack-plugin": "^5.5.0",
         "fork-ts-checker-webpack-plugin": "9.1.0",

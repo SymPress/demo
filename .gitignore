@@ -25,6 +25,8 @@
 /packages/*/.phpunit.cache/
 /packages/*/.phpunit-cache/
 /packages/*/.pgpunit-cache/
+/packages/*/playwright-report/
+/packages/*/test-results/
 /packages/*/var/cache/*
 /packages/*/var/log/*
 !/packages/*/var/cache/.gitkeep

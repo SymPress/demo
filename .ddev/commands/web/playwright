@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## Description: Run the SymPress demo Playwright browser tests
+## Usage: playwright [flags]
+## Example: "ddev playwright" or "ddev playwright --headed"
+
+set -euo pipefail
+
+cd /var/www/html
+
+export PLAYWRIGHT_BASE_URL="${PLAYWRIGHT_BASE_URL:-${DDEV_PRIMARY_URL:-https://sympress-demo.dev}}"
+export PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH="${PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH:-/usr/bin/chromium}"
+
+npm --prefix packages/sympress-demo run test:browser -- "$@"
