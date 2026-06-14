@@ -26,13 +26,12 @@ final readonly class RuntimeSmokeCommand
     /**
      * Verifies that the generated WordPress runtime can load the demo surface.
      *
+     * @param list<string> $args
+     * @param array<string, mixed> $assocArgs
+     *
      * ## EXAMPLES
      *
      *     wp sympress-demo:runtime-smoke
-     */
-    /**
-     * @param list<string> $args
-     * @param array<string, mixed> $assocArgs
      */
     public function __invoke(array $args, array $assocArgs): void
     {
@@ -65,13 +64,13 @@ final readonly class RuntimeSmokeCommand
         \WP_CLI::success('SymPress Demo runtime smoke test passed.');
     }
 
-    /**
-     * @param class-string $className
-     */
+    /** @param class-string $className */
     private function assertClassExists(string $className, string $message): void
     {
-        if (!class_exists($className)) {
-            \WP_CLI::error($message);
+        if (class_exists($className)) {
+            return;
         }
+
+        \WP_CLI::error($message);
     }
 }

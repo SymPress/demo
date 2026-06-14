@@ -15,6 +15,7 @@ final class DemoEventRecordRepository extends Repository
         array $context = [],
         ?\DateTimeImmutable $createdAt = null,
     ): DemoEventRecord {
+
         $record = DemoEventRecord::record($eventName, $context, $createdAt);
 
         $this->save($record, flush: true);
@@ -28,9 +29,11 @@ final class DemoEventRecordRepository extends Repository
         $records = [];
 
         foreach ($this->findBy([], ['createdAt' => 'DESC'], max(1, $limit)) as $record) {
-            if ($record instanceof DemoEventRecord) {
-                $records[] = $record;
+            if (!$record instanceof DemoEventRecord) {
+                continue;
             }
+
+            $records[] = $record;
         }
 
         return $records;

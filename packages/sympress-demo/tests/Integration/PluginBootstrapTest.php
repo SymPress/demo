@@ -94,7 +94,10 @@ final class PluginBootstrapTest extends TestCase
         self::assertNotContains('@compile-assets', $composer['scripts']['post-install-cmd']);
         self::assertNotContains('@compile-assets', $composer['scripts']['post-update-cmd']);
         self::assertContains('sympress/kernel', $composer['extra']['sympress']['public_components_demonstrated']);
-        self::assertContains('sympress/asset-compiler', $composer['extra']['sympress']['public_components_demonstrated']);
+        self::assertContains(
+            'sympress/asset-compiler',
+            $composer['extra']['sympress']['public_components_demonstrated'],
+        );
         self::assertContains('sympress/orm', $composer['extra']['sympress']['public_components_demonstrated']);
         self::assertContains('sympress/profiler', $composer['extra']['sympress']['public_components_demonstrated']);
         self::assertContains('bin/console', $composer['extra']['sympress']['starter_conventions']);
@@ -224,7 +227,10 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertStringContainsString('use SymPress\\Kernel\\Attribute\\AsHook;', $migrations);
         self::assertStringContainsString("#[AsHook('db_migration_register', acceptedArgs: 1)]", $migrations);
-        self::assertStringContainsString("#[AsHook('db_migration_registered', priority: 20, acceptedArgs: 1)]", $migrations);
+        self::assertStringContainsString(
+            "#[AsHook('db_migration_registered', priority: 20, acceptedArgs: 1)]",
+            $migrations,
+        );
         self::assertStringContainsString('#[AsHook(AssetManager::ACTION_SETUP, acceptedArgs: 1)]', $assets);
         self::assertStringContainsString('use SymPress\\EventDispatcher\\Attribute\\AsEventListener;', $subscriber);
         self::assertStringContainsString('#[AsEventListener(event: NoteRenderedEvent::class)]', $subscriber);
@@ -291,7 +297,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('use SymPress\\Orm\\Mapping\\Entity;', $entity);
         self::assertStringContainsString("#[Entity(table: 'sympress_demo_events'", $entity);
         self::assertStringContainsString('DemoEventRecordRepository::class', $entity);
-        self::assertStringContainsString("#[GeneratedValue]", $entity);
+        self::assertStringContainsString('#[GeneratedValue]', $entity);
         self::assertStringContainsString("#[Column(type: 'json', nullable: true)]", $entity);
         self::assertStringContainsString('extends Repository', $repository);
         self::assertStringContainsString('->save($record, flush: true)', $repository);

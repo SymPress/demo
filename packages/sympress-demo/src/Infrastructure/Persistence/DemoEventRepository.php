@@ -154,9 +154,11 @@ final readonly class DemoEventRepository
     /** @param array<string, mixed> $context */
     private function encodeContext(array $context): string
     {
-        $encoded = function_exists('wp_json_encode')
-            ? wp_json_encode($context)
-            : json_encode($context, JSON_UNESCAPED_SLASHES);
+        if (!function_exists('wp_json_encode')) {
+            return '{}';
+        }
+
+        $encoded = wp_json_encode($context);
 
         return is_string($encoded) ? $encoded : '{}';
     }

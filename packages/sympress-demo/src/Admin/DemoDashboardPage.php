@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SymPress\Demo\Admin;
 
-use SymPress\Assets\AssetManager;
 use SymPress\AssetCompiler\Composer\Plugin as AssetCompilerPlugin;
+use SymPress\Assets\AssetManager;
 use SymPress\Demo\Application\Seed\DemoNoteWriterInterface;
 use SymPress\Demo\Application\Seed\RemoteQuoteProviderInterface;
 use SymPress\Demo\Entity\DemoEventRecord;
@@ -215,6 +215,24 @@ final readonly class DemoDashboardPage
     private function sourceLinks(): array
     {
         $links = [
+            ...$this->configurationSourceLinks(),
+            ...$this->applicationSourceLinks(),
+            ...$this->runtimeSourceLinks(),
+        ];
+
+        return array_map(
+            static fn (array $link): array => [
+                ...$link,
+                'url' => 'https://github.com/SymPress/demo/blob/main/' . $link['path'],
+            ],
+            $links,
+        );
+    }
+
+    /** @return list<array{label: string, description: string, path: string}> */
+    private function configurationSourceLinks(): array
+    {
+        return [
             [
                 'label'       => 'Service container config',
                 'description' => 'autowire, aliases, parameters',
@@ -240,6 +258,13 @@ final readonly class DemoDashboardPage
                 'description' => AsHook::class,
                 'path'        => 'packages/sympress-demo/src/Hook/DemoMigrations.php',
             ],
+        ];
+    }
+
+    /** @return list<array{label: string, description: string, path: string}> */
+    private function applicationSourceLinks(): array
+    {
+        return [
             [
                 'label'       => 'REST API adapter',
                 'description' => '/wp-json/sympress-demo/v1/notes',
@@ -280,6 +305,13 @@ final readonly class DemoDashboardPage
                 'description' => DemoEventRecordRepository::class,
                 'path'        => 'packages/sympress-demo/src/Repository/DemoEventRecordRepository.php',
             ],
+        ];
+    }
+
+    /** @return list<array{label: string, description: string, path: string}> */
+    private function runtimeSourceLinks(): array
+    {
+        return [
             [
                 'label'       => 'Profiler collector',
                 'description' => 'sympress_demo',
@@ -291,14 +323,6 @@ final readonly class DemoDashboardPage
                 'path'        => 'packages/sympress-demo/resources/ts/block-editor.ts',
             ],
         ];
-
-        return array_map(
-            static fn (array $link): array => [
-                ...$link,
-                'url' => 'https://github.com/SymPress/demo/blob/main/' . $link['path'],
-            ],
-            $links,
-        );
     }
 
     /**
@@ -318,13 +342,11 @@ final readonly class DemoDashboardPage
     /** @return array{name: string, package: string, path: string, status: string} */
     private function starterConvention(string $name, string $package, string $path): array
     {
-        $absolutePath = dirname(__DIR__, 4) . '/' . $path;
-
         return [
             'name'    => $name,
             'package' => $package,
             'path'    => $path,
-            'status'  => file_exists($absolutePath) ? 'available' : 'documented',
+            'status'  => file_exists(dirname(__DIR__, 4) . '/' . $path) ? 'available' : 'documented',
         ];
     }
 }

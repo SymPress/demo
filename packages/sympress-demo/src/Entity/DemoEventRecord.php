@@ -16,9 +16,9 @@ use SymPress\Orm\Mapping\Index;
 #[Index(name: 'created_at', columns: ['createdAt'])]
 final class DemoEventRecord
 {
-    #[Id]
-    #[GeneratedValue]
     #[Column(type: 'bigint', unsigned: true)]
+    #[GeneratedValue]
+    #[Id]
     public ?int $id = null;
 
     #[Column(name: 'event_name', type: 'string', length: 191)]
@@ -37,6 +37,7 @@ final class DemoEventRecord
         array $context = [],
         ?\DateTimeImmutable $createdAt = null,
     ): self {
+
         $record = new self();
         $record->eventName = $eventName;
         $record->context = $context;
@@ -52,6 +53,7 @@ final class DemoEventRecord
         array $context,
         \DateTimeImmutable $createdAt,
     ): self {
+
         $record = self::record($eventName, $context, $createdAt);
         $record->id = $id;
 
