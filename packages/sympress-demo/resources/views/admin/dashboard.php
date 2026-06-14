@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/** @var array{noteCount: int, topicCount: int, eventCount: int, components: list<array{name: string, package: string, repository: string, status: string}>, profiler: array{collector: class-string, key: string, tag: string, status: string}, sourceLinks: list<array{label: string, description: string, path: string, url: string}>} $data */
+/** @var array{noteCount: int, topicCount: int, eventCount: int, latestEvents: list<array{name: string, createdAt: string, context: string}>, components: list<array{name: string, package: string, repository: string, status: string}>, serviceContainer: list<array{contract: string, service: string, pattern: string}>, starter: list<array{name: string, package: string, path: string, status: string}>, profiler: array{collector: class-string, key: string, tag: string, status: string}, sourceLinks: list<array{label: string, description: string, path: string, url: string}>} $data */
 
 ?>
 <div class="wrap sympress-demo-admin">
@@ -24,6 +24,59 @@ declare(strict_types=1);
             <strong><?php echo esc_html((string) $data['eventCount']); ?></strong>
             <span><?php echo esc_html__('Recorded demo events', 'sympress-demo'); ?></span>
         </section>
+    </div>
+
+    <div class="sympress-demo-admin__service-container">
+        <h2><?php echo esc_html__('Service container', 'sympress-demo'); ?></h2>
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th><?php echo esc_html__('Contract', 'sympress-demo'); ?></th>
+                    <th><?php echo esc_html__('Resolved service', 'sympress-demo'); ?></th>
+                    <th><?php echo esc_html__('Pattern', 'sympress-demo'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['serviceContainer'] as $service): ?>
+                    <tr>
+                        <td><code><?php echo esc_html($service['contract']); ?></code></td>
+                        <td><code><?php echo esc_html($service['service']); ?></code></td>
+                        <td><?php echo esc_html($service['pattern']); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="sympress-demo-admin__starter">
+        <h2><?php echo esc_html__('Starter project conventions', 'sympress-demo'); ?></h2>
+        <table class="widefat striped">
+            <thead>
+                <tr>
+                    <th><?php echo esc_html__('Convention', 'sympress-demo'); ?></th>
+                    <th><?php echo esc_html__('Package', 'sympress-demo'); ?></th>
+                    <th><?php echo esc_html__('Path', 'sympress-demo'); ?></th>
+                    <th><?php echo esc_html__('Status', 'sympress-demo'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data['starter'] as $convention): ?>
+                    <tr>
+                        <td><?php echo esc_html($convention['name']); ?></td>
+                        <td><code><?php echo esc_html($convention['package']); ?></code></td>
+                        <td><code><?php echo esc_html($convention['path']); ?></code></td>
+                        <td>
+                            <span
+                                class="sympress-demo-admin__status sympress-demo-admin__status--<?php echo esc_attr($convention['status']); ?>"
+                                data-component-status="<?php echo esc_attr($convention['status']); ?>"
+                            >
+                                <?php echo esc_html($convention['status']); ?>
+                            </span>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
     <h2><?php echo esc_html__('SymPress components', 'sympress-demo'); ?></h2>
@@ -56,6 +109,32 @@ declare(strict_types=1);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <div class="sympress-demo-admin__events">
+        <h2><?php echo esc_html__('Latest ORM event records', 'sympress-demo'); ?></h2>
+        <?php if ($data['latestEvents'] === []): ?>
+            <p><?php echo esc_html__('No demo events have been recorded yet.', 'sympress-demo'); ?></p>
+        <?php else: ?>
+            <table class="widefat striped">
+                <thead>
+                    <tr>
+                        <th><?php echo esc_html__('Event', 'sympress-demo'); ?></th>
+                        <th><?php echo esc_html__('Created', 'sympress-demo'); ?></th>
+                        <th><?php echo esc_html__('Context keys', 'sympress-demo'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($data['latestEvents'] as $event): ?>
+                        <tr>
+                            <td><code><?php echo esc_html($event['name']); ?></code></td>
+                            <td><?php echo esc_html($event['createdAt']); ?></td>
+                            <td><?php echo esc_html($event['context']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
 
     <div class="sympress-demo-admin__usage">
         <h2><?php echo esc_html__('Developer entry points', 'sympress-demo'); ?></h2>

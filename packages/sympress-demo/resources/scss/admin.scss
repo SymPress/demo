@@ -61,6 +61,9 @@
 }
 
 .sympress-demo-admin__usage,
+.sympress-demo-admin__service-container,
+.sympress-demo-admin__starter,
+.sympress-demo-admin__events,
 .sympress-demo-admin__source,
 .sympress-demo-admin__profiler {
     max-width: 920px;
@@ -74,14 +77,31 @@
     border-left-color: #3858e9;
 }
 
+.sympress-demo-admin__service-container {
+    border-left-color: #7a3b00;
+}
+
+.sympress-demo-admin__starter {
+    border-left-color: #d63638;
+}
+
+.sympress-demo-admin__events {
+    border-left-color: #8a2be2;
+}
+
 .sympress-demo-admin__source {
     border-left-color: #008a20;
 }
 
+.sympress-demo-admin__service-container table,
+.sympress-demo-admin__starter table,
+.sympress-demo-admin__events table,
 .sympress-demo-admin__source table {
     margin-top: 12px;
 }
 
+.sympress-demo-admin__service-container code,
+.sympress-demo-admin__starter code,
 .sympress-demo-admin__source a {
     overflow-wrap: anywhere;
 }
