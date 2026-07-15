@@ -1,0 +1,35 @@
+name: DDEV Canary
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '31 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ddev-canary:
+    name: DDEV + Playwright
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@v1
+    with:
+      php_version: '8.5'
+      node_version: '24'
+      allow_custom_commands: true
+      setup_command: |
+        cp .env.example .env
+        ddev composer install --no-interaction
+        if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+          ddev composer update 'sympress/*' --with-all-dependencies --no-interaction
+        fi
+      playwright_install_command: ddev exec bash -lc "cd packages/sympress-demo && npm ci" && cd packages/sympress-demo && npx playwright install --with-deps
+      playwright_run_command: ddev composer qa && cd packages/sympress-demo && npx playwright test
+      playwright_artifact_name: sympress-demo-playwright
+      playwright_artifact_path: |
+        packages/sympress-demo/playwright-report/
+        packages/sympress-demo/test-results/
+      timeout_minutes: 45

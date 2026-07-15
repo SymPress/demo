@@ -104,6 +104,21 @@ final class PluginBootstrapTest extends TestCase
         self::assertContains('dev-ops/wpstarter.json', $composer['extra']['sympress']['starter_conventions']);
     }
 
+    public function testDocumentedComponentMapCoversDeclaredPublicComponents(): void
+    {
+        $rootDir = dirname(__DIR__, 4);
+        $composer = json_decode(
+            (string) file_get_contents($rootDir . '/composer.json'),
+            true,
+            flags: JSON_THROW_ON_ERROR,
+        );
+        $componentMap = (string) file_get_contents($rootDir . '/docs/sympress-components.md');
+
+        foreach ($composer['extra']['sympress']['public_components_demonstrated'] as $package) {
+            self::assertStringContainsString($package, $componentMap, "Document {$package} in the component map.");
+        }
+    }
+
     public function testRootComposerUsesPackagistForPublishedSymPressPackages(): void
     {
         $composer = json_decode(

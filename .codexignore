@@ -1,0 +1,23 @@
+# Secrets and local runtime
+.env
+.env.*
+!.env.example
+auth.json
+.npmrc
+.ddev/homeadditions/.ssh/
+.ddev/.dbimageBuild/
+.ddev/.ddev-docker-*.yaml
+public/wp/
+public/wp-content/
+public/wp-config.php
+var/
+
+# Dependencies and test output
+vendor/
+packages/*/vendor/
+packages/*/node_modules/
+packages/*/playwright-report/
+packages/*/test-results/
+
+# Generated assets; edit resources/ and rebuild
+packages/sympress-demo/assets/
