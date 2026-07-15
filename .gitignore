@@ -3,6 +3,8 @@
 
 ### Composer
 /vendor/
+/auth.json
+/.npmrc
 
 ### WordPress / WP Starter
 /.env
@@ -16,6 +18,7 @@
 
 ### Runtime
 /var/
+/.ddev/homeadditions/.ssh/
 !/var/cache/
 !/var/cache/.gitkeep
 !/var/log/
