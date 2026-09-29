@@ -14,9 +14,9 @@ Verification in a fresh DDEV project with a separate database:
 - `wp console doctor --json` reports 14 passing checks, kernel boot count is one, and `wp console debug:container` succeeds.
 - Browser smoke verifies a successful homepage response and authenticated admin dashboard without JavaScript errors.
 - Neither the installed graph nor the lockfile includes a `wecodemore/*` package.
-- Repeated Composer installation and the standalone runner preserve 632 generated file hashes/link targets, including built assets.
+- Repeated Composer installation, global `composer install --no-plugins` and the standalone runner preserve 664 generated file hashes/link targets, including built assets and the deterministic package-layout record.
 
-Final acceptance remains open for global `composer install --no-plugins`: disabling the third-party WordPress installers rewrites Composer metadata/autoload paths to vendor defaults and breaks the subsequent demo bootstrap. Normal installation restores the expected paths. The Runtime acceptance record retains this failing scenario; this PR does not claim that gate passes. Runtime remote QA also awaits the separate QA PHPUnit 13 change. Keep this PR in draft until those gates and the Runtime stack are resolved.
+The former global `--no-plugins` failure is fixed by Runtime `cfc5ffd`: offline preparation restores package paths and Composer autoload metadata before loading project code, preserving the regular installer workflow. The full replay and demo QA pass after recovery. Real WPackagist plugin/theme/core installation also passes in Runtime's separate integration job. Final acceptance remains open for Runtime's documented layout boundaries and remote QA, which awaits the separate QA PHPUnit 13 change. Keep this PR in draft until those gates and the Runtime stack are resolved.
 
 Reproduce with `ddev composer install`, `ddev composer qa`, `ddev exec php wp-cli.phar console doctor --json`, and `ddev exec php wp-cli.phar console debug:container`. Runtime's `tools/consumer-smoke.mjs` uses private local credentials for browser verification. WP-CLI 2.12 can emit upstream PHP 8.5 deprecations; use `vendor/bin/sympress-runtime doctor --json` for clean JSON.
 
