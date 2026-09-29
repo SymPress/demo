@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-namespace WeCodeMore\WpStarter;
+use SymPress\Runtime\Database\DbChecker;
+use SymPress\Runtime\Services;
 
 $config = (object) [
     'title' => 'SymPress Demo',
@@ -22,13 +23,14 @@ $runtimeCommands = static function (string $homepageBlock): array {
     ];
 };
 
-$env = new Env\WordPressEnvBridge();
+/** @var Services $services */
+$env = $services->env();
 
-if (!$env->read(Util\DbChecker::WPDB_ENV_VALID)) {
+if (!$env->read(DbChecker::WPDB_ENV_VALID)) {
     return ['wp --version'];
 }
 
-if ($env->read(Util\DbChecker::WP_INSTALLED)) {
+if ($env->read(DbChecker::WP_INSTALLED)) {
     return [
         'wp db check',
         ...$runtimeCommands($homepageBlock),
@@ -37,7 +39,7 @@ if ($env->read(Util\DbChecker::WP_INSTALLED)) {
 
 $commands = [];
 
-if (!$env->read(Util\DbChecker::WPDB_EXISTS)) {
+if (!$env->read(DbChecker::WPDB_EXISTS)) {
     $commands[] = 'wp db create';
 }
 

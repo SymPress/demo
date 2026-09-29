@@ -16,7 +16,8 @@ This demo is designed to show every public SymPress package that belongs in a we
 | `sympress/orm` | Maps the demo event table as an entity and repository while keeping WordPress `wpdb` as runtime. | `src/Entity/DemoEventRecord.php`, `src/Repository/DemoEventRecordRepository.php` |
 | `sympress/profiler` | Adds development-time runtime inspection through the web debug toolbar, profile pages and built-in collectors. | `config/packages/development/profiler.yaml`, `src/Profiler/DemoProfilerCollector.php` |
 | `sympress/coding-standards` | Keeps the packages aligned with SymPress PHP quality conventions. | `composer qa`, `packages/sympress-demo/phpcs.xml.dist`, `packages/base-mu-plugins/phpcs.xml.dist` |
-| `sympress/starter` | Provides the project-shape conventions mirrored by the demo website. | `bin/console`, `dev-ops/wpstarter.json`, `packages/base-mu-plugins` |
+| `sympress/starter` | Provides the project-shape conventions mirrored by the demo website. | `bin/console`, `dev-ops/runtime.json`, `packages/base-mu-plugins` |
+| `sympress/runtime` | Generates WordPress configuration and runs project setup before asset compilation. | `dev-ops/runtime.json`, `dev-ops/orchestrate.php` |
 
 ## How The Packages Work Together
 
@@ -48,7 +49,7 @@ Most SymPress packages are runtime dependencies because the website actively use
 
 `sympress/coding-standards` and `sympress/profiler` are development dependencies. The profiler is demonstrated through development-only configuration, so local requests are inspectable without making profiling a production concern.
 
-`sympress/starter` is represented as a project convention, not as a runtime dependency. The demo keeps the same shape a starter project teaches: `bin/console` as the command surface, WPStarter orchestration in `dev-ops/`, DDEV setup and a base MU package that boots the site kernel.
+`sympress/starter` is represented as a project convention, not as a runtime dependency. The demo keeps the same shape a starter project teaches: `bin/console` as the command surface, SymPress Runtime orchestration in `dev-ops/`, DDEV setup and a base MU package that boots the site kernel.
 
 ## What To Copy Into A Real Project
 
@@ -63,7 +64,7 @@ Copy the patterns, not every class name:
 - let REST routes and blocks delegate to the same services;
 - keep translation loading WordPress-native but explicit;
 - rely on package defaults where they exist, and add custom profiler collectors only for application-specific runtime insight;
-- keep Composer dependencies Packagist-based and reserve path repositories for local packages developed inside the same workspace.
+- use Packagist for published packages and path repositories for local development; this review branch additionally uses the private Runtime Git repository documented in the README.
 
 ## What To Avoid
 
