@@ -128,9 +128,9 @@ The runtime bootstrap is deliberately explicit:
 
 Public SymPress packages are resolved from Packagist. The path repository points only at local demo packages under `packages/*`, so the website can install the demo feature plugin and base MU package while they are developed in the same repository.
 
-`sympress/runtime` uses `^1.0@RC` for release-candidate evaluation and resolves from public Packagist. The reviewed Composer lockfile fixes the installation to `1.0.0-rc.1`. Runtime installation needs no private repository or SSH key. Runtime requires Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
+`sympress/runtime` uses the stable `^1.0` release line from public Packagist. The reviewed Composer lockfile fixes the installation to `1.0.0`. Runtime installation needs no private repository or SSH key. Runtime requires Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
 
-After updating dependencies, validate and run the standalone setup with `ddev exec vendor/bin/runtime validate` and `ddev exec vendor/bin/runtime --no-interaction`. The previous `vendor/bin/sympress-runtime` executable is no longer shipped. Composer command names and `sympress-runtime` configuration keys are unchanged. Review the [Runtime 1.0 release-candidate upgrade guide](https://github.com/SymPress/runtime/blob/v1.0.0-rc.1/docs/releases/1.0.0-rc.1.md) and the [demo verification record](docs/runtime-migration.md) before updating another environment.
+After updating dependencies, validate and run the standalone setup with `ddev exec vendor/bin/runtime validate` and `ddev exec vendor/bin/runtime --no-interaction`. The previous `vendor/bin/sympress-runtime` executable is no longer shipped. Composer command names and `sympress-runtime` configuration keys are unchanged. Review the [Runtime 1.0 upgrade guide](https://github.com/SymPress/runtime/blob/v1.0.0/docs/releases/1.0.0.md) and the [demo verification record](docs/runtime-migration.md) before updating another environment.
 
 Open the site:
 

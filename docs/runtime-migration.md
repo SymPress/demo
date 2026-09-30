@@ -2,9 +2,36 @@
 
 The demo replaces WP Starter with `sympress/runtime` and `dev-ops/runtime.json`. Compatibility is disabled; the previous dotenv file convention is explicit. The command provider reads shared Runtime preflight status and keeps the existing installation and seed commands. Its path is now project-root-relative. The base MU package resolves the project autoloader for both copied and linked installation and boots the kernel only once.
 
-The dependency uses `^1.0@RC` from public Packagist for release-candidate evaluation. The reviewed `composer.lock` pins `v1.0.0-rc.1` at `b532fdc06c3e46b1f7b10a99557814b283d5018d`; Runtime no longer needs a private Git repository or SSH authentication. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
+The dependency uses the stable `^1.0` release line from public Packagist. The reviewed `composer.lock` pins `v1.0.0` at `56b89a0958d24d6ae62944c0dca9e205d9fb63d5`; Runtime no longer needs a private Git repository or SSH authentication. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
 
 Public WordPress URLs remain at the site root: `WP_SITEURL=${WP_HOME}`. The original DDEV Nginx rules map public endpoints to the physical `public/wp` core directory. No Nginx routing changes are required by this migration.
+
+## Runtime 1.0.0 stable upgrade verification
+
+The stable requirement is `^1.0`, with Runtime 1.0.0 and its exact source revision
+fixed in the reviewed lockfile. Only Runtime changes from the RC dependency graph;
+other package versions, generated assets and WP-CLI download pins are unchanged.
+The installed package's Git revision was checked against the lock and release tag.
+
+Fresh verification on 2026-09-30 in isolated DDEV (`sympress-v1-demo`, PHP 8.5.9,
+Composer 2.10.3, locked WordPress 7.0):
+
+- Composer update and repeated install, standalone validation and setup pass.
+- Full `composer qa` passes strict validation, audit, coding standards, both
+  PHPStan checks, 27 tests / 213 assertions and live REST/block/render/ORM smoke.
+- Doctor reports 15 passing checks. Native WP-CLI validation and JSON doctor
+  output/exit codes match the standalone binary from root and package subdirectory.
+- Playwright and authenticated Chromium checks pass: homepage HTTP 200, root
+  login form/POST, root admin dashboard, no JavaScript errors; screenshots inspected.
+- Environment, Nginx and download-lock hashes are unchanged. Home/site URLs remain
+  equal at the public root; WordPress loads the generated environment-format helper.
+- Drift inspection reports no generated changes and expected exit 2 for unknown
+  custom WP-CLI effects. Upstream WP-CLI PHP 8.5 deprecations remain; parity checks
+  suppress deprecation reporting consistently.
+
+These checks validate the published stable package in the isolated consumer.
+Production and independent migration field trials were waived and are not claimed.
+The Chromium-only CI installation introduced during RC adoption is retained.
 
 ## Runtime 1.0.0-rc.1 upgrade verification
 

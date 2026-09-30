@@ -20,7 +20,7 @@
         "sympress/migration": "dev-main",
         "sympress/monolog-bundle": "dev-main",
         "sympress/orm": "dev-main",
-        "sympress/runtime": "^1.0@RC",
+        "sympress/runtime": "^1.0",
         "sympress/wp-cli-console": "dev-main",
         "wpackagist-theme/twentytwentyfive": "^1.5.0"
     },
