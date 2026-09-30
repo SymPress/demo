@@ -2,7 +2,7 @@
 
 The demo replaces WP Starter with `sympress/runtime` and `dev-ops/runtime.json`. Compatibility is disabled; the previous dotenv file convention is explicit. The command provider reads shared Runtime preflight status and keeps the existing installation and seed commands. Its path is now project-root-relative. The base MU package resolves the project autoloader for both copied and linked installation and boots the kernel only once.
 
-The private Runtime phase-6 branch requires SSH repository access and must be retargeted after its PR stack is accepted. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
+The dependency follows Runtime main in its private repository; the lockfile pins merged commit `b1c1662`. All six Runtime PRs are merged. SSH repository access is required. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
 
 The DDEV Nginx configuration serves physical `/wp/wp-login.php` and `/wp/wp-admin/` endpoints directly. This prevents login POST loss and redirect loops with the explicit `WP_SITEURL=/wp` default.
 
@@ -16,7 +16,9 @@ Verification in a fresh DDEV project with a separate database:
 - Neither the installed graph nor the lockfile includes a `wecodemore/*` package.
 - Repeated Composer installation, global `composer install --no-plugins` and the standalone runner preserve 664 generated file hashes/link targets, including built assets and the deterministic package-layout record.
 
-The former global `--no-plugins` failure is fixed by Runtime `cfc5ffd`: offline preparation restores package paths and Composer autoload metadata before loading project code, preserving the regular installer workflow. The full replay and demo QA pass after recovery. Real WPackagist plugin/theme/core installation also passes in Runtime's separate integration job. Final acceptance remains open for Runtime's documented layout boundaries and remote QA, which awaits the separate QA PHPUnit 13 change. Keep this PR in draft until those gates and the Runtime stack are resolved.
+The former global `--no-plugins` failure is fixed by Runtime: offline preparation restores package paths and Composer autoload metadata before loading project code, preserving the regular installer workflow. The full replay and demo QA pass after recovery. Real WPackagist plugin/theme/core installation also passes in Runtime's separate integration job. QA #3 is merged and Runtime's remote QA succeeds. Demo CI currently fails while cloning the private Runtime repository because it lacks read access. No CI credentials or access settings have been changed. Keep this PR in draft until that access is configured and its CI passes; Runtime's documented offline recovery boundaries still apply.
+
+The review also refreshed compatible npm dependencies to resolve nine audit findings. `npm audit` reports zero vulnerabilities, and TypeScript analysis plus the production build pass locally and in GitHub CI.
 
 Reproduce with `ddev composer install`, `ddev composer qa`, `ddev exec php wp-cli.phar console doctor --json`, and `ddev exec php wp-cli.phar console debug:container`. Runtime's `tools/consumer-smoke.mjs` uses private local credentials for browser verification. WP-CLI 2.12 can emit upstream PHP 8.5 deprecations; use `vendor/bin/sympress-runtime doctor --json` for clean JSON.
 
