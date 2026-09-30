@@ -32,7 +32,9 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('Plugin Name: SymPress Demo App Starter', $contents);
         self::assertStringContainsString('use SymPress\\Kernel\\Kernel\\SiteKernel;', $contents);
         self::assertStringContainsString('function resolve_project_dir(string $startDir): string', $contents);
-        self::assertStringContainsString('App::bootKernel(new SiteKernel(resolve_project_dir(__DIR__)))', $contents);
+        self::assertStringContainsString('$projectDir = resolve_project_dir(__DIR__);', $contents);
+        self::assertStringContainsString('if (App::kernel() === null)', $contents);
+        self::assertStringContainsString('App::bootKernel(new SiteKernel($projectDir))', $contents);
     }
 
     public function testPackageComposerMetadataDeclaresKernelBundleEntryPoint(): void
@@ -101,7 +103,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertContains('sympress/orm', $composer['extra']['sympress']['public_components_demonstrated']);
         self::assertContains('sympress/profiler', $composer['extra']['sympress']['public_components_demonstrated']);
         self::assertContains('bin/console', $composer['extra']['sympress']['starter_conventions']);
-        self::assertContains('dev-ops/wpstarter.json', $composer['extra']['sympress']['starter_conventions']);
+        self::assertContains('dev-ops/runtime.json', $composer['extra']['sympress']['starter_conventions']);
     }
 
     public function testDocumentedComponentMapCoversDeclaredPublicComponents(): void
@@ -334,11 +336,11 @@ final class PluginBootstrapTest extends TestCase
         );
 
         self::assertFileExists($rootDir . '/bin/console');
-        self::assertFileExists($rootDir . '/dev-ops/wpstarter.json');
+        self::assertFileExists($rootDir . '/dev-ops/runtime.json');
         self::assertDirectoryExists($rootDir . '/packages/base-mu-plugins');
         self::assertFileExists($rootDir . '/.ddev/config.yaml');
         self::assertContains('bin/console', $composer['extra']['sympress']['starter_conventions']);
-        self::assertContains('dev-ops/wpstarter.json', $composer['extra']['sympress']['starter_conventions']);
+        self::assertContains('dev-ops/runtime.json', $composer['extra']['sympress']['starter_conventions']);
         self::assertContains('packages/base-mu-plugins', $composer['extra']['sympress']['starter_conventions']);
         self::assertContains('public/wp-content', $composer['extra']['sympress']['starter_conventions']);
     }
@@ -383,7 +385,7 @@ final class PluginBootstrapTest extends TestCase
             flags: JSON_THROW_ON_ERROR,
         );
 
-        self::assertSame('vendor/bin/wp sympress-demo:runtime-smoke', $composer['scripts']['qa:runtime']);
+        self::assertSame('@php wp-cli.phar sympress-demo:runtime-smoke', $composer['scripts']['qa:runtime']);
         self::assertContains(
             "@composer compile-assets --mode production --ignore-lock='*'",
             $composer['scripts']['build:production'],

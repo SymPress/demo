@@ -20,9 +20,8 @@
         "sympress/migration": "dev-main",
         "sympress/monolog-bundle": "dev-main",
         "sympress/orm": "dev-main",
+        "sympress/runtime": "dev-main",
         "sympress/wp-cli-console": "dev-main",
-        "wecodemore/wpstarter": "^3.0.1",
-        "wp-cli/wp-cli-bundle": "^2.12.0",
         "wpackagist-theme/twentytwentyfive": "^1.5.0"
     },
     "require-dev": {
@@ -38,7 +37,7 @@
     "extra": {
         "wordpress-install-dir": "public/wp",
         "wordpress-content-dir": "public/wp-content",
-        "wpstarter": "dev-ops/wpstarter.json",
+        "sympress-runtime": "dev-ops/runtime.json",
         "installer-paths": {
             "public/wp-content/mu-plugins/{$name}": [
                 "type:wordpress-muplugin"
@@ -61,11 +60,12 @@
             },
             "starter_conventions": [
                 "bin/console",
-                "dev-ops/wpstarter.json",
+                "dev-ops/runtime.json",
                 "packages/base-mu-plugins",
                 "public/wp-content"
             ],
             "public_components_demonstrated": [
+                "sympress/runtime",
                 "sympress/kernel",
                 "sympress/event-dispatcher",
                 "sympress/migration",
@@ -93,8 +93,8 @@
             "@cleanup"
         ],
         "demo:seed": [
-            "wp plugin activate sympress-demo",
-            "wp sympress-demo:create-notes --set=quotes --count=18 --reset"
+            "@php wp-cli.phar plugin activate sympress-demo",
+            "@php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset"
         ],
         "qa:validate": "composer validate --strict --no-check-publish",
         "qa:audit": "composer audit --locked --no-interaction",
@@ -115,7 +115,7 @@
             "@test",
             "@qa:runtime"
         ],
-        "qa:runtime": "vendor/bin/wp sympress-demo:runtime-smoke"
+        "qa:runtime": "@php wp-cli.phar sympress-demo:runtime-smoke"
     },
     "config": {
         "classmap-authoritative": true,
@@ -130,12 +130,16 @@
             "johnpbloch/wordpress-core-installer": true,
             "phpstan/extension-installer": true,
             "sympress/asset-compiler": true,
-            "wecodemore/wpstarter": true
+            "sympress/runtime": true
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:SymPress/runtime.git"
+        },
         {
             "type": "path",
             "url": "./packages/*",

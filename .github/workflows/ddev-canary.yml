@@ -15,7 +15,7 @@ permissions:
 jobs:
   ddev-canary:
     name: DDEV + Playwright
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@v1
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@b68ed03c15db6d2fac85d8345bc22a6229b4f4b2
     with:
       php_version: '8.5'
       node_version: '24'
@@ -33,3 +33,7 @@ jobs:
         packages/sympress-demo/playwright-report/
         packages/sympress-demo/test-results/
       timeout_minutes: 45
+    secrets:
+      SSH_KEY: ${{ secrets.COMPOSER_SSH_KEY }}
+      SSH_KNOWN_HOSTS: ${{ secrets.COMPOSER_SSH_KNOWN_HOSTS }}
+      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}

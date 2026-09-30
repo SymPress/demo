@@ -6,4 +6,6 @@ parameters:
     tmpDir: var/cache/phpstan
     bootstrapFiles:
         - tests/bootstrap.php
+    scanFiles:
+        - phar://%currentWorkingDirectory%/../../wp-cli.phar/vendor/wp-cli/wp-cli/php/class-wp-cli.php
     treatPhpDocTypesAsCertain: false

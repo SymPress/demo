@@ -11,8 +11,8 @@ namespace SymPress\Demo\BaseMuPlugins\AppStarter;
 use SymPress\Kernel\App;
 use SymPress\Kernel\Kernel\SiteKernel;
 
-if (!class_exists(App::class)) {
-    require_once __DIR__ . '/vendor/autoload.php';
+if (!defined('ABSPATH')) {
+    exit;
 }
 
 /**
@@ -37,4 +37,11 @@ function resolve_project_dir(string $startDir): string
     }
 }
 
-App::bootKernel(new SiteKernel(resolve_project_dir(__DIR__)));
+$projectDir = resolve_project_dir(__DIR__);
+if (!class_exists(App::class)) {
+    require_once $projectDir . '/vendor/autoload.php';
+}
+
+if (App::kernel() === null) {
+    App::bootKernel(new SiteKernel($projectDir));
+}

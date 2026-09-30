@@ -26,7 +26,7 @@ demo/
 |-- .ddev/                       Local WordPress runtime
 |-- bin/                         Developer commands
 |-- config/                      Site-level SymPress configuration
-|-- dev-ops/                     WP Starter orchestration
+|-- dev-ops/                     SymPress Runtime orchestration
 |-- packages/
 |   |-- base-mu-plugins/         Must-use bootstrap and runtime package
 |   `-- sympress-demo/           The reference plugin package
@@ -76,7 +76,7 @@ The same base MU package also contains production-shaped WordPress runtime conce
 
 Project-specific MU plugins from the real website are intentionally not copied. The demo keeps only the generic runtime shape that developers can reuse.
 
-The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, WPStarter owns WordPress generation, DDEV provides the local runtime and the base MU package boots the site kernel.
+The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, SymPress Runtime owns WordPress generation, DDEV provides the local runtime and the base MU package boots the site kernel.
 
 ## Bootstrap And Package Discovery
 
@@ -85,7 +85,7 @@ The demo intentionally keeps bootstrapping explicit instead of hiding it in a fe
 ```text
 composer install
   -> installs WordPress, plugins, themes and MU plugins into public/
-  -> WP Starter generates the MU plugin loader
+  -> SymPress Runtime generates the MU plugin loader
   -> WordPress loads packages/base-mu-plugins/app-starter.php
   -> app-starter boots SymPress\Kernel\Kernel\SiteKernel
   -> the kernel discovers active SymPress packages through Composer metadata
