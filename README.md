@@ -128,7 +128,9 @@ The runtime bootstrap is deliberately explicit:
 
 Public SymPress packages are resolved from Packagist. The path repository points only at local demo packages under `packages/*`, so the website can install the demo feature plugin and base MU package while they are developed in the same repository.
 
-During Runtime review, `sympress/runtime` is locked to `dev-phase-6-compatibility-migration` from the private `git@github.com:SymPress/runtime.git` repository. Composer therefore needs SSH access to that repository (`ddev auth ssh` inside DDEV). Retarget this requirement to the accepted main branch or release after the Runtime PR stack is merged. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
+`sympress/runtime` is pinned to the published `0.2.0` release from the private `git@github.com:SymPress/runtime.git` repository. Composer therefore needs SSH access to that repository (`ddev auth ssh` inside DDEV). Runtime requires Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
+
+After updating dependencies, validate and run the standalone setup with `ddev exec vendor/bin/runtime validate` and `ddev exec vendor/bin/runtime --no-interaction`. The previous `vendor/bin/sympress-runtime` executable is no longer shipped. Composer command names and `sympress-runtime` configuration keys are unchanged. Review the [Runtime 0.2.0 upgrade guide](https://github.com/SymPress/runtime/blob/v0.2.0/docs/releases/0.2.0.md) before updating another environment.
 
 Open the site:
 
