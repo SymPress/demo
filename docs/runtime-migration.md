@@ -2,11 +2,46 @@
 
 The demo replaces WP Starter with `sympress/runtime` and `dev-ops/runtime.json`. Compatibility is disabled; the previous dotenv file convention is explicit. The command provider reads shared Runtime preflight status and keeps the existing installation and seed commands. Its path is now project-root-relative. The base MU package resolves the project autoloader for both copied and linked installation and boots the kernel only once.
 
-The dependency follows Runtime main in its private repository; the lockfile pins merged commit `60249ee25ead52f94e2b83e9be4ce472cd3b2fcf`. All six implementation PRs and [review corrections #7](https://github.com/SymPress/runtime/pull/7) are merged. Private repository access is required through SSH or Composer GitHub authentication. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
+The dependency pins the published Runtime `v0.2.0` release in its private repository; the lockfile pins release commit `c7326255c23e6fd00149f4ccfd03498e35306ba3`. All six implementation PRs and [review corrections #7](https://github.com/SymPress/runtime/pull/7) are merged. Private repository access is required through SSH or Composer GitHub authentication. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
 
 Public WordPress URLs remain at the site root: `WP_SITEURL=${WP_HOME}`. The original DDEV Nginx rules map public endpoints to the physical `public/wp` core directory. No Nginx routing changes are required by this migration.
 
-Verification in a fresh DDEV project with a separate database:
+## Runtime 0.2.0 upgrade verification
+
+The upgrade changes only `sympress/runtime` in the Composer dependency graph.
+Follow the [0.2.0 upgrade guide](https://github.com/SymPress/runtime/blob/v0.2.0/docs/releases/0.2.0.md).
+The standalone executable is now `vendor/bin/runtime`; Composer command names and
+configuration keys remain unchanged. Existing root URLs, Nginx rules and the
+project's WP-CLI orchestration are preserved.
+
+A fresh installation downloaded WP-CLI 2.12.0. The committed
+`sympress-runtime.lock` records the SHA-256 pins for its release PHAR, the upstream
+SHA512 checksum response and the logical `wp-cli.phar` artifact. The PHAR digest
+is `ce34ddd838f7351d6759068d09793f26755463b4a4610a5a5c0a97b68220d85c`.
+The guard file is ignored. Review source changes before explicitly accepting new
+pins with `vendor/bin/runtime --update-lock`.
+
+Verified on 2026-09-30 in an isolated DDEV project with PHP 8.5.9, Composer 2.10.3,
+MariaDB 11.8 and a separate database:
+
+- Composer installation and repeated standalone setup succeed.
+- `vendor/bin/runtime validate` passes; local doctor reports 15 passing checks.
+- Full `composer qa` passes: coding standards, both PHPStan checks, 27 tests /
+  213 assertions, dependency audit and the live REST/block/render/ORM smoke.
+- TypeScript checking, npm audit (zero findings), production asset build and the
+  DDEV Playwright homepage test pass. Rebuilt assets are unchanged.
+- Browser verification confirms HTTP 200 for the homepage, login form and POST at
+  `/wp-login.php`, authenticated `/wp-admin/` dashboard and no JavaScript errors.
+- `vendor/bin/runtime --check --json` reports no generated-file changes and exit 2
+  because custom WP-CLI command effects are unknown during read-only inspection.
+  This is not a clean deployment-drift certification.
+
+WP-CLI 2.12.0 still emits upstream PHP 8.5 deprecation notices. Production rollout
+and a two-week observation period were not part of this local verification.
+
+## Original migration evidence
+
+Original migration verification in a fresh DDEV project with a separate database:
 
 - Composer installation succeeds and Runtime setup runs before asset-compiler.
 - QA passed: 27 tests, 213 assertions, coding standards, PHPStan, Composer validation and dependency audit.
@@ -20,8 +55,8 @@ The former global `--no-plugins` failure is fixed by Runtime: offline preparatio
 
 The review also refreshed compatible npm dependencies to resolve nine audit findings. `npm audit` reports zero vulnerabilities, and TypeScript analysis plus the production build pass locally and in GitHub CI.
 
-Reproduce with `ddev composer install`, `ddev composer qa`, `ddev exec php wp-cli.phar console doctor --json`, and `ddev exec php wp-cli.phar console debug:container`. Runtime's `tools/consumer-smoke.mjs` uses private local credentials for browser verification. WP-CLI 2.12 can emit upstream PHP 8.5 deprecations; use `vendor/bin/sympress-runtime doctor --json` for clean JSON.
+Reproduce with `ddev composer install`, `ddev composer qa`, `ddev exec php wp-cli.phar console doctor --json`, and `ddev exec php wp-cli.phar console debug:container`. Runtime's `tools/consumer-smoke.mjs` uses private local credentials for browser verification. WP-CLI 2.12 can emit upstream PHP 8.5 deprecations; use `vendor/bin/runtime doctor --json` for clean JSON.
 
 The original checkout's unrelated edits were preserved in place. This migration was developed in a separate Git worktree. Generated configuration, secrets and browser session data are excluded from the commit.
 
-The project owner approved enabling deploy keys for SymPress. A repository-scoped, read-only Runtime key now supplies `COMPOSER_SSH_KEY` to all Composer and DDEV workflows; `COMPOSER_SSH_KNOWN_HOSTS` pins GitHub's published host keys. The workflows are pinned to the reviewed SSH-support commit. CI must pass with that access before merge. When updating an existing environment from a previous `/wp` URL, run `vendor/bin/sympress-runtime flush-env-cache` so cached values cannot retain that URL.
+The project owner approved enabling deploy keys for SymPress. A repository-scoped, read-only Runtime key now supplies `COMPOSER_SSH_KEY` to all Composer and DDEV workflows; `COMPOSER_SSH_KNOWN_HOSTS` pins GitHub's published host keys. The workflows are pinned to the reviewed SSH-support commit. CI must pass with that access before merge. When updating an existing environment from a previous `/wp` URL, run `vendor/bin/runtime flush-env-cache` so cached values cannot retain that URL.
