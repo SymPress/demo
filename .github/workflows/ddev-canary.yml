@@ -33,3 +33,5 @@ jobs:
         packages/sympress-demo/playwright-report/
         packages/sympress-demo/test-results/
       timeout_minutes: 45
+    secrets:
+      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
