@@ -39,6 +39,10 @@ The long-running local fixture had drifted to WordPress 7.1.2; Composer restored
 its existing locked 7.0 core before the final QA/browser pass. An earlier login
 request timed out; the repeated authenticated check passed. No dependency
 constraint, environment setting or web-server route was changed for that repair.
+The DDEV canary installs only Chromium and its system dependencies, matching the
+sole browser project in `playwright.config.ts`. The earlier all-browser installer
+spent over ten minutes downloading unused browser dependencies from the Ubuntu
+mirror. Test coverage and the existing job timeout are unchanged.
 Upstream WP-CLI 2.12 PHP 8.5 deprecations remain; CLI parity checks consistently
 suppress deprecation reporting. Production and independent migration field trials
 were waived; these results cover automated and isolated consumer verification.
