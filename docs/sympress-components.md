@@ -64,7 +64,7 @@ Copy the patterns, not every class name:
 - let REST routes and blocks delegate to the same services;
 - keep translation loading WordPress-native but explicit;
 - rely on package defaults where they exist, and add custom profiler collectors only for application-specific runtime insight;
-- use Packagist for published packages and path repositories for local development; Runtime 0.2.0 uses the private Git repository documented in the README.
+- use Packagist for published packages, including Runtime, and path repositories for local development.
 
 ## What To Avoid
 
