@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+// Shared with the Asset Compiler's child-process contract; checked before vendor exists.
+$activeCompilation = getenv('SYMPRESS_ASSET_COMPILER_ACTIVE');
+if ($activeCompilation !== false && $activeCompilation !== '') {
+    fwrite(STDERR, "The deployment build cannot run inside an asset compilation process.\n");
+    exit(1);
+}
+
 // Credential-free build entry point used by the reusable Deployer npm build stage.
 chdir(dirname(__DIR__));
 $commands = [

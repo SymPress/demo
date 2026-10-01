@@ -57,6 +57,7 @@
                 "execution-strategy": "grouped",
                 "package-manager": "npm",
                 "packages": {
+                    "sympress/demo": false,
                     "sympress/demo-plugin": true
                 }
             },
