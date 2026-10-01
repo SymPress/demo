@@ -76,7 +76,14 @@ The same base MU package also contains production-shaped WordPress runtime conce
 
 Project-specific MU plugins from the real website are intentionally not copied. The demo keeps only the generic runtime shape that developers can reuse.
 
-The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, WPStarter owns WordPress generation, DDEV provides the local runtime and the base MU package boots the site kernel.
+The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, SymPress Runtime owns WordPress generation, DDEV provides the local runtime and the base MU package boots the site kernel.
+
+`dev-ops/runtime.json` uses the native Runtime profile and pins WP-CLI. Its
+download integrity is recorded in `sympress-runtime.lock`. The base MU package
+declares `sympress-runtime.boots-kernel`, preserving site ownership of kernel boot.
+The orchestration provider seeds notes and creates the demo homepage only for a
+fresh installation. Existing installations receive a database check; reseeding
+remains an explicit `composer demo:seed` operation.
 
 ## Bootstrap And Package Discovery
 

@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-namespace WeCodeMore\WpStarter;
+use SymPress\Runtime\Database\DbChecker;
+use SymPress\Runtime\Services;
 
 $config = (object) [
     'title' => 'SymPress Demo',
@@ -22,27 +23,29 @@ $runtimeCommands = static function (string $homepageBlock): array {
     ];
 };
 
-$env = new Env\WordPressEnvBridge();
+/** @var Services $services */
+$env = $services->env();
 
-if (!$env->read(Util\DbChecker::WPDB_ENV_VALID)) {
+if (!$env->read(DbChecker::WPDB_ENV_VALID)) {
     return ['wp --version'];
 }
 
-if ($env->read(Util\DbChecker::WP_INSTALLED)) {
-    return [
-        'wp db check',
-        ...$runtimeCommands($homepageBlock),
-    ];
+if ($env->read(DbChecker::WP_INSTALLED)) {
+    return ['wp db check'];
 }
 
 $commands = [];
 
-if (!$env->read(Util\DbChecker::WPDB_EXISTS)) {
+if (!$env->read(DbChecker::WPDB_EXISTS)) {
     $commands[] = 'wp db create';
 }
 
 $user = $env->read('WP_ADMIN_USERNAME') ?: 'admin';
-$pass = $env->read('WP_ADMIN_PASSWORD') ?: 'admin';
+$pass = $env->read('WP_ADMIN_PASSWORD') ?: \bin2hex(\random_bytes(16));
+
+if (!$env->read('WP_ADMIN_PASSWORD')) {
+    \fwrite(STDOUT, "Generated transient WordPress admin password: {$pass}\n");
+}
 $home = $env->read('WP_HOME');
 $siteUrl = $env->read('WP_SITEURL') ?: $home;
 $email = "{$user}@admin.com";

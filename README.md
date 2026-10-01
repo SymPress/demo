@@ -53,7 +53,7 @@ The website contains a "Knowledge Notes" application:
 - Admin dashboard showing component status.
 - Service container map showing aliases, adapters and parameterized services.
 - Composer asset compilation through `sympress/asset-compiler`.
-- Starter-compatible project conventions such as `bin/console`, WPStarter orchestration and a base MU package.
+- Starter-compatible project conventions such as `bin/console`, SymPress Runtime orchestration and a base MU package.
 - Source-code links in the admin dashboard.
 - Encore-built admin, frontend and block editor assets.
 - Multilingual plugin textdomain with POT and German PO example.
@@ -85,6 +85,7 @@ The parallel is conceptual, not cosmetic. Symfony Demo teaches framework convent
 
 | Repository | How this demo uses it |
 |---|---|
+| [`SymPress/runtime`](https://github.com/SymPress/runtime) | Generates WordPress configuration, publishes the MU loader and runs first-install orchestration. Repeated setup checks the database without resetting demo content. |
 | [`SymPress/kernel`](https://github.com/SymPress/kernel) | The `base-mu-plugins` app starter boots the site `SiteKernel`; the demo plugin contributes bundle metadata and services. |
 | [`SymPress/event-dispatcher`](https://github.com/SymPress/event-dispatcher) | The note workflow keeps queries read-only and exposes optional telemetry through the SymPress event system. |
 | [`SymPress/migration`](https://github.com/SymPress/migration) | The demo event table is modeled as a versioned migration. |
@@ -160,8 +161,8 @@ ddev start
 ddev composer install
 ddev composer compile-assets
 ddev composer build:production
-ddev exec 'vendor/bin/wp plugin activate sympress-demo'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --count=18 --reset'
+ddev exec 'php wp-cli.phar plugin activate sympress-demo'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset'
 ddev exec ./bin/console wp:plugin:list
 ```
 
@@ -276,12 +277,12 @@ Profiler collection is enabled in `config/packages/development/profiler.yaml`, w
 ## WP-CLI Examples
 
 ```bash
-ddev exec 'vendor/bin/wp sympress-demo:create-notes'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --count=10'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --source=local --count=10'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=architecture --count=10'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=frontend --count=6'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --count=18 --reset'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --count=10'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --source=local --count=10'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=architecture --count=10'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=frontend --count=6'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset'
 ```
 
 The command creates demo content without embedding fixture logic in the plugin bootstrap or the CLI adapter itself. The default `quotes` set fetches real quote data from the free ZenQuotes endpoint during seeding and stores the result as WordPress notes through a writer port. Free ZenQuotes usage requires attribution and is rate-limited, so the command also supports `--source=local` and falls back to bundled quote examples if the API cannot be reached. The architecture-oriented fixture sets are still available as `architecture`, `frontend`, `operations` or `all`.
@@ -318,13 +319,13 @@ If `ddev composer qa` fails before the runtime smoke command, run `ddev composer
 If the homepage has no notes, run:
 
 ```bash
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --count=18 --reset'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset'
 ```
 
 If the `SymPress Demo` admin page is missing, activate the plugin:
 
 ```bash
-ddev exec 'vendor/bin/wp plugin activate sympress-demo'
+ddev exec 'php wp-cli.phar plugin activate sympress-demo'
 ```
 
 If the profiler toolbar is missing, check that the site runs in a local/development environment, `sympress/profiler` is installed through development dependencies, profiler collection is enabled locally and the SymPress kernel cache has been rebuilt after dependency changes.

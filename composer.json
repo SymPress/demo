@@ -10,7 +10,7 @@
         "ext-json": "*",
         "ext-libxml": "*",
         "ext-zip": "*",
-        "johnpbloch/wordpress": "^7.0.0",
+        "roots/wordpress": "^7.1.1",
         "sympress/asset-compiler": "dev-main",
         "sympress/assets": "dev-main",
         "sympress/demo-base-mu-plugins": "dev-main",
@@ -20,9 +20,9 @@
         "sympress/migration": "dev-main",
         "sympress/monolog-bundle": "dev-main",
         "sympress/orm": "dev-main",
+        "sympress/security": "dev-main",
         "sympress/wp-cli-console": "dev-main",
-        "wecodemore/wpstarter": "^3.0.1",
-        "wp-cli/wp-cli-bundle": "^2.12.0",
+        "sympress/runtime": "0.2.0",
         "wpackagist-theme/twentytwentyfive": "^1.5.0"
     },
     "require-dev": {
@@ -38,7 +38,12 @@
     "extra": {
         "wordpress-install-dir": "public/wp",
         "wordpress-content-dir": "public/wp-content",
-        "wpstarter": "dev-ops/wpstarter.json",
+        "sympress-runtime": "dev-ops/runtime.json",
+        "sympress-security": {
+            "wordfence": {
+                "max-feed-age-seconds": 86400
+            }
+        },
         "installer-paths": {
             "public/wp-content/mu-plugins/{$name}": [
                 "type:wordpress-muplugin"
@@ -61,11 +66,12 @@
             },
             "starter_conventions": [
                 "bin/console",
-                "dev-ops/wpstarter.json",
+                "dev-ops/runtime.json",
                 "packages/base-mu-plugins",
                 "public/wp-content"
             ],
             "public_components_demonstrated": [
+                "sympress/runtime",
                 "sympress/kernel",
                 "sympress/event-dispatcher",
                 "sympress/migration",
@@ -93,11 +99,16 @@
             "@cleanup"
         ],
         "demo:seed": [
-            "wp plugin activate sympress-demo",
-            "wp sympress-demo:create-notes --set=quotes --count=18 --reset"
+            "@php wp-cli.phar plugin activate sympress-demo",
+            "@php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset"
         ],
         "qa:validate": "composer validate --strict --no-check-publish",
         "qa:audit": "composer audit --locked --no-interaction",
+        "security:vulnerabilities": "sympress-security vulnerability:check --project=.",
+        "security:check": [
+            "sympress-security check --project=. --env-file=.env --runtime",
+            "@security:vulnerabilities"
+        ],
         "cs": [
             "cd packages/base-mu-plugins && ../../vendor/bin/phpcs --standard=phpcs.xml.dist",
             "cd packages/sympress-demo && ../../vendor/bin/phpcs --standard=phpcs.xml.dist"
@@ -115,7 +126,7 @@
             "@test",
             "@qa:runtime"
         ],
-        "qa:runtime": "vendor/bin/wp sympress-demo:runtime-smoke"
+        "qa:runtime": "@php wp-cli.phar sympress-demo:runtime-smoke"
     },
     "config": {
         "classmap-authoritative": true,
@@ -127,15 +138,39 @@
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "johnpbloch/wordpress-core-installer": true,
+            "roots/wordpress-core-installer": true,
             "phpstan/extension-installer": true,
             "sympress/asset-compiler": true,
-            "wecodemore/wpstarter": true
+            "sympress/runtime": true
+        },
+        "policy": {
+            "advisories": {
+                "block": true,
+                "audit": "fail",
+                "ignore-id": {
+                    "CVE-2022-3590": "Wordfence marks every WordPress version affected and no patched release exists; keep outbound HTTP restricted and review this waiver regularly.",
+                    "CVE-2017-14990": "Wordfence marks every WordPress version affected and no patched release exists; production multisite signup is disabled."
+                }
+            }
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:SymPress/runtime.git"
+        },
+        {
+            "type": "path",
+            "url": "../security",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "sympress/security": "dev-main"
+                }
+            }
+        },
         {
             "type": "path",
             "url": "./packages/*",
@@ -146,6 +181,16 @@
         {
             "type": "composer",
             "url": "https://wpackagist.org"
+        },
+        {
+            "name": "wpsecadv",
+            "type": "composer",
+            "url": "https://repo-wpsecadv.typist.tech",
+            "only": [
+                "roots/wordpress-no-content",
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
         }
     ]
 }

@@ -13,6 +13,9 @@
         "szepeviktor/phpstan-wordpress": "^2.0"
     },
     "extra": {
+        "sympress-runtime": {
+            "boots-kernel": true
+        },
         "installer-name": "base-mu-plugins"
     },
     "scripts": {

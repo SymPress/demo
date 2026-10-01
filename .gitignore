@@ -6,7 +6,7 @@
 /auth.json
 /.npmrc
 
-### WordPress / WP Starter
+### WordPress / SymPress Runtime
 /.env
 /.env.*
 !/.env.example
@@ -14,7 +14,11 @@
 /public/wp/
 /public/wp-content/
 /public/wp-config.php
+/public/index.php
 /wp-cli.yml
+/wp-cli*.phar
+/wp-config.php
+/.sympress-runtime.lock.guard
 
 ### Runtime
 /var/

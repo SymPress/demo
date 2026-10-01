@@ -194,8 +194,8 @@ packages/sympress-demo/src/Infrastructure/WordPress/WordPressDemoNoteWriter.php
 The command is only the WP-CLI adapter. It creates a seed request, calls `DemoNoteSeeder`, and prints the result. Fixture selection, quote fallbacks, draft creation and WordPress persistence each live behind smaller classes.
 
 ```bash
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --count=10 --topic=architecture'
-ddev exec 'vendor/bin/wp sympress-demo:create-notes --set=quotes --count=18 --reset'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --count=10 --topic=architecture'
+ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset'
 ```
 
 The workflow is deliberately not hidden in installation logic. Developers can run it repeatedly, inspect its behavior and adapt the pattern for real project fixtures without turning the command class into a second plugin bootstrap.
