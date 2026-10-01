@@ -17,8 +17,10 @@
 /public/index.php
 /wp-cli.yml
 /wp-cli*.phar
-/wp-config.php
 /.sympress-runtime.lock.guard
+/wp-config.php
+/.ddev/config.local.y*ml
+/.ddev/docker-compose.*.local.yaml
 
 ### Runtime
 /var/

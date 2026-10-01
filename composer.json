@@ -16,13 +16,12 @@
         "sympress/demo-base-mu-plugins": "dev-main",
         "sympress/demo-plugin": "dev-main",
         "sympress/event-dispatcher": "dev-main",
-        "sympress/kernel": "dev-main",
+        "sympress/kernel": "^1.1",
         "sympress/migration": "dev-main",
         "sympress/monolog-bundle": "dev-main",
         "sympress/orm": "dev-main",
-        "sympress/security": "dev-main",
         "sympress/wp-cli-console": "dev-main",
-        "sympress/runtime": "0.2.0",
+        "sympress/runtime": "^1.1.1",
         "wpackagist-theme/twentytwentyfive": "^1.5.0"
     },
     "require-dev": {
@@ -39,11 +38,6 @@
         "wordpress-install-dir": "public/wp",
         "wordpress-content-dir": "public/wp-content",
         "sympress-runtime": "dev-ops/runtime.json",
-        "sympress-security": {
-            "wordfence": {
-                "max-feed-age-seconds": 86400
-            }
-        },
         "installer-paths": {
             "public/wp-content/mu-plugins/{$name}": [
                 "type:wordpress-muplugin"
@@ -104,11 +98,6 @@
         ],
         "qa:validate": "composer validate --strict --no-check-publish",
         "qa:audit": "composer audit --locked --no-interaction",
-        "security:vulnerabilities": "sympress-security vulnerability:check --project=.",
-        "security:check": [
-            "sympress-security check --project=. --env-file=.env --runtime",
-            "@security:vulnerabilities"
-        ],
         "cs": [
             "cd packages/base-mu-plugins && ../../vendor/bin/phpcs --standard=phpcs.xml.dist",
             "cd packages/sympress-demo && ../../vendor/bin/phpcs --standard=phpcs.xml.dist"
@@ -129,7 +118,7 @@
         "qa:runtime": "@php wp-cli.phar sympress-demo:runtime-smoke"
     },
     "config": {
-        "classmap-authoritative": true,
+        "classmap-authoritative": false,
         "sort-packages": true,
         "optimize-autoloader": true,
         "platform": {
@@ -157,20 +146,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
-        {
-            "type": "git",
-            "url": "git@github.com:SymPress/runtime.git"
-        },
-        {
-            "type": "path",
-            "url": "../security",
-            "options": {
-                "symlink": false,
-                "versions": {
-                    "sympress/security": "dev-main"
-                }
-            }
-        },
         {
             "type": "path",
             "url": "./packages/*",
