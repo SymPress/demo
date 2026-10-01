@@ -136,7 +136,7 @@ After updating dependencies, validate and run the standalone setup with `ddev ex
 Open the site:
 
 ```text
-https://sympress-demo.dev
+https://sympress-demo.test
 ```
 
 Default local admin credentials from `.env.example`:
@@ -363,3 +363,5 @@ developer-tools
 ## License
 
 This project is licensed under the MIT License.
+
+See [production operations](docs/production-operations.md) for the executable deploy, backup, staging-sync and monitoring recipes.

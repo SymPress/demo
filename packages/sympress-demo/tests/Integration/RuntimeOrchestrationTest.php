@@ -45,8 +45,29 @@ final class RuntimeOrchestrationTest extends TestCase
         self::assertStringStartsWith('wp eval ', $commands[array_key_last($commands)]);
     }
 
+    public function testMissingOrSharedPasswordGeneratesDifferentSecretsWithoutOutput(): void
+    {
+        $commands = [];
+        ob_start();
+
+        try {
+            $commands[] = $this->commands(true, false, 'admin')[1];
+            $commands[] = $this->commands(true, false, '')[1];
+            self::assertSame('', ob_get_contents());
+        } finally {
+            ob_end_clean();
+        }
+
+        self::assertNotSame($commands[0], $commands[1]);
+        foreach ($commands as $command) {
+            self::assertMatchesRegularExpression("/--admin_password='[a-f0-9]{48}'/", $command);
+            self::assertStringContainsString('--admin_email=' . escapeshellarg('admin@example.invalid'), $command);
+            self::assertStringContainsString('--skip-email', $command);
+        }
+    }
+
     /** @return list<string> */
-    private function commands(bool $valid, bool $installed): array
+    private function commands(bool $valid, bool $installed, string $password = "test password' with spaces"): array
     {
         $root = dirname(__DIR__, 4);
         $paths = new Paths($root);
@@ -64,7 +85,7 @@ final class RuntimeOrchestrationTest extends TestCase
             'WPDB_EXISTS'       => $installed ? '1' : '0',
             'WP_INSTALLED'      => $installed ? '1' : '0',
             'WP_HOME'           => 'https://runtime-test.invalid',
-            'WP_ADMIN_PASSWORD' => "test password' with spaces",
+            'WP_ADMIN_PASSWORD' => $password,
         ];
         $previous = [];
         foreach ($values as $name => $value) {

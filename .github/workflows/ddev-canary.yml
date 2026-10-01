@@ -26,6 +26,8 @@ jobs:
         if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
           ddev composer update 'sympress/*' --with-all-dependencies --no-interaction
         fi
+        ddev composer runtime:setup --no-interaction
+        ddev composer compile-assets --mode production
       playwright_install_command: ddev exec bash -lc "cd packages/sympress-demo && npm ci" && cd packages/sympress-demo && npx playwright install --with-deps chromium
       playwright_run_command: ddev composer qa && cd packages/sympress-demo && npx playwright test
       playwright_artifact_name: sympress-demo-playwright

@@ -1,6 +1,6 @@
 # Screenshots
 
-These images are generated from the local DDEV site at `https://sympress-demo.dev/`.
+These images are generated from the local DDEV site at `https://sympress-demo.test/`.
 
 - `frontend-desktop.png`: homepage with the Knowledge Notes block output.
 - `frontend-mobile.png`: responsive homepage viewport.

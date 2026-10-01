@@ -89,7 +89,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertTrue($assetCompiler['packages']['sympress/demo-plugin']);
         self::assertArrayNotHasKey('compile-assets', $composer['scripts']);
         self::assertContains(
-            "@composer compile-assets --mode production --ignore-lock='*'",
+            '@composer compile-assets --mode production',
             $composer['scripts']['build:production'],
         );
         self::assertNotContains('@compile-assets', $composer['scripts']['post-install-cmd']);
@@ -386,10 +386,10 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertSame('@php wp-cli.phar sympress-demo:runtime-smoke', $composer['scripts']['qa:runtime']);
         self::assertContains(
-            "@composer compile-assets --mode production --ignore-lock='*'",
+            '@composer compile-assets --mode production',
             $composer['scripts']['build:production'],
         );
-        self::assertContains('@qa:runtime', $composer['scripts']['build:production']);
+        self::assertNotContains('@qa:runtime', $composer['scripts']['build:production']);
         self::assertContains('@qa:runtime', $composer['scripts']['qa']);
     }
 }

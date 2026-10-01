@@ -14,7 +14,7 @@ export default defineConfig({
         timeout: 5_000,
     },
     use: {
-        baseURL: process.env.PLAYWRIGHT_BASE_URL ?? process.env.DDEV_PRIMARY_URL ?? 'https://sympress-demo.dev',
+        baseURL: process.env.PLAYWRIGHT_BASE_URL ?? process.env.DDEV_PRIMARY_URL ?? 'https://sympress-demo.test',
         ignoreHTTPSErrors: true,
         trace: 'on-first-retry',
     },

@@ -64,7 +64,7 @@ Copy the patterns, not every class name:
 - let REST routes and blocks delegate to the same services;
 - keep translation loading WordPress-native but explicit;
 - rely on package defaults where they exist, and add custom profiler collectors only for application-specific runtime insight;
-- use Packagist for published dependencies, the declared Git repository for SymPress Runtime, and path repositories for local packages developed inside the same workspace.
+- use Packagist for published dependencies including SymPress Runtime, and path repositories for local packages developed inside the same workspace.
 
 ## What To Avoid
 

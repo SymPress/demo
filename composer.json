@@ -29,10 +29,12 @@
         "phpstan/phpstan": "^2.2",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^11.5",
-        "symfony/var-dumper": "^8.0",
+        "symfony/var-dumper": "^8.1",
         "sympress/coding-standards": "dev-main",
         "sympress/profiler": "dev-main",
-        "szepeviktor/phpstan-wordpress": "^2.0"
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "brain/monkey": "^2.6",
+        "php-stubs/wordpress-stubs": ">=7.0"
     },
     "extra": {
         "wordpress-install-dir": "public/wp",
@@ -83,8 +85,7 @@
         "cleanup": "rm -rf ./public/wp/wp-content",
         "build:production": [
             "Composer\\Config::disableProcessTimeout",
-            "@composer compile-assets --mode production --ignore-lock='*'",
-            "@qa:runtime"
+            "@composer compile-assets --mode production"
         ],
         "post-install-cmd": [
             "@cleanup"
@@ -115,7 +116,10 @@
             "@test",
             "@qa:runtime"
         ],
-        "qa:runtime": "@php wp-cli.phar sympress-demo:runtime-smoke"
+        "qa:runtime": "@php wp-cli.phar sympress-demo:runtime-smoke",
+        "runtime:setup": "@php vendor/bin/runtime",
+        "qa:production": "@php vendor/bin/runtime doctor --production --database-health",
+        "qa:operations": "python3 -m unittest discover -s dev-ops/tests -v"
     },
     "config": {
         "classmap-authoritative": false,
@@ -150,7 +154,11 @@
             "type": "path",
             "url": "./packages/*",
             "options": {
-                "symlink": true
+                "symlink": true,
+                "versions": {
+                    "sympress/demo-base-mu-plugins": "dev-main",
+                    "sympress/demo-plugin": "dev-main"
+                }
             }
         },
         {
@@ -167,5 +175,10 @@
                 "wpackagist-theme/*"
             ]
         }
-    ]
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "SymPress\\Demo\\Tests\\": "packages/sympress-demo/tests/"
+        }
+    }
 }

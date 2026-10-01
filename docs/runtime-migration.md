@@ -1,10 +1,13 @@
 # Runtime migration review
 
-The demo replaces WP Starter with `sympress/runtime` and `dev-ops/runtime.json`. Compatibility is disabled; the previous dotenv file convention is explicit. The command provider reads shared Runtime preflight status and keeps the existing installation and seed commands. Its path is now project-root-relative. The base MU package resolves the project autoloader for both copied and linked installation and boots the kernel only once.
+The demo replaces WP Starter with `sympress/runtime` and `dev-ops/runtime.json`. Compatibility is disabled; the previous dotenv file convention is explicit. The command provider reads shared Runtime preflight status and seeds only a fresh database and preserves existing installations on repeat setup. Its path is now project-root-relative. The base MU package resolves the project autoloader for both copied and linked installation and boots the kernel only once.
 
-The dependency uses the stable `^1.0` release line from public Packagist. The reviewed `composer.lock` pins `v1.0.0` at `56b89a0958d24d6ae62944c0dca9e205d9fb63d5`; Runtime no longer needs a private Git repository or SSH authentication. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
+The dependency uses the stable `^1.1.1` release line from public Packagist. Runtime no longer needs a private Git repository or SSH authentication. WP-CLI uses Runtime's SHA512-verified root phar, preserving CLI capabilities without the Composer bundle's Symfony Process dependency conflict. Static analysis reads the actual phar command class. Generated `public/index.php` is no longer tracked; setup creates it.
 
-Public WordPress URLs remain at the site root: `WP_SITEURL=${WP_HOME}`. The original DDEV Nginx rules map public endpoints to the physical `public/wp` core directory. No Nginx routing changes are required by this migration.
+Public WordPress URLs remain at the site root: `WP_SITEURL=${WP_HOME}`. The original DDEV Nginx rules map public endpoints to the physical `public/wp` core directory. The production operations recipe and the reviewed DDEV cache/security rules extend the existing routing.
+
+
+The verification sections below record historical revisions. Current October 1 production work and test limitations are documented in [production operations](production-operations.md); historical lock/test statements are not claims about the pending release train.
 
 ## Runtime 1.0.0 stable upgrade verification
 
