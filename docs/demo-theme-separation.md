@@ -20,9 +20,12 @@ installation directory, and the bundle contributes its own ORM entity mapping.
 
 ## Installation and existing sites
 
-The theme currently requires GitHub repository access. Existing CI workflows
-accept `COMPOSER_AUTH_JSON` or `COMPOSER_SSH_KEY`; the credential must be able to
-read the theme repository. The VCS repository is scoped to this one package.
+The theme currently requires GitHub repository access. For the locked GitHub
+ZIP download, supply `COMPOSER_AUTH_JSON` with a `github-oauth` credential that
+can read the theme repository. An SSH-only installation additionally requires
+an authorized `COMPOSER_SSH_KEY` and an explicit source-install preference for
+this package; Composer does not automatically fall back from failed ZIP access.
+The VCS repository is scoped to this one package.
 Published library packages continue to resolve through Packagist.
 
 The dependency canary requests `composer_update` in the reusable workflow for
