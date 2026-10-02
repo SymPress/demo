@@ -6,6 +6,7 @@ This demo is designed to show every public SymPress package that belongs in a we
 
 | Package | Role in the demo | Start reading |
 |---|---|---|
+| `sympress/runtime` | Generates the WordPress bootstrap and orchestrates first installation. Existing installations receive a database check without resetting demo content. | `dev-ops/runtime.json`, `dev-ops/orchestrate.php` |
 | `sympress/kernel` | Boots the site kernel, discovers bundles and builds the service container. | `packages/base-mu-plugins/app-starter.php`, `packages/sympress-demo/config/services.yaml` |
 | `sympress/event-dispatcher` | Demonstrates optional event telemetry and subscriber registration without making read queries write data. | `src/Application/Telemetry/NoteRenderTelemetry.php`, `src/Event/NoteRenderedEvent.php`, `src/EventSubscriber/LogRenderedNoteSubscriber.php` |
 | `sympress/migration` | Models database changes as versioned migration classes. | `src/Migration/CreateDemoEventsTableMigration.php`, `src/Hook/DemoMigrations.php` |
@@ -17,7 +18,6 @@ This demo is designed to show every public SymPress package that belongs in a we
 | `sympress/profiler` | Adds development-time runtime inspection through the web debug toolbar, profile pages and built-in collectors. | `config/packages/development/profiler.yaml`, `src/Profiler/DemoProfilerCollector.php` |
 | `sympress/coding-standards` | Keeps the packages aligned with SymPress PHP quality conventions. | `composer qa`, `packages/sympress-demo/phpcs.xml.dist`, `packages/base-mu-plugins/phpcs.xml.dist` |
 | `sympress/starter` | Provides the project-shape conventions mirrored by the demo website. | `bin/console`, `dev-ops/runtime.json`, `packages/base-mu-plugins` |
-| `sympress/runtime` | Generates WordPress configuration and runs project setup before asset compilation. | `dev-ops/runtime.json`, `dev-ops/orchestrate.php` |
 
 ## How The Packages Work Together
 
@@ -31,7 +31,7 @@ The packages are intentionally used together rather than listed as passive depen
 
 `sympress/assets` connects the Encore build with WordPress. Encore writes `entrypoints.json` and WordPress dependency extraction metadata for the admin, frontend and block editor entrypoints. `DemoAssetRegistrar` loads those files and registers the result with the AssetManager, matching the production package pattern in the reference project.
 
-`sympress/asset-compiler` owns asset compilation at the website root. The root Composer package allows the plugin, enables auto-run and selects npm as the package-manager preference. The demo plugin declares its package-level build contract in Composer metadata, including build scripts and source paths. `composer compile-assets` now comes from the compiler package, and `composer build:production` runs that command in production mode before the runtime smoke command.
+`sympress/asset-compiler` owns asset compilation at the website root. The root Composer package allows the plugin, enables auto-run and selects npm as the package-manager preference. Its package selection disables `sympress/demo`, whose npm build orchestrates deployment, and enables `sympress/demo-plugin` for asset compilation. The deployment entry point rejects execution inside an asset build before changing dependencies. The demo plugin declares its package-level build contract in Composer metadata, including build scripts and source paths. `composer compile-assets` now comes from the compiler package, and `composer build:production` runs that command in production mode before the runtime smoke command.
 
 `sympress/wp-cli-console` is represented by a real seed command. The command delegates to `DemoNoteSeeder`; the default `quotes` set imports quote notes from a free API during seeding, with a local fallback, without putting fixture logic into activation hooks, templates or the CLI adapter itself.
 
@@ -44,6 +44,8 @@ The packages are intentionally used together rather than listed as passive depen
 `sympress/coding-standards` is part of the quality workflow. The feature plugin and the base MU package both expose Composer scripts, so developers can check application code and bootstrap/runtime files separately. The point is not only formatting; it teaches contributors what kind of PHP shape SymPress packages expect.
 
 ## Runtime Versus Development Packages
+
+The root project requires Runtime 1.1.3 or later so pre-install database observations stay out of persistent environment caches and diagnostics see the installed site.
 
 Most SymPress packages are runtime dependencies because the website actively uses them while serving requests.
 
@@ -64,7 +66,7 @@ Copy the patterns, not every class name:
 - let REST routes and blocks delegate to the same services;
 - keep translation loading WordPress-native but explicit;
 - rely on package defaults where they exist, and add custom profiler collectors only for application-specific runtime insight;
-- use Packagist for published packages, including Runtime, and path repositories for local development.
+- use Packagist for published dependencies including SymPress Runtime, and path repositories for local packages developed inside the same workspace.
 
 ## What To Avoid
 

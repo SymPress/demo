@@ -3,8 +3,8 @@
 
 ### Composer
 /vendor/
-/auth.json
-/.npmrc
+auth.json
+.npmrc
 
 ### WordPress / SymPress Runtime
 /.env
@@ -43,3 +43,11 @@
 
 ### System
 .DS_Store
+
+# Local credentials and operation artifacts
+auth.json
+.npmrc
+/.npm/
+/operations-state/
+/deployment/vendor/
+**/__pycache__/

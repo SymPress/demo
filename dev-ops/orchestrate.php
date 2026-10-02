@@ -31,10 +31,7 @@ if (!$env->read(DbChecker::WPDB_ENV_VALID)) {
 }
 
 if ($env->read(DbChecker::WP_INSTALLED)) {
-    return [
-        'wp db check',
-        ...$runtimeCommands($homepageBlock),
-    ];
+    return ['wp db check'];
 }
 
 $commands = [];
@@ -44,13 +41,18 @@ if (!$env->read(DbChecker::WPDB_EXISTS)) {
 }
 
 $user = $env->read('WP_ADMIN_USERNAME') ?: 'admin';
-$pass = $env->read('WP_ADMIN_PASSWORD') ?: 'admin';
+$pass = $env->read('WP_ADMIN_PASSWORD');
+
+if (!$pass || $pass === 'admin') {
+    $pass = \bin2hex(\random_bytes(24));
+}
+
 $home = $env->read('WP_HOME');
 $siteUrl = $env->read('WP_SITEURL') ?: $home;
-$email = "{$user}@admin.com";
+$email = $env->read('WP_ADMIN_EMAIL') ?: 'admin@example.invalid';
 
 $install = 'wp core install';
-$install .= ' --skip-packages';
+$install .= ' --skip-packages --skip-email';
 $install .= ' --title=' . $shellArg($config->title) . ' --url=' . $shellArg((string) $home);
 $install .= ' --admin_user=' . $shellArg((string) $user);
 $install .= ' --admin_password=' . $shellArg((string) $pass);

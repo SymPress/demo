@@ -8,6 +8,21 @@ use PHPUnit\Framework\TestCase;
 
 final class PluginBootstrapTest extends TestCase
 {
+    public function testRootRequiresRuntimeWithTransientDatabaseStatusFix(): void
+    {
+        $root = dirname(__DIR__, 4);
+        $composer = json_decode((string) file_get_contents($root . '/composer.json'), true, flags: JSON_THROW_ON_ERROR);
+        self::assertSame('^1.1.3', $composer['require']['sympress/runtime']);
+        $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, flags: JSON_THROW_ON_ERROR);
+        $packages = array_column($lock['packages'], null, 'name');
+        self::assertArrayHasKey('sympress/runtime', $packages);
+        $runtime = $packages['sympress/runtime'];
+        self::assertStringNotContainsString('dev', $runtime['version']);
+        self::assertTrue(version_compare(ltrim($runtime['version'], 'v'), '1.1.3', '>='));
+        self::assertSame('https://github.com/SymPress/runtime.git', $runtime['source']['url']);
+        self::assertStringStartsWith('https://api.github.com/repos/SymPress/runtime/zipball/', $runtime['dist']['url']);
+    }
+
     public function testPluginFileContainsWordPressMetadataAndThinPackageBootstrap(): void
     {
         $pluginFile = dirname(__DIR__, 2) . '/sympress-demo.php';
@@ -33,7 +48,6 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('use SymPress\\Kernel\\Kernel\\SiteKernel;', $contents);
         self::assertStringContainsString('function resolve_project_dir(string $startDir): string', $contents);
         self::assertStringContainsString('$projectDir = resolve_project_dir(__DIR__);', $contents);
-        self::assertStringContainsString('if (App::kernel() === null)', $contents);
         self::assertStringContainsString('App::bootKernel(new SiteKernel($projectDir))', $contents);
     }
 
@@ -77,8 +91,8 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertSame('sympress/demo', $composer['name']);
         self::assertSame('project', $composer['type']);
-        self::assertSame('dev-main', $composer['require']['sympress/demo-base-mu-plugins']);
-        self::assertSame('dev-main', $composer['require']['sympress/asset-compiler']);
+        self::assertSame('^1.0', $composer['require']['sympress/demo-base-mu-plugins']);
+        self::assertSame('^1.0.2', $composer['require']['sympress/asset-compiler']);
         self::assertTrue($composer['config']['allow-plugins']['sympress/asset-compiler']);
         self::assertArrayNotHasKey('sympress.asset-compiler', $composer['extra']);
 
@@ -90,7 +104,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertTrue($assetCompiler['packages']['sympress/demo-plugin']);
         self::assertArrayNotHasKey('compile-assets', $composer['scripts']);
         self::assertContains(
-            "@composer compile-assets --mode production --ignore-lock='*'",
+            '@composer compile-assets --mode production',
             $composer['scripts']['build:production'],
         );
         self::assertNotContains('@compile-assets', $composer['scripts']['post-install-cmd']);
@@ -141,8 +155,8 @@ final class PluginBootstrapTest extends TestCase
         self::assertContains('path', $repositoryTypes);
         self::assertNotContains('vcs', $repositoryTypes);
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
-        self::assertSame('dev-main', $composer['require']['sympress/orm']);
-        self::assertSame('dev-main', $composer['require-dev']['sympress/profiler']);
+        self::assertSame('^0.3.0', $composer['require']['sympress/orm']);
+        self::assertSame('^1.0.2', $composer['require-dev']['sympress/profiler']);
         self::assertArrayNotHasKey('sympress/profiler', $composer['require']);
     }
 
@@ -160,8 +174,8 @@ final class PluginBootstrapTest extends TestCase
             flags: JSON_THROW_ON_ERROR,
         );
 
-        self::assertSame('dev-main', $composer['require-dev']['sympress/profiler']);
-        self::assertSame('dev-main', $composer['require']['sympress/orm']);
+        self::assertSame('^1.0.2', $composer['require-dev']['sympress/profiler']);
+        self::assertSame('^0.3.0', $composer['require']['sympress/orm']);
         self::assertSame('build', $composer['extra']['sympress']['asset-compiler']['script']['$mode']['$default']);
         self::assertSame(
             'build:production',
@@ -387,10 +401,10 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertSame('@php wp-cli.phar sympress-demo:runtime-smoke', $composer['scripts']['qa:runtime']);
         self::assertContains(
-            "@composer compile-assets --mode production --ignore-lock='*'",
+            '@composer compile-assets --mode production',
             $composer['scripts']['build:production'],
         );
-        self::assertContains('@qa:runtime', $composer['scripts']['build:production']);
+        self::assertNotContains('@qa:runtime', $composer['scripts']['build:production']);
         self::assertContains('@qa:runtime', $composer['scripts']['qa']);
     }
 }

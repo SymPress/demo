@@ -4,6 +4,8 @@ parameters:
         - 000-error-reporting.php
         - allowed-html-tags.php
         - app-starter.php
+        - security-policy.php
+        - production-health.php
         - vardumper-integration.php
     tmpDir: var/cache/phpstan
     bootstrapFiles:

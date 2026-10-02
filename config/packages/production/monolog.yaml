@@ -1,0 +1,13 @@
+monolog:
+    handlers:
+        main:
+            type: rotating_file
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: warning
+            max_files: 14
+        demo:
+            type: rotating_file
+            path: '%kernel.logs_dir%/sympress-demo.log'
+            level: warning
+            max_files: 14
+            channels: [sympress_demo]

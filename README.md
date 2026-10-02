@@ -85,6 +85,7 @@ The parallel is conceptual, not cosmetic. Symfony Demo teaches framework convent
 
 | Repository | How this demo uses it |
 |---|---|
+| [`SymPress/runtime`](https://github.com/SymPress/runtime) | Generates WordPress configuration, publishes the MU loader and runs first-install orchestration. Repeated setup checks the database without resetting demo content. |
 | [`SymPress/kernel`](https://github.com/SymPress/kernel) | The `base-mu-plugins` app starter boots the site `SiteKernel`; the demo plugin contributes bundle metadata and services. |
 | [`SymPress/event-dispatcher`](https://github.com/SymPress/event-dispatcher) | The note workflow keeps queries read-only and exposes optional telemetry through the SymPress event system. |
 | [`SymPress/migration`](https://github.com/SymPress/migration) | The demo event table is modeled as a versioned migration. |
@@ -135,7 +136,7 @@ After updating dependencies, validate and run the standalone setup with `ddev ex
 Open the site:
 
 ```text
-https://sympress-demo.dev
+https://sympress-demo.test
 ```
 
 Default local admin credentials from `.env.example`:
@@ -362,3 +363,5 @@ developer-tools
 ## License
 
 This project is licensed under the MIT License.
+
+See [production operations](docs/production-operations.md) for the executable deploy, backup, staging-sync and monitoring recipes.

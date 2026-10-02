@@ -15,17 +15,19 @@ permissions:
 jobs:
   ddev-canary:
     name: DDEV + Playwright
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@b68ed03c15db6d2fac85d8345bc22a6229b4f4b2
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@8639b193c127039573a9a907f811db7c3574c23e
     with:
       php_version: '8.5'
       node_version: '24'
       allow_custom_commands: true
       setup_command: |
         cp .env.example .env
-        ddev composer install --no-interaction
         if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
-          ddev composer update 'sympress/*' --with-all-dependencies --no-interaction
+          ddev composer update --with-all-dependencies --no-interaction --no-scripts
         fi
+        ddev composer install --no-interaction
+        ddev composer runtime:setup --no-interaction
+        ddev composer compile-assets --mode production
       playwright_install_command: ddev exec bash -lc "cd packages/sympress-demo && npm ci" && cd packages/sympress-demo && npx playwright install --with-deps chromium
       playwright_run_command: ddev composer qa && cd packages/sympress-demo && npx playwright test
       playwright_artifact_name: sympress-demo-playwright
