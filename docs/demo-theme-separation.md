@@ -2,7 +2,7 @@
 
 The website requires `sympress/theme-starter:^1.1.1` and the separate
 `sympress/demo-plugin:^1.0`. It does not require the `sympress/starter` project.
-The theme comes from its tagged GitHub repository; the demo plugin is developed
+The theme comes from tags in its public GitHub repository; the demo plugin is developed
 as a Composer path package under `packages/sympress-demo/`.
 
 ## Ownership
@@ -20,19 +20,17 @@ installation directory, and the bundle contributes its own ORM entity mapping.
 
 ## Installation and existing sites
 
-The theme currently requires GitHub repository access. For the locked GitHub
-ZIP download, supply `COMPOSER_AUTH_JSON` with a `github-oauth` credential that
-can read the theme repository. An SSH-only installation additionally requires
-an authorized `COMPOSER_SSH_KEY` and an explicit source-install preference for
-this package; Composer does not automatically fall back from failed ZIP access.
-The VCS repository is scoped to this one package.
-Published library packages continue to resolve through Packagist.
+The theme is installed from tags in the public
+[Theme Starter repository](https://github.com/SymPress/theme-starter).
+Installation requires no repository secret or SSH key. The VCS repository is
+scoped to this one package. Published library packages continue to resolve
+through Packagist.
 
 The dependency canary requests `composer_update` in the reusable workflow for
-scheduled and explicitly requested manual updates. Private repository metadata
-is resolved during its isolated credential phase, with Composer plugins and
-scripts disabled. Credentials are removed before normal project setup and
-builds; the later normal install activates WordPress installers.
+scheduled and explicitly requested manual updates. It resolves the latest
+versions allowed by the Composer constraints before project setup, with
+Composer plugins and scripts disabled. The following normal install activates
+WordPress installers; setup and builds use the resulting lockfile.
 
 ```sh
 ddev composer install

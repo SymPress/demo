@@ -42,7 +42,3 @@ jobs:
         packages/sympress-demo/playwright-report/
         packages/sympress-demo/test-results/
       timeout_minutes: 45
-    secrets:
-      SSH_KEY: ${{ secrets.COMPOSER_SSH_KEY }}
-      SSH_KNOWN_HOSTS: ${{ secrets.COMPOSER_SSH_KNOWN_HOSTS }}
-      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
