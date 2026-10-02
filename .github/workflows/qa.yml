@@ -24,10 +24,6 @@ jobs:
       audit: true
       validate_options: --strict --no-check-publish
       timeout_minutes: 12
-    secrets:
-      SSH_KEY: ${{ secrets.COMPOSER_SSH_KEY }}
-      SSH_KNOWN_HOSTS: ${{ secrets.COMPOSER_SSH_KNOWN_HOSTS }}
-      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
 
   root-qa:
     name: Root QA
@@ -44,10 +40,6 @@ jobs:
       playwright_install_command: ':'
       playwright_run_command: ddev composer qa
       timeout_minutes: 45
-    secrets:
-      SSH_KEY: ${{ secrets.COMPOSER_SSH_KEY }}
-      SSH_KNOWN_HOSTS: ${{ secrets.COMPOSER_SSH_KNOWN_HOSTS }}
-      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
 
   operations-tests:
     name: Operations safety tests
