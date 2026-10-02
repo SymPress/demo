@@ -17,7 +17,7 @@
         "sympress/demo-plugin": "^1.0",
         "sympress/event-dispatcher": "^1.0.2",
         "sympress/kernel": "^1.1.1",
-        "sympress/migration": "^1.0.2",
+        "sympress/migration": "^1.0.3",
         "sympress/monolog-bundle": "^1.0.2",
         "sympress/orm": "^0.3.0",
         "sympress/wp-cli-console": "^1.0.2",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "875ccaab3a8753f50eaf004fea305e37",
+    "content-hash": "f35c940189673017c84fd55d77d0d2de",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5268,16 +5268,16 @@
         },
         {
             "name": "sympress/migration",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/migration.git",
-                "reference": "75a71753f27575161610b3bc57783ddecad7f999"
+                "reference": "a194733b9ca38fc0eb5ab8fb7754827444028542"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/migration/zipball/75a71753f27575161610b3bc57783ddecad7f999",
-                "reference": "75a71753f27575161610b3bc57783ddecad7f999",
+                "url": "https://api.github.com/repos/SymPress/migration/zipball/a194733b9ca38fc0eb5ab8fb7754827444028542",
+                "reference": "a194733b9ca38fc0eb5ab8fb7754827444028542",
                 "shasum": ""
             },
             "require": {
@@ -5323,9 +5323,9 @@
             "description": "MU plugin for handling migrations on website level",
             "support": {
                 "issues": "https://github.com/SymPress/migration/issues",
-                "source": "https://github.com/SymPress/migration/tree/v1.0.2"
+                "source": "https://github.com/SymPress/migration/tree/v1.0.3"
             },
-            "time": "2026-10-02T11:26:35+00:00"
+            "time": "2026-10-02T14:06:31+00:00"
         },
         {
             "name": "sympress/monolog-bundle",
