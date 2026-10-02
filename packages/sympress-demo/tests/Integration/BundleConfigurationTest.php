@@ -9,12 +9,6 @@ use Brain\Monkey\Functions;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
-use Symfony\Component\Filesystem\Filesystem;
 use SymPress\Demo\Entity\DemoEventRecord;
 use SymPress\Demo\Support\PluginAssetLocator;
 use SymPress\Demo\Support\TemplateRenderer;
@@ -22,6 +16,12 @@ use SymPress\Demo\SymPressDemoBundle;
 use SymPress\Orm\Metadata\EntityClassRegistry;
 use SymPress\Orm\Metadata\MetadataFactory;
 use SymPress\Orm\OrmBundle;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\Filesystem\Filesystem;
 
 final class BundleConfigurationTest extends TestCase
 {
@@ -37,8 +37,8 @@ final class BundleConfigurationTest extends TestCase
         parent::tearDown();
     }
 
-    #[RunInSeparateProcess]
     #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
     public function testRelocatedComposerPackageUsesItsOwnAssetsViewsAndEntityMetadata(): void
     {
         $packageDir = dirname(__DIR__, 2);
@@ -49,7 +49,10 @@ final class BundleConfigurationTest extends TestCase
         try {
             $filesystem->mkdir([$pluginDir . '/src/Entity', $pluginDir . '/resources/views', $pluginDir . '/assets']);
             $filesystem->copy($packageDir . '/src/SymPressDemoBundle.php', $pluginDir . '/src/SymPressDemoBundle.php');
-            $filesystem->copy($packageDir . '/src/Entity/DemoEventRecord.php', $pluginDir . '/src/Entity/DemoEventRecord.php');
+            $filesystem->copy(
+                $packageDir . '/src/Entity/DemoEventRecord.php',
+                $pluginDir . '/src/Entity/DemoEventRecord.php',
+            );
             $filesystem->copy($packageDir . '/sympress-demo.php', $pluginDir . '/sympress-demo.php');
             $filesystem->copy($packageDir . '/composer.json', $pluginDir . '/composer.json');
             $filesystem->dumpFile($pluginDir . '/assets/entrypoints.json', '{"entrypoints":{}}');
@@ -70,32 +73,7 @@ final class BundleConfigurationTest extends TestCase
             self::assertSame($pluginDir . '/sympress-demo.php', $container->getParameter('sympress_demo.plugin_file'));
             self::assertSame($pluginDir . '/resources/views', $container->getParameter('sympress_demo.view_path'));
 
-            $pluginFile = $container->getParameterBag()->resolveValue(
-                $container->getDefinition(PluginAssetLocator::class)->getArgument('$pluginBase'),
-            );
-            $viewPath = $container->getParameterBag()->resolveValue(
-                $container->getDefinition(TemplateRenderer::class)->getArgument('$viewPath'),
-            );
-
-            self::assertIsString($pluginFile);
-            self::assertIsString($viewPath);
-
-            $assets = new PluginAssetLocator($pluginFile, '1.0.0');
-            $renderer = new TemplateRenderer($viewPath);
-
-            self::assertSame($pluginDir . '/assets/entrypoints.json', $assets->path('assets/entrypoints.json'));
-            self::assertFileExists($assets->path('assets/entrypoints.json'));
-
-            Functions\expect('plugin_dir_url')
-                ->once()
-                ->with($pluginFile)
-                ->andReturn('https://example.test/wp-content/plugins/customer-demo/');
-
-            self::assertSame(
-                'https://example.test/wp-content/plugins/customer-demo/assets/entrypoints.json',
-                $assets->url('assets/entrypoints.json'),
-            );
-            self::assertSame('Package-local view', $renderer->render('portability.php', ['message' => 'Package-local view']));
+            $this->assertRelocatedAssetsAndViews($container, $pluginDir);
 
             $composer = json_decode(
                 (string) file_get_contents($pluginDir . '/composer.json'),
@@ -142,7 +120,7 @@ final class BundleConfigurationTest extends TestCase
         $bundle->process($container);
 
         self::assertSame([
-            'another-plugin' => [DemoEventRecord::class],
+            'another-plugin'       => [DemoEventRecord::class],
             'sympress-demo-plugin' => [DemoEventRecord::class],
         ], $container->getParameter('orm.entity_classes'));
     }
@@ -154,7 +132,7 @@ final class BundleConfigurationTest extends TestCase
         (new SymPressDemoBundle())->process($container);
 
         self::assertSame([
-            'default' => [DemoEventRecord::class],
+            'default'              => [DemoEventRecord::class],
             'sympress-demo-plugin' => [DemoEventRecord::class],
         ], $container->getParameter('orm.entity_classes'));
     }
@@ -180,5 +158,38 @@ final class BundleConfigurationTest extends TestCase
 
         self::assertInstanceOf(EntityClassRegistry::class, $registry);
         self::assertSame([DemoEventRecord::class], $registry->classes('sympress-demo-plugin'));
+    }
+
+    private function assertRelocatedAssetsAndViews(ContainerBuilder $container, string $pluginDir): void
+    {
+        $pluginFile = $container->getParameterBag()->resolveValue(
+            $container->getDefinition(PluginAssetLocator::class)->getArgument('$pluginBase'),
+        );
+        $viewPath = $container->getParameterBag()->resolveValue(
+            $container->getDefinition(TemplateRenderer::class)->getArgument('$viewPath'),
+        );
+
+        self::assertIsString($pluginFile);
+        self::assertIsString($viewPath);
+
+        $assets = new PluginAssetLocator($pluginFile, '1.0.0');
+        $renderer = new TemplateRenderer($viewPath);
+
+        self::assertSame($pluginDir . '/assets/entrypoints.json', $assets->path('assets/entrypoints.json'));
+        self::assertFileExists($assets->path('assets/entrypoints.json'));
+
+        Functions\expect('plugin_dir_url')
+            ->once()
+            ->with($pluginFile)
+            ->andReturn('https://example.test/wp-content/plugins/customer-demo/');
+
+        self::assertSame(
+            'https://example.test/wp-content/plugins/customer-demo/assets/entrypoints.json',
+            $assets->url('assets/entrypoints.json'),
+        );
+        self::assertSame(
+            'Package-local view',
+            $renderer->render('portability.php', ['message' => 'Package-local view']),
+        );
     }
 }

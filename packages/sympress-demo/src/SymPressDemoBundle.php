@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SymPress\Demo;
 
+use SymPress\Demo\Entity\DemoEventRecord;
+use SymPress\Kernel\Bundle\AbstractBundle;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use SymPress\Demo\Entity\DemoEventRecord;
-use SymPress\Kernel\Bundle\AbstractBundle;
 
 final class SymPressDemoBundle extends AbstractBundle implements CompilerPassInterface
 {
@@ -24,9 +24,11 @@ final class SymPressDemoBundle extends AbstractBundle implements CompilerPassInt
             $container->setParameter('sympress_demo.plugin_file', $packageDir . '/sympress-demo.php');
         }
 
-        if (!$container->hasParameter('sympress_demo.view_path')) {
-            $container->setParameter('sympress_demo.view_path', $packageDir . '/resources/views');
+        if ($container->hasParameter('sympress_demo.view_path')) {
+            return;
         }
+
+        $container->setParameter('sympress_demo.view_path', $packageDir . '/resources/views');
     }
 
     public function process(ContainerBuilder $container): void
@@ -40,11 +42,12 @@ final class SymPressDemoBundle extends AbstractBundle implements CompilerPassInt
             $classes = ['default' => $classes];
         }
 
-        /** @var array<string, list<class-string>> $classes */
-        $classes['sympress-demo-plugin'] = array_values(array_unique([
-            ...($classes['sympress-demo-plugin'] ?? []),
+        /** @var array<string, list<class-string>> $entityClasses */
+        $entityClasses = $classes;
+        $entityClasses['sympress-demo-plugin'] = array_values(array_unique([
+            ...($entityClasses['sympress-demo-plugin'] ?? []),
             DemoEventRecord::class,
         ]));
-        $container->setParameter('orm.entity_classes', $classes);
+        $container->setParameter('orm.entity_classes', $entityClasses);
     }
 }
