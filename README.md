@@ -113,6 +113,7 @@ git clone https://github.com/SymPress/demo.git sympress-demo
 cd sympress-demo
 cp .env.example .env
 ddev start
+ddev exec php dev-ops/prepare-env.php
 ddev composer install
 ```
 
@@ -141,11 +142,10 @@ Open the site:
 https://sympress-demo.test
 ```
 
-Default local admin credentials from `.env.example`:
-
-```text
-admin / admin
-```
+The setup command generates a private `APP_SECRET` when it is missing or blank;
+existing keys remain unchanged. Retain that key across deployments. Set
+`WP_ADMIN_PASSWORD` privately before the first installation; a blank value
+generates a random password, with no shared default admin password.
 
 ## Screenshots
 
