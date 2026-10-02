@@ -127,9 +127,11 @@ The runtime bootstrap is deliberately explicit:
 5. The kernel discovers active SymPress bundles through Composer metadata and WordPress plugin state.
 6. Bundle and site configuration register hooks, routes, commands, collectors and services.
 
-Public SymPress packages are resolved from Packagist. The path repository points only at local demo packages under `packages/*`, so the website can install the demo feature plugin and base MU package while they are developed in the same repository.
+Published SymPress libraries are resolved from Packagist. `sympress/theme-starter` is installed from its tagged GitHub repository, which currently requires repository access. Supply Composer GitHub authentication or the configured SSH credentials; CI forwards `COMPOSER_AUTH_JSON` and `COMPOSER_SSH_KEY` through the existing reusable workflows. The path repository installs only the local demo plugin and base MU package under `packages/*`.
 
-`sympress/runtime` uses the stable `^1.0` release line from public Packagist. The reviewed Composer lockfile fixes the installation to `1.0.0`. Runtime installation needs no private repository or SSH key. Runtime requires Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
+`sympress/runtime` requires the stable `^1.1.3` release line from public Packagist. Runtime itself requires no private repository or SSH key and needs Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
+
+The active theme is `sympress-starter` from `sympress/theme-starter`; the separately required `sympress/demo-plugin` owns all demo behavior. Existing installations are not reseeded or silently switched by setup. After updating an existing checkout, run `ddev composer demo:theme` to select the new theme explicitly. See [theme/plugin separation and repository tooling](docs/demo-theme-separation.md).
 
 After updating dependencies, validate and run the standalone setup with `ddev exec vendor/bin/runtime validate` and `ddev exec vendor/bin/runtime --no-interaction`. The previous `vendor/bin/sympress-runtime` executable is no longer shipped. Composer command names and `sympress-runtime` configuration keys are unchanged. Review the [Runtime 1.0 upgrade guide](https://github.com/SymPress/runtime/blob/v1.0.0/docs/releases/1.0.0.md) and the [demo verification record](docs/runtime-migration.md) before updating another environment.
 
@@ -165,6 +167,7 @@ ddev start
 ddev composer install
 ddev composer compile-assets
 ddev composer build:production
+ddev composer demo:theme
 ddev exec 'php wp-cli.phar plugin activate sympress-demo'
 ddev exec 'php wp-cli.phar sympress-demo:create-notes --set=quotes --count=18 --reset'
 ddev exec ./bin/console wp:plugin:list
@@ -256,7 +259,7 @@ The demo plugin uses Symfony Webpack Encore with TypeScript:
 ddev composer compile-assets
 ```
 
-The website root owns asset compilation through `sympress/asset-compiler`. `composer compile-assets` discovers the demo plugin package, installs its frontend dependencies when needed and runs the configured build script. `composer build:production` calls the compiler in production mode and then runs the runtime smoke command.
+The website root owns asset compilation through `sympress/asset-compiler`. `composer compile-assets` discovers both the demo plugin and starter theme, installs their frontend dependencies when needed and runs their separate builds. `composer build:production` calls the compiler in production mode. The runtime smoke command remains part of `composer qa`.
 
 Encore writes `assets/entrypoints.json`, CSS, JS and WordPress dependency extraction metadata. `DemoAssetRegistrar` loads those entrypoints through `sympress/assets`, which keeps asset registration aligned with the real project packages.
 

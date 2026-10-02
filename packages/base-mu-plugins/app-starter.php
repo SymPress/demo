@@ -42,6 +42,11 @@ if (!class_exists(App::class)) {
     require_once $projectDir . '/vendor/autoload.php';
 }
 
+// Installation needs shared autoloading, but its database tables do not exist yet.
+if (wp_installing()) {
+    return;
+}
+
 if (App::kernel() === null) {
     App::bootKernel(new SiteKernel($projectDir));
 }

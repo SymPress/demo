@@ -42,6 +42,7 @@ final class RuntimeOrchestrationTest extends TestCase
             $commands[1],
         );
         self::assertContains('wp plugin activate sympress-demo', $commands);
+        self::assertContains('wp theme activate sympress-starter', $commands);
         self::assertContains('wp sympress-demo:create-notes --set=quotes --count=18 --reset', $commands);
         self::assertStringStartsWith('wp eval ', $commands[array_key_last($commands)]);
     }

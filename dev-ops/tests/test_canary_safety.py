@@ -145,14 +145,16 @@ class CanarySafetyTest(unittest.TestCase):
         )
         return result, calls.read_text().splitlines() if calls.exists() else []
 
-    def test_nested_setup_stops_after_a_failed_dependency_update(self):
-        result, calls = self.nested_workflow_command(
-            "setup_command",
-            failure="composer update --with-all-dependencies --no-interaction --no-scripts",
-        )
-        self.assertEqual(result.returncode, 17, result.stderr)
-        self.assertFalse(any(call.startswith("composer install") for call in calls))
-        self.assertFalse(any(call.startswith("composer runtime:setup") for call in calls))
+    def test_nested_setup_keeps_updates_in_the_authenticated_fetch_phase(self):
+        for event, inputs in (("schedule", {}), ("workflow_dispatch", {"update_dependencies": True}),
+                              ("push", {})):
+            with self.subTest(event=event):
+                result, calls = self.nested_workflow_command(
+                    "setup_command", event=event, inputs=inputs,
+                )
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertFalse(any(call.startswith("composer update") for call in calls))
+                self.assertEqual(calls[0], "composer install --no-interaction")
 
     def test_nested_setup_rejects_invalid_mode_before_installation(self):
         result, calls = self.nested_workflow_command(

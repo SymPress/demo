@@ -20,18 +20,17 @@ permissions:
 jobs:
   ddev-canary:
     name: DDEV + Playwright
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@8639b193c127039573a9a907f811db7c3574c23e
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@cbf37992724d5b070f9aa90a14aeddd7c72921d5
     with:
       php_version: '8.5'
       node_version: '24'
+      composer_update: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.update_dependencies) }}
       allow_custom_commands: true
       setup_command: |
         set -euo pipefail
         cp .env.example .env
         canary_mode="$(bash .github/scripts/canary-mode.sh)"
-        if [ "$canary_mode" = "update" ]; then
-          ddev composer update --with-all-dependencies --no-interaction --no-scripts
-        fi
+        printf 'Canary dependency mode: %s\n' "$canary_mode"
         ddev composer install --no-interaction
         ddev composer runtime:setup --no-interaction
         ddev composer compile-assets --mode production

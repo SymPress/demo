@@ -116,6 +116,10 @@ task('deploy:health', static function (): void {
         'if (wp_get_environment_type() !== "production" && wp_get_environment_type() !== "staging") { exit(1); }'
         . 'if (!DISALLOW_FILE_EDIT || !DISALLOW_FILE_MODS || WP_DEBUG_DISPLAY || !FORCE_SSL_ADMIN) { exit(1); }',
     ));
+    run('cd {{release_path}} && {{bin/php}} wp-cli.phar eval ' . escapeshellarg(
+        'if (get_stylesheet() !== "sympress-starter") { '
+        . 'WP_CLI::error("Activate sympress-starter before publishing this demo release."); }',
+    ));
 });
 
 task('deploy', [

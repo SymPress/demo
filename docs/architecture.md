@@ -92,7 +92,7 @@ The demo intentionally keeps bootstrapping explicit instead of hiding it in a fe
 ```text
 composer install
   -> installs WordPress, plugins, themes and MU plugins into public/
-  -> WP Starter generates the MU plugin loader
+   -> SymPress Runtime generates the MU plugin loader
   -> WordPress loads packages/base-mu-plugins/app-starter.php
   -> app-starter boots SymPress\Kernel\Kernel\SiteKernel
   -> the kernel discovers active SymPress packages through Composer metadata
@@ -189,7 +189,7 @@ The demo does not try to turn WordPress into Symfony. The content model, admin s
 
 ## Packagist First
 
-Public SymPress packages are resolved from Packagist. The demo keeps Composer repository configuration narrow: local path packages for the packages developed in this repository, plus WPackagist for WordPress themes and plugins.
+Published SymPress libraries are resolved from Packagist. Local path packages contain the demo plugin and base MU bootstrap; the single scoped VCS repository installs the tagged `sympress/theme-starter` package. Theme rendering is independent of the demo plugin. WPackagist remains available for ordinary WordPress packages.
 
 The local path repository is:
 

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SymPress\Demo\Tests\Integration;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
 final class PluginBootstrapTest extends TestCase
 {
@@ -49,6 +51,23 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('function resolve_project_dir(string $startDir): string', $contents);
         self::assertStringContainsString('$projectDir = resolve_project_dir(__DIR__);', $contents);
         self::assertStringContainsString('App::bootKernel(new SiteKernel($projectDir))', $contents);
+    }
+
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
+    public function testBaseMuPluginSkipsKernelBootDuringWordPressInstallation(): void
+    {
+        define('ABSPATH', sys_get_temp_dir() . '/wordpress-install/');
+        \Brain\Monkey\setUp();
+        \Brain\Monkey\Functions\when('wp_installing')->justReturn(true);
+
+        try {
+            require dirname(__DIR__, 4) . '/packages/base-mu-plugins/app-starter.php';
+
+            self::assertNull(\SymPress\Kernel\App::kernel());
+        } finally {
+            \Brain\Monkey\tearDown();
+        }
     }
 
     public function testPackageComposerMetadataDeclaresKernelBundleEntryPoint(): void
@@ -102,6 +121,10 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('grouped', $assetCompiler['execution-strategy']);
         self::assertSame('npm', $assetCompiler['package-manager']);
         self::assertTrue($assetCompiler['packages']['sympress/demo-plugin']);
+        self::assertTrue($assetCompiler['packages']['sympress/theme-starter']);
+        self::assertSame('^1.1.1', $composer['require']['sympress/theme-starter']);
+        self::assertSame('^1.2.1', $composer['require']['sympress/twig-bundle']);
+        self::assertArrayNotHasKey('wpackagist-theme/twentytwentyfive', $composer['require']);
         self::assertArrayNotHasKey('compile-assets', $composer['scripts']);
         self::assertContains(
             '@composer compile-assets --mode production',
@@ -153,7 +176,13 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertContains('composer', $repositoryTypes);
         self::assertContains('path', $repositoryTypes);
-        self::assertNotContains('vcs', $repositoryTypes);
+        $themeRepositories = array_values(array_filter(
+            $composer['repositories'],
+            static fn (array $repository): bool => $repository['type'] === 'vcs',
+        ));
+        self::assertCount(1, $themeRepositories);
+        self::assertSame('https://github.com/SymPress/theme-starter.git', $themeRepositories[0]['url']);
+        self::assertSame(['sympress/theme-starter'], $themeRepositories[0]['only']);
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
         self::assertSame('^0.3.0', $composer['require']['sympress/orm']);
         self::assertSame('^1.0.2', $composer['require-dev']['sympress/profiler']);
