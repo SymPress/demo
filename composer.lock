@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39e597f4e49630df60140240d5732bbe",
+    "content-hash": "7d7dda4d300bf66ca8ae6fc7afa156b5",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5762,16 +5762,16 @@
         },
         {
             "name": "sympress/kernel",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/kernel.git",
-                "reference": "17b50f397b66d408a8f45aeadd7b41664f3d957e"
+                "reference": "720d95fb412acdc151ad84f159e60ebf18f1d327"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/kernel/zipball/17b50f397b66d408a8f45aeadd7b41664f3d957e",
-                "reference": "17b50f397b66d408a8f45aeadd7b41664f3d957e",
+                "url": "https://api.github.com/repos/SymPress/kernel/zipball/720d95fb412acdc151ad84f159e60ebf18f1d327",
+                "reference": "720d95fb412acdc151ad84f159e60ebf18f1d327",
                 "shasum": ""
             },
             "require": {
@@ -5822,22 +5822,22 @@
             "description": "WordPress kernel and shared service container built on Symfony DependencyInjection.",
             "support": {
                 "issues": "https://github.com/SymPress/kernel/issues",
-                "source": "https://github.com/SymPress/kernel/tree/v1.1.1"
+                "source": "https://github.com/SymPress/kernel/tree/v1.1.2"
             },
-            "time": "2026-10-02T11:05:15+00:00"
+            "time": "2026-10-02T17:44:27+00:00"
         },
         {
             "name": "sympress/migration",
-            "version": "v1.0.3",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/migration.git",
-                "reference": "a194733b9ca38fc0eb5ab8fb7754827444028542"
+                "reference": "169ba16e14b4c9dfe455c99eb7efc9b40a967c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/migration/zipball/a194733b9ca38fc0eb5ab8fb7754827444028542",
-                "reference": "a194733b9ca38fc0eb5ab8fb7754827444028542",
+                "url": "https://api.github.com/repos/SymPress/migration/zipball/169ba16e14b4c9dfe455c99eb7efc9b40a967c23",
+                "reference": "169ba16e14b4c9dfe455c99eb7efc9b40a967c23",
                 "shasum": ""
             },
             "require": {
@@ -5883,9 +5883,9 @@
             "description": "MU plugin for handling migrations on website level",
             "support": {
                 "issues": "https://github.com/SymPress/migration/issues",
-                "source": "https://github.com/SymPress/migration/tree/v1.0.3"
+                "source": "https://github.com/SymPress/migration/tree/v1.0.6"
             },
-            "time": "2026-10-02T14:06:31+00:00"
+            "time": "2026-10-02T18:02:08+00:00"
         },
         {
             "name": "sympress/monolog-bundle",
@@ -5945,16 +5945,16 @@
         },
         {
             "name": "sympress/orm",
-            "version": "v0.3.0",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/orm.git",
-                "reference": "973b3ecd0181e86bf646ad2d9bcdc4c7e24da834"
+                "reference": "96b79b46860da92a8912b1e9f7c97bfdf3388946"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/orm/zipball/973b3ecd0181e86bf646ad2d9bcdc4c7e24da834",
-                "reference": "973b3ecd0181e86bf646ad2d9bcdc4c7e24da834",
+                "url": "https://api.github.com/repos/SymPress/orm/zipball/96b79b46860da92a8912b1e9f7c97bfdf3388946",
+                "reference": "96b79b46860da92a8912b1e9f7c97bfdf3388946",
                 "shasum": ""
             },
             "require": {
@@ -5963,13 +5963,16 @@
                 "symfony/console": "^8.0",
                 "sympress/kernel": "^1.1.1"
             },
+            "conflict": {
+                "sympress/migration": "<1.0.4"
+            },
             "require-dev": {
                 "johnpbloch/wordpress": "^7.0",
-                "sympress/migration": "^1.0.2",
+                "sympress/migration": "^1.0.4",
                 "sympress/qa": "^0.1.2"
             },
             "suggest": {
-                "sympress/migration": "Enables ORM schema migrations through the SymPress migration runner."
+                "sympress/migration": "^1.0.4 enables ORM schema migrations with live SQL planning under the migration lock."
             },
             "type": "library",
             "extra": {
@@ -5998,9 +6001,9 @@
             "description": "Doctrine-inspired ORM primitives for WordPress projects that keep wpdb as the database runtime.",
             "support": {
                 "issues": "https://github.com/SymPress/orm/issues",
-                "source": "https://github.com/SymPress/orm/tree/v0.3.0"
+                "source": "https://github.com/SymPress/orm/tree/v0.3.1"
             },
-            "time": "2026-10-02T11:33:06+00:00"
+            "time": "2026-10-02T17:49:07+00:00"
         },
         {
             "name": "sympress/runtime",

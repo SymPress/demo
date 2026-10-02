@@ -184,7 +184,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('https://github.com/SymPress/theme-starter.git', $themeRepositories[0]['url']);
         self::assertSame(['sympress/theme-starter'], $themeRepositories[0]['only']);
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
-        self::assertSame('^0.3.0', $composer['require']['sympress/orm']);
+        self::assertSame('^0.3.1', $composer['require']['sympress/orm']);
         self::assertSame('^1.0.2', $composer['require-dev']['sympress/profiler']);
         self::assertArrayNotHasKey('sympress/profiler', $composer['require']);
     }
