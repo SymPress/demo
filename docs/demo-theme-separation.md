@@ -107,7 +107,7 @@ does not automatically deploy from its current workflows.
 `operations.py` implements optional administrative backup, restore, staging and
 monitor commands. `render-nginx.py` validates configuration inputs and renders
 NGINX files. Their Python tests protect these operations; other tests protect
-asset build recursion and canary alarm/heartbeat behavior. Python is tooling
+asset build recursion, canary mode selection and failure propagation. Python is tooling
 for those operations and CI, not required when PHP serves a normal request.
 
 Several operational files currently match the starter project. That is template
