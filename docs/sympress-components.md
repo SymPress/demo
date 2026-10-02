@@ -45,6 +45,8 @@ The packages are intentionally used together rather than listed as passive depen
 
 ## Runtime Versus Development Packages
 
+The root project requires Runtime 1.1.3 or later so pre-install database observations stay out of persistent environment caches and diagnostics see the installed site.
+
 Most SymPress packages are runtime dependencies because the website actively uses them while serving requests.
 
 `sympress/coding-standards` and `sympress/profiler` are development dependencies. The profiler is demonstrated through development-only configuration, so local requests are inspectable without making profiling a production concern.
