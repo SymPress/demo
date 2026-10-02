@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SymPress\Demo\Tests\Integration;
 
-use PHPUnit\Framework\TestCase;
+use Brain\Monkey;
+use Brain\Monkey\Functions;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
+use PHPUnit\Framework\TestCase;
+use SymPress\Kernel\App;
 
 final class PluginBootstrapTest extends TestCase
 {
@@ -53,20 +56,20 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringContainsString('App::bootKernel(new SiteKernel($projectDir))', $contents);
     }
 
-    #[RunInSeparateProcess]
     #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
     public function testBaseMuPluginSkipsKernelBootDuringWordPressInstallation(): void
     {
         define('ABSPATH', sys_get_temp_dir() . '/wordpress-install/');
-        \Brain\Monkey\setUp();
-        \Brain\Monkey\Functions\when('wp_installing')->justReturn(true);
+        Monkey\setUp();
+        Functions\when('wp_installing')->justReturn(true);
 
         try {
             require dirname(__DIR__, 4) . '/packages/base-mu-plugins/app-starter.php';
 
-            self::assertNull(\SymPress\Kernel\App::kernel());
+            self::assertNull(App::kernel());
         } finally {
-            \Brain\Monkey\tearDown();
+            Monkey\tearDown();
         }
     }
 
