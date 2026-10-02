@@ -61,7 +61,7 @@ $install .= ' --admin_email=' . $shellArg($email);
 $commands[] = $install;
 $commands[] = 'wp option update siteurl ' . $shellArg((string) $siteUrl);
 $commands[] = 'wp rewrite flush';
-$commands[] = 'wp theme activate twentytwentyfive';
+$commands[] = 'wp theme activate sympress-starter';
 $commands = [
     ...$commands,
     ...$runtimeCommands($homepageBlock),

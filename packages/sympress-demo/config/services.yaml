@@ -1,6 +1,4 @@
 parameters:
-    sympress_demo.plugin_file: '%kernel.project_dir%/public/wp-content/plugins/sympress-demo/sympress-demo.php'
-    sympress_demo.view_path: '%kernel.project_dir%/packages/sympress-demo/resources/views'
     sympress_demo.version: '1.0.0'
     sympress_demo.render_events_enabled: false
 

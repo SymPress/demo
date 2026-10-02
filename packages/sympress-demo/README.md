@@ -2,6 +2,12 @@
 
 This package contains the WordPress plugin used by the SymPress Demo website.
 
+It does not require `sympress/starter` or `sympress/theme-starter`. The website
+selects its theme separately. Notes, REST, blocks, seeding, migrations, telemetry,
+admin screens and their assets remain owned by this Composer plugin package.
+Asset and template paths are derived from the installed package; ORM entities
+are registered by the demo bundle rather than website configuration.
+
 The package is intentionally written as a small application package, not as a single procedural plugin file. WordPress is still the runtime, but most behavior is expressed as services, adapters, events and commands.
 
 It demonstrates:

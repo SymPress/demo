@@ -28,6 +28,22 @@ test('demo homepage renders without runtime exceptions', async ({ page }) => {
     expect(status, 'homepage should return a non-error HTTP status').toBeLessThan(500);
     await expect(page.locator('body')).toBeVisible();
     await expect(page).toHaveTitle(/.+/);
+    await expect(page.locator('body')).toHaveClass(/wp-theme-sympress-starter/);
+    const notes = page.locator('.sympress-demo-notes');
+    await expect(notes).toBeVisible();
+    await expect(notes.locator('.sympress-demo-notes__item')).toHaveCount(6);
+    await expect(notes).toHaveAttribute('data-enhanced', 'true');
+
+    const themeStyles = page.locator('link[rel="stylesheet"][href*="/themes/sympress-starter/build/"]');
+    const inlineThemeStyles = page.locator('style[data-id="sympress-starter-app"]');
+    expect(await themeStyles.count() + await inlineThemeStyles.count(), 'the active starter theme must load compiled styles').toBeGreaterThan(0);
+    if (await inlineThemeStyles.count() > 0) {
+        expect((await inlineThemeStyles.textContent())?.length, 'inline theme styles must contain the compiled stylesheet').toBeGreaterThan(100);
+    }
+    for (const href of await themeStyles.evaluateAll((links) => links.map((link) => (link as HTMLLinkElement).href))) {
+        const asset = await page.request.get(href);
+        expect(asset.status(), `theme asset should be available: ${href}`).toBe(200);
+    }
 
     const html = await page.content();
 
