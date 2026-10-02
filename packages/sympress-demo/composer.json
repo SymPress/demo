@@ -11,21 +11,21 @@
         "psr/log": "^3.0",
         "symfony/console": "^8.1",
         "symfony/dependency-injection": "^8.1",
-        "sympress/assets": "dev-main",
-        "sympress/event-dispatcher": "dev-main",
-        "sympress/kernel": "^1.1",
-        "sympress/migration": "dev-main",
-        "sympress/monolog-bundle": "dev-main",
-        "sympress/orm": "dev-main",
-        "sympress/wp-cli-console": "dev-main"
+        "sympress/assets": "^1.2.1",
+        "sympress/event-dispatcher": "^1.0.2",
+        "sympress/kernel": "^1.1.1",
+        "sympress/migration": "^1.0.2",
+        "sympress/monolog-bundle": "^1.0.2",
+        "sympress/orm": "^0.3.0",
+        "sympress/wp-cli-console": "^1.0.2"
     },
     "require-dev": {
         "brain/monkey": "^2.6",
         "php-stubs/wordpress-stubs": ">=7.0",
         "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^11.5",
-        "sympress/coding-standards": "dev-main",
-        "sympress/profiler": "dev-main",
+        "sympress/coding-standards": "^1.1.1",
+        "sympress/profiler": "^1.0.2",
         "szepeviktor/phpstan-wordpress": "^2.0"
     },
     "autoload": {
@@ -95,15 +95,6 @@
             "phpstan/extension-installer": true
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./../*",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

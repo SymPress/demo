@@ -16,6 +16,7 @@ use SymPress\Runtime\Services;
 use SymPress\Runtime\Step\Registry;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Filesystem\Filesystem;
 
 #[BackupGlobals(true)]
 final class RuntimeOrchestrationTest extends TestCase
@@ -71,36 +72,71 @@ final class RuntimeOrchestrationTest extends TestCase
     {
         $root = dirname(__DIR__, 4);
         $paths = new Paths($root);
-        $config = new Config(['compatibility' => false, 'compatibility-profile' => 'native'], new Validator($paths));
-        $services = (new ContainerFactory())->create(
-            $config,
-            $paths,
-            new Io(new ArrayInput([]), new BufferedOutput()),
-            new RunContext($root, $paths->vendor(), $paths->bin()),
-            new Registry(),
-        )->get(Services::class);
-        self::assertInstanceOf(Services::class, $services);
+        $filesystem = new Filesystem();
+        $envDirectory = sys_get_temp_dir() . '/sympress-demo-orchestration-' . bin2hex(random_bytes(8));
+        $filesystem->mkdir($envDirectory, 0700);
         $values = [
             'WPDB_ENV_VALID'    => $valid ? '1' : '0',
             'WPDB_EXISTS'       => $installed ? '1' : '0',
             'WP_INSTALLED'      => $installed ? '1' : '0',
             'WP_HOME'           => 'https://runtime-test.invalid',
             'WP_ADMIN_PASSWORD' => $password,
+            'WP_ADMIN_USERNAME' => '',
+            'WP_ADMIN_EMAIL'    => '',
+            'WP_SITEURL'        => '',
         ];
         $previous = [];
+        // phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable -- Isolate both native env sources before constructing the test service.
+        $previousEnv = $_ENV;
+        $previousServer = $_SERVER;
         foreach ($values as $name => $value) {
             $previous[$name] = getenv($name);
             // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_putenv -- Test the native process-environment boundary and restore it below.
             putenv($name . '=' . $value);
+            $_ENV[$name] = $value;
+            $_SERVER[$name] = $value;
         }
+        // phpcs:enable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
 
         try {
+            // Keep the installed site's dotenv files/caches available to the live QA smoke.
+            // phpcs:ignore SlevomatCodingStandard.Variables.UnusedVariable -- The required command provider uses this local include-scope service.
+            $services = $this->services($paths, $envDirectory);
+
             return require $root . '/dev-ops/orchestrate.php';
         } finally {
             foreach ($previous as $name => $value) {
                 // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_putenv -- Restore the caller's environment even when the provider fails.
                 putenv($value === false ? $name : $name . '=' . $value);
             }
+            // phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable -- Restore the caller's globals without changing its dotenv files.
+            $_ENV = $previousEnv;
+            $_SERVER = $previousServer;
+            // phpcs:enable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable
+            $filesystem->remove($envDirectory);
         }
+    }
+
+    private function services(Paths $paths, string $envDirectory): Services
+    {
+        $config = new Config(
+            [
+                'compatibility'         => false,
+                'compatibility-profile' => 'native',
+                'env-dir'               => $envDirectory,
+                'cache-env'             => false,
+            ],
+            new Validator($paths),
+        );
+        $services = (new ContainerFactory())->create(
+            $config,
+            $paths,
+            new Io(new ArrayInput([]), new BufferedOutput()),
+            new RunContext($paths->root(), $paths->vendor(), $paths->bin()),
+            new Registry(),
+        )->get(Services::class);
+        self::assertInstanceOf(Services::class, $services);
+
+        return $services;
     }
 }

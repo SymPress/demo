@@ -11,17 +11,17 @@
         "ext-libxml": "*",
         "ext-zip": "*",
         "roots/wordpress": "^7.1.1",
-        "sympress/asset-compiler": "dev-main",
-        "sympress/assets": "dev-main",
-        "sympress/demo-base-mu-plugins": "dev-main",
-        "sympress/demo-plugin": "dev-main",
-        "sympress/event-dispatcher": "dev-main",
-        "sympress/kernel": "^1.1",
-        "sympress/migration": "dev-main",
-        "sympress/monolog-bundle": "dev-main",
-        "sympress/orm": "dev-main",
-        "sympress/wp-cli-console": "dev-main",
-        "sympress/runtime": "^1.1.1",
+        "sympress/asset-compiler": "^1.0.2",
+        "sympress/assets": "^1.2.1",
+        "sympress/demo-base-mu-plugins": "^1.0",
+        "sympress/demo-plugin": "^1.0",
+        "sympress/event-dispatcher": "^1.0.2",
+        "sympress/kernel": "^1.1.1",
+        "sympress/migration": "^1.0.2",
+        "sympress/monolog-bundle": "^1.0.2",
+        "sympress/orm": "^0.3.0",
+        "sympress/wp-cli-console": "^1.0.2",
+        "sympress/runtime": "^1.1.2",
         "wpackagist-theme/twentytwentyfive": "^1.5.0"
     },
     "require-dev": {
@@ -30,8 +30,8 @@
         "phpstan/phpstan-phpunit": "^2.0",
         "phpunit/phpunit": "^11.5",
         "symfony/var-dumper": "^8.1",
-        "sympress/coding-standards": "dev-main",
-        "sympress/profiler": "dev-main",
+        "sympress/coding-standards": "^1.1.1",
+        "sympress/profiler": "^1.0.2",
         "szepeviktor/phpstan-wordpress": "^2.0",
         "brain/monkey": "^2.6",
         "php-stubs/wordpress-stubs": ">=7.0"
@@ -148,7 +148,7 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "repositories": [
         {
@@ -157,8 +157,8 @@
             "options": {
                 "symlink": true,
                 "versions": {
-                    "sympress/demo-base-mu-plugins": "dev-main",
-                    "sympress/demo-plugin": "dev-main"
+                    "sympress/demo-base-mu-plugins": "1.0.0",
+                    "sympress/demo-plugin": "1.0.0"
                 }
             }
         },
