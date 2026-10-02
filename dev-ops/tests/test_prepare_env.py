@@ -55,6 +55,10 @@ class PrepareEnvironmentTest(unittest.TestCase):
             path.write_text(exported)
             self.assertEqual(self.run_prepare(root).returncode, 0)
             self.assertEqual(path.read_text(), exported)
+            literal_hash = 'APP_SECRET=""#operator-owned-private-01234567890123456789' + '\n'
+            path.write_text(literal_hash)
+            self.assertEqual(self.run_prepare(root).returncode, 0)
+            self.assertEqual(path.read_text(), literal_hash)
             path.write_text('APP_SECRET=\n')
             self.assertEqual(self.run_prepare(root, APP_SECRET='process-owned-key').returncode, 0)
             self.assertEqual(path.read_text(), 'APP_SECRET=\n')
