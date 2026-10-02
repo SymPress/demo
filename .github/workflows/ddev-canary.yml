@@ -20,7 +20,7 @@ permissions:
 jobs:
   ddev-canary:
     name: DDEV + Playwright
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@cbf37992724d5b070f9aa90a14aeddd7c72921d5
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@71f54af9c1e08859b8fb8fb9de43e9fb99156fd8
     with:
       php_version: '8.5'
       node_version: '24'
