@@ -154,7 +154,8 @@ class CanarySafetyTest(unittest.TestCase):
                 )
                 self.assertEqual(result.returncode, 0, result.stderr)
                 self.assertFalse(any(call.startswith("composer update") for call in calls))
-                self.assertEqual(calls[0], "composer install --no-interaction")
+                self.assertEqual(calls[:2], ["exec php dev-ops/prepare-env.php",
+                                             "composer install --no-interaction"])
 
     def test_nested_setup_rejects_invalid_mode_before_installation(self):
         result, calls = self.nested_workflow_command(
@@ -165,7 +166,8 @@ class CanarySafetyTest(unittest.TestCase):
         self.assertFalse(any(call.startswith("composer ") for call in calls))
 
     def test_nested_setup_stops_after_install_or_runtime_failure(self):
-        for failure in ("composer install --no-interaction",
+        for failure in ("exec php dev-ops/prepare-env.php",
+                        "composer install --no-interaction",
                         "composer runtime:setup --no-interaction"):
             with self.subTest(failure=failure):
                 result, calls = self.nested_workflow_command(
@@ -193,6 +195,7 @@ class CanarySafetyTest(unittest.TestCase):
             else "ddev-smoke.yml"
         )
         text = workflow.read_text()
+        self.assertFalse((ROOT / ".github/workflows/canary-alert.yml").exists())
         self.assertNotIn("heartbeat:", text)
         self.assertNotIn("CANARY_HEARTBEAT_URL", text)
         self.assertIn('canary_mode="$(bash .github/scripts/canary-mode.sh)"', text)
