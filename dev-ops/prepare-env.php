@@ -31,7 +31,7 @@ try {
     }
     preg_match_all('/^\h*(?:export\h+)?APP_SECRET(?:_FILE)?\h*=([^\r\n]*)/m', $contents, $matches);
     foreach ($matches[1] as $value) {
-        if (preg_match('/^(?:(?:""|\'\')\h*)?(?:#.*)?$/D', trim($value)) !== 1) {
+        if (preg_match('/^(?:#.*|(?:""|\'\')(?:\h+#.*)?)?$/D', trim($value)) !== 1) {
             // Invalid nonempty values are diagnosed by FrameworkBundle, never replaced here.
             exit(0);
         }
