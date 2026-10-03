@@ -20,8 +20,9 @@ permissions:
 jobs:
   ddev-canary:
     name: DDEV + Playwright
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@cd809f3986df3ea617d2d26bdf21ab69cae19c1e
     with:
+      checkout_ref: ${{ (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.update_dependencies)) && 'v1.1.2' || '' }}
       php_version: '8.5'
       node_version: '24'
       composer_update: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.update_dependencies) }}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e9ab3a8191993c54dd3f8227ede26abe",
+    "content-hash": "0531420f5894665cd19d4b58a34d610a",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5381,16 +5381,16 @@
         },
         {
             "name": "sympress/assets",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/assets.git",
-                "reference": "8c9fdc167c92ddb5472871c9e385cf723513594f"
+                "reference": "5ed0e31a4ef1d78bd2b227b7d1dcd9ee2b17e92c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/assets/zipball/8c9fdc167c92ddb5472871c9e385cf723513594f",
-                "reference": "8c9fdc167c92ddb5472871c9e385cf723513594f",
+                "url": "https://api.github.com/repos/SymPress/assets/zipball/5ed0e31a4ef1d78bd2b227b7d1dcd9ee2b17e92c",
+                "reference": "5ed0e31a4ef1d78bd2b227b7d1dcd9ee2b17e92c",
                 "shasum": ""
             },
             "require": {
@@ -5452,9 +5452,9 @@
             "description": "WordPress asset management library with optional Symfony-kernel integration.",
             "support": {
                 "issues": "https://github.com/SymPress/assets/issues",
-                "source": "https://github.com/SymPress/assets/tree/v1.2.1"
+                "source": "https://github.com/SymPress/assets/tree/v1.2.2"
             },
-            "time": "2026-10-02T11:09:33+00:00"
+            "time": "2026-10-03T15:45:11+00:00"
         },
         {
             "name": "sympress/demo-base-mu-plugins",
@@ -5615,16 +5615,16 @@
         },
         {
             "name": "sympress/event-dispatcher",
-            "version": "v1.0.3",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/event-dispatcher.git",
-                "reference": "0ae6e5f54021c8bf2b7b03904d375310319549d3"
+                "reference": "e8a02a90bd246b87a04c706f0f6340f4b8e4e602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/event-dispatcher/zipball/0ae6e5f54021c8bf2b7b03904d375310319549d3",
-                "reference": "0ae6e5f54021c8bf2b7b03904d375310319549d3",
+                "url": "https://api.github.com/repos/SymPress/event-dispatcher/zipball/e8a02a90bd246b87a04c706f0f6340f4b8e4e602",
+                "reference": "e8a02a90bd246b87a04c706f0f6340f4b8e4e602",
                 "shasum": ""
             },
             "require": {
@@ -5664,22 +5664,22 @@
             "description": "MU plugin for class-based WordPress events, listeners, and subscribers.",
             "support": {
                 "issues": "https://github.com/SymPress/event-dispatcher/issues",
-                "source": "https://github.com/SymPress/event-dispatcher/tree/v1.0.3"
+                "source": "https://github.com/SymPress/event-dispatcher/tree/v1.0.5"
             },
-            "time": "2026-10-02T20:13:44+00:00"
+            "time": "2026-10-03T15:18:38+00:00"
         },
         {
             "name": "sympress/framework-bundle",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/framework-bundle.git",
-                "reference": "71c9e6c93fcf4033236d1e99d8484fd1895e7450"
+                "reference": "d81870c3f051aca9e9997efac0e0d95804133caa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/71c9e6c93fcf4033236d1e99d8484fd1895e7450",
-                "reference": "71c9e6c93fcf4033236d1e99d8484fd1895e7450",
+                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/d81870c3f051aca9e9997efac0e0d95804133caa",
+                "reference": "d81870c3f051aca9e9997efac0e0d95804133caa",
                 "shasum": ""
             },
             "require": {
@@ -5756,22 +5756,22 @@
             "description": "SymPress FrameworkBundle bridge with Symfony Cache integration and WordPress object-cache support.",
             "support": {
                 "issues": "https://github.com/SymPress/framework-bundle/issues",
-                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.3"
+                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.4"
             },
-            "time": "2026-10-02T17:44:28+00:00"
+            "time": "2026-10-03T14:56:42+00:00"
         },
         {
             "name": "sympress/kernel",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/kernel.git",
-                "reference": "ed83314fda5210b756dd4984edcba405870ff5bb"
+                "reference": "86579402cc49a86e73f6326bb014742476cd4334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/kernel/zipball/ed83314fda5210b756dd4984edcba405870ff5bb",
-                "reference": "ed83314fda5210b756dd4984edcba405870ff5bb",
+                "url": "https://api.github.com/repos/SymPress/kernel/zipball/86579402cc49a86e73f6326bb014742476cd4334",
+                "reference": "86579402cc49a86e73f6326bb014742476cd4334",
                 "shasum": ""
             },
             "require": {
@@ -5822,22 +5822,22 @@
             "description": "WordPress kernel and shared service container built on Symfony DependencyInjection.",
             "support": {
                 "issues": "https://github.com/SymPress/kernel/issues",
-                "source": "https://github.com/SymPress/kernel/tree/v1.1.3"
+                "source": "https://github.com/SymPress/kernel/tree/v1.1.4"
             },
-            "time": "2026-10-02T20:13:41+00:00"
+            "time": "2026-10-03T14:08:12+00:00"
         },
         {
             "name": "sympress/migration",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/migration.git",
-                "reference": "058f0f96fc4a0622a3b5ce72250b01b0dfbd0e6a"
+                "reference": "6d007cfec6e519c4133d37ee1c8bf71d9497ecc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/migration/zipball/058f0f96fc4a0622a3b5ce72250b01b0dfbd0e6a",
-                "reference": "058f0f96fc4a0622a3b5ce72250b01b0dfbd0e6a",
+                "url": "https://api.github.com/repos/SymPress/migration/zipball/6d007cfec6e519c4133d37ee1c8bf71d9497ecc6",
+                "reference": "6d007cfec6e519c4133d37ee1c8bf71d9497ecc6",
                 "shasum": ""
             },
             "require": {
@@ -5883,22 +5883,22 @@
             "description": "MU plugin for handling migrations on website level",
             "support": {
                 "issues": "https://github.com/SymPress/migration/issues",
-                "source": "https://github.com/SymPress/migration/tree/v1.0.7"
+                "source": "https://github.com/SymPress/migration/tree/v1.0.8"
             },
-            "time": "2026-10-02T20:00:24+00:00"
+            "time": "2026-10-03T15:10:37+00:00"
         },
         {
             "name": "sympress/monolog-bundle",
-            "version": "v1.1.0",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/monolog-bundle.git",
-                "reference": "b7b7130cb74b0a18b967f37013bf77c48ac70bb6"
+                "reference": "f9b5ece3bfb87215dabb321d703990a4307c3f4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/monolog-bundle/zipball/b7b7130cb74b0a18b967f37013bf77c48ac70bb6",
-                "reference": "b7b7130cb74b0a18b967f37013bf77c48ac70bb6",
+                "url": "https://api.github.com/repos/SymPress/monolog-bundle/zipball/f9b5ece3bfb87215dabb321d703990a4307c3f4e",
+                "reference": "f9b5ece3bfb87215dabb321d703990a4307c3f4e",
                 "shasum": ""
             },
             "require": {
@@ -5939,22 +5939,22 @@
             "description": "Monolog integration bundle for the WordPress kernel.",
             "support": {
                 "issues": "https://github.com/SymPress/monolog-bundle/issues",
-                "source": "https://github.com/SymPress/monolog-bundle/tree/v1.1.0"
+                "source": "https://github.com/SymPress/monolog-bundle/tree/v1.1.3"
             },
-            "time": "2026-10-03T12:19:51+00:00"
+            "time": "2026-10-03T16:53:23+00:00"
         },
         {
             "name": "sympress/orm",
-            "version": "v0.3.2",
+            "version": "v0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/orm.git",
-                "reference": "435daa907e1e723fc2d9b2a0a813f10960d1b237"
+                "reference": "86c050886b5ac53a96c136907f0201e188f3c599"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/orm/zipball/435daa907e1e723fc2d9b2a0a813f10960d1b237",
-                "reference": "435daa907e1e723fc2d9b2a0a813f10960d1b237",
+                "url": "https://api.github.com/repos/SymPress/orm/zipball/86c050886b5ac53a96c136907f0201e188f3c599",
+                "reference": "86c050886b5ac53a96c136907f0201e188f3c599",
                 "shasum": ""
             },
             "require": {
@@ -5964,15 +5964,15 @@
                 "sympress/kernel": "^1.1.3"
             },
             "conflict": {
-                "sympress/migration": "<1.0.4"
+                "sympress/migration": "<1.0.8"
             },
             "require-dev": {
                 "johnpbloch/wordpress": "^7.0",
-                "sympress/migration": "^1.0.7",
+                "sympress/migration": "^1.0.8",
                 "sympress/qa": "^0.1.2"
             },
             "suggest": {
-                "sympress/migration": "^1.0.4 enables ORM schema migrations with live SQL planning under the migration lock."
+                "sympress/migration": "^1.0.8 enables ORM schema migrations with verified lock ownership and typed operational failures."
             },
             "type": "library",
             "extra": {
@@ -6001,27 +6001,27 @@
             "description": "Doctrine-inspired ORM primitives for WordPress projects that keep wpdb as the database runtime.",
             "support": {
                 "issues": "https://github.com/SymPress/orm/issues",
-                "source": "https://github.com/SymPress/orm/tree/v0.3.2"
+                "source": "https://github.com/SymPress/orm/tree/v0.3.3"
             },
-            "time": "2026-10-02T20:33:16+00:00"
+            "time": "2026-10-03T15:17:30+00:00"
         },
         {
             "name": "sympress/runtime",
-            "version": "v1.2.0",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/runtime.git",
-                "reference": "1f55bfd311631f7bd1912c7f0162d18e379fb051"
+                "reference": "ef4d1dd975b19f234d5caface8319fda0a357a41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/runtime/zipball/1f55bfd311631f7bd1912c7f0162d18e379fb051",
-                "reference": "1f55bfd311631f7bd1912c7f0162d18e379fb051",
+                "url": "https://api.github.com/repos/SymPress/runtime/zipball/ef4d1dd975b19f234d5caface8319fda0a357a41",
+                "reference": "ef4d1dd975b19f234d5caface8319fda0a357a41",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^2.6",
-                "composer/composer": "^2.10.3",
+                "composer/composer": "~2.10.3",
                 "composer/semver": "^3.4",
                 "opis/json-schema": "^2.6",
                 "php": "^8.5",
@@ -6034,11 +6034,12 @@
                 "symfony/process": "^8.1"
             },
             "conflict": {
-                "symfony/event-dispatcher-contracts": "<3.4.2"
+                "symfony/event-dispatcher-contracts": "<3.4.2",
+                "sympress/kernel": "<1.1.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^13.0",
-                "sympress/kernel": "^1.1.1",
+                "sympress/kernel": "^1.1.4",
                 "sympress/qa": "^0.1.2"
             },
             "suggest": {
@@ -6055,7 +6056,7 @@
                     "bundle": "SymPress\\Runtime\\Bridge\\Kernel\\RuntimeBundle"
                 },
                 "branch-alias": {
-                    "dev-main": "1.1.x-dev"
+                    "dev-main": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -6081,20 +6082,20 @@
                 "issues": "https://github.com/SymPress/runtime/issues",
                 "source": "https://github.com/SymPress/runtime"
             },
-            "time": "2026-10-03T12:20:36+00:00"
+            "time": "2026-10-03T17:01:01+00:00"
         },
         {
             "name": "sympress/theme-starter",
-            "version": "v1.1.1",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
-                "url": "git@github.com:SymPress/theme-starter.git",
-                "reference": "93fb938e2d074cad31c685c661b4b6df73799bfe"
+                "url": "https://github.com/SymPress/theme-starter.git",
+                "reference": "6e297163f4b74e9133b537d0ae0e7e83b0a7c056"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/theme-starter/zipball/93fb938e2d074cad31c685c661b4b6df73799bfe",
-                "reference": "93fb938e2d074cad31c685c661b4b6df73799bfe",
+                "url": "https://api.github.com/repos/SymPress/theme-starter/zipball/6e297163f4b74e9133b537d0ae0e7e83b0a7c056",
+                "reference": "6e297163f4b74e9133b537d0ae0e7e83b0a7c056",
                 "shasum": ""
             },
             "require": {
@@ -6190,23 +6191,23 @@
             ],
             "description": "An editorial WordPress starter theme with SymPress Twig, Tailwind CSS and Webpack Encore.",
             "support": {
-                "source": "https://github.com/SymPress/theme-starter/tree/v1.1.1",
+                "source": "https://github.com/SymPress/theme-starter/tree/v1.1.3",
                 "issues": "https://github.com/SymPress/theme-starter/issues"
             },
-            "time": "2026-10-02T12:23:25+00:00"
+            "time": "2026-10-03T15:42:44+00:00"
         },
         {
             "name": "sympress/twig-bundle",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/twig-bundle.git",
-                "reference": "fe7a04069561868a6c559716a1c85322748851f9"
+                "reference": "29838dc0663a825791690b5655152d681922e849"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/twig-bundle/zipball/fe7a04069561868a6c559716a1c85322748851f9",
-                "reference": "fe7a04069561868a6c559716a1c85322748851f9",
+                "url": "https://api.github.com/repos/SymPress/twig-bundle/zipball/29838dc0663a825791690b5655152d681922e849",
+                "reference": "29838dc0663a825791690b5655152d681922e849",
                 "shasum": ""
             },
             "require": {
@@ -6268,9 +6269,9 @@
             "description": "Twig integration bundle for SymPress with Symfony TwigBundle feature parity.",
             "support": {
                 "issues": "https://github.com/SymPress/twig-bundle/issues",
-                "source": "https://github.com/SymPress/twig-bundle/tree/v1.2.1"
+                "source": "https://github.com/SymPress/twig-bundle/tree/v1.2.2"
             },
-            "time": "2026-10-02T12:12:50+00:00"
+            "time": "2026-10-03T15:46:28+00:00"
         },
         {
             "name": "sympress/wp-cli-console",
@@ -9304,16 +9305,16 @@
         },
         {
             "name": "sympress/profiler",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/profiler.git",
-                "reference": "b198b06b47b0f6660838c575aaea15bc6261ded8"
+                "reference": "e34627273e3443dd30eaea05720da6b82968d717"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/profiler/zipball/b198b06b47b0f6660838c575aaea15bc6261ded8",
-                "reference": "b198b06b47b0f6660838c575aaea15bc6261ded8",
+                "url": "https://api.github.com/repos/SymPress/profiler/zipball/e34627273e3443dd30eaea05720da6b82968d717",
+                "reference": "e34627273e3443dd30eaea05720da6b82968d717",
                 "shasum": ""
             },
             "require": {
@@ -9355,9 +9356,9 @@
             "description": "Profiler and web debug toolbar for the WordPress kernel.",
             "support": {
                 "issues": "https://github.com/SymPress/profiler/issues",
-                "source": "https://github.com/SymPress/profiler/tree/v1.0.3"
+                "source": "https://github.com/SymPress/profiler/tree/v1.0.4"
             },
-            "time": "2026-10-03T12:19:47+00:00"
+            "time": "2026-10-03T16:11:43+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",

@@ -17,13 +17,13 @@ final class PluginBootstrapTest extends TestCase
     {
         $root = dirname(__DIR__, 4);
         $composer = json_decode((string) file_get_contents($root . '/composer.json'), true, flags: JSON_THROW_ON_ERROR);
-        self::assertSame('^1.2.0', $composer['require']['sympress/runtime']);
+        self::assertSame('^1.2.2', $composer['require']['sympress/runtime']);
         $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, flags: JSON_THROW_ON_ERROR);
         $packages = array_column($lock['packages'], null, 'name');
         self::assertArrayHasKey('sympress/runtime', $packages);
         $runtime = $packages['sympress/runtime'];
         self::assertStringNotContainsString('dev', $runtime['version']);
-        self::assertTrue(version_compare(ltrim($runtime['version'], 'v'), '1.2.0', '>='));
+        self::assertTrue(version_compare(ltrim($runtime['version'], 'v'), '1.2.2', '>='));
         self::assertSame('https://github.com/SymPress/runtime.git', $runtime['source']['url']);
         self::assertStringStartsWith('https://api.github.com/repos/SymPress/runtime/zipball/', $runtime['dist']['url']);
     }
@@ -125,8 +125,8 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('npm', $assetCompiler['package-manager']);
         self::assertTrue($assetCompiler['packages']['sympress/demo-plugin']);
         self::assertTrue($assetCompiler['packages']['sympress/theme-starter']);
-        self::assertSame('^1.1.1', $composer['require']['sympress/theme-starter']);
-        self::assertSame('^1.2.1', $composer['require']['sympress/twig-bundle']);
+        self::assertSame('^1.1.3', $composer['require']['sympress/theme-starter']);
+        self::assertSame('^1.2.2', $composer['require']['sympress/twig-bundle']);
         self::assertArrayNotHasKey('wpackagist-theme/twentytwentyfive', $composer['require']);
         self::assertArrayNotHasKey('compile-assets', $composer['scripts']);
         self::assertContains(
@@ -187,8 +187,8 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('https://github.com/SymPress/theme-starter.git', $themeRepositories[0]['url']);
         self::assertSame(['sympress/theme-starter'], $themeRepositories[0]['only']);
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
-        self::assertSame('^0.3.2', $composer['require']['sympress/orm']);
-        self::assertSame('^1.0.3', $composer['require-dev']['sympress/profiler']);
+        self::assertSame('^0.3.3', $composer['require']['sympress/orm']);
+        self::assertSame('^1.0.4', $composer['require-dev']['sympress/profiler']);
         self::assertArrayNotHasKey('sympress/profiler', $composer['require']);
     }
 
