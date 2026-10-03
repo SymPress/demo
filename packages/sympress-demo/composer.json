@@ -25,7 +25,7 @@
         "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^11.5",
         "sympress/coding-standards": "^1.1.1",
-        "sympress/profiler": "^1.0.2",
+        "sympress/profiler": "^1.0.3",
         "szepeviktor/phpstan-wordpress": "^2.0"
     },
     "autoload": {

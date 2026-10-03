@@ -16,7 +16,7 @@ permissions:
 jobs:
   website-ci:
     name: Website CI
-    uses: sympress/workflows/.github/workflows/composer-validate.yml@0c311d7c8fff9352a1cae5819cf2615b08aa1934
+    uses: sympress/workflows/.github/workflows/composer-validate.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
     with:
       php_version: '8.5'
       php_extensions: curl, dom, json, libxml, zip
@@ -27,7 +27,7 @@ jobs:
 
   root-qa:
     name: Root QA
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@0c311d7c8fff9352a1cae5819cf2615b08aa1934
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
     with:
       php_version: '8.5'
       node_version: '24'
