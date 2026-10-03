@@ -1,5 +1,8 @@
 # 1.1.0 repository security changes
 
+Patch 1.1.1 retains browser-default payment permissions in the nginx template so
+Payment Request checkout integrations are not disabled by the security headers.
+
 Use the public Composer-managed Runtime 1.2 production defaults and the released
 Monolog security audit/Profiler permission fixes. Private Security is not required
 or loaded. The updated Demo plugin npm lock removes current advisories within its
