@@ -13,7 +13,7 @@ permissions:
 jobs:
   typecheck:
     name: TypeScript
-    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
+    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@cd809f3986df3ea617d2d26bdf21ab69cae19c1e
     with:
       node_version: '24'
       working_directory: packages/sympress-demo
@@ -21,7 +21,7 @@ jobs:
 
   npm-audit:
     name: npm audit
-    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
+    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@cd809f3986df3ea617d2d26bdf21ab69cae19c1e
     with:
       node_version: '24'
       working_directory: packages/sympress-demo
@@ -29,7 +29,7 @@ jobs:
 
   production-build:
     name: Production build
-    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
+    uses: sympress/workflows/.github/workflows/javascript-static-analysis.yml@cd809f3986df3ea617d2d26bdf21ab69cae19c1e
     with:
       node_version: '24'
       working_directory: packages/sympress-demo

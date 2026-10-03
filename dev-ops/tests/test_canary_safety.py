@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -88,11 +89,11 @@ class CanarySafetyTest(unittest.TestCase):
                 self.assertNotEqual(result.returncode, 0)
                 self.assertEqual(result.stdout, "")
 
-    def workflow_command(self, name):
-        workflow = ROOT / ".github" / "workflows" / (
+    def workflow_command(self, name, workflow_file=None):
+        workflow = ROOT / ".github" / "workflows" / (workflow_file or (
             "ddev-canary.yml" if (ROOT / ".github/workflows/ddev-canary.yml").exists()
             else "ddev-smoke.yml"
-        )
+        ))
         lines = workflow.read_text().splitlines()
         prefix = "      " + name + ": "
         for number, line in enumerate(lines):
@@ -108,7 +109,7 @@ class CanarySafetyTest(unittest.TestCase):
                 return "\n".join(block)
         self.fail("Missing real workflow command: " + name)
 
-    def nested_workflow_command(self, name, failure="", event="schedule", inputs=None):
+    def nested_workflow_command(self, name, failure="", event="schedule", inputs=None, workflow_file=None):
         (self.path / ".github").mkdir(exist_ok=True)
         scripts = self.path / ".github" / "scripts"
         if not scripts.exists():
@@ -134,7 +135,7 @@ class CanarySafetyTest(unittest.TestCase):
         calls.unlink(missing_ok=True)
         result = subprocess.run(
             ["bash", "-lc", 'export PATH="$CANARY_TEST_BIN:$PATH"\n'
-             + self.workflow_command(name)],
+             + self.workflow_command(name, workflow_file)],
             cwd=self.path,
             env=self.env | {
                 "CANARY_TEST_BIN": str(self.path), "DDEV_CAPTURE": str(calls),
@@ -176,6 +177,18 @@ class CanarySafetyTest(unittest.TestCase):
                 self.assertEqual(result.returncode, 17, result.stderr)
                 self.assertEqual(calls[-1], failure)
 
+    def test_root_qa_setup_stops_after_environment_install_runtime_or_assets_failure(self):
+        for failure in ("exec php dev-ops/prepare-env.php",
+                        "composer install --no-interaction",
+                        "composer runtime:setup --no-interaction",
+                        "composer compile-assets --mode production"):
+            with self.subTest(failure=failure):
+                result, calls = self.nested_workflow_command(
+                    "setup_command", failure=failure, workflow_file="qa.yml",
+                )
+                self.assertEqual(result.returncode, 17, result.stderr)
+                self.assertEqual(calls[-1], failure)
+
     def test_nested_runtime_and_wordpress_checks_propagate_failures(self):
         failures = ["composer qa"]
         if (ROOT / ".github/workflows/ddev-smoke.yml").exists():
@@ -201,6 +214,24 @@ class CanarySafetyTest(unittest.TestCase):
         self.assertIn('canary_mode="$(bash .github/scripts/canary-mode.sh)"', text)
         self.assertIn("update_dependencies:", text)
         self.assertIn("default: false", text)
+
+    @unittest.skipUnless(shutil.which('node'), 'Workflow expression evaluation requires Node.')
+    def test_update_checkout_freezes_source_while_push_and_pr_keep_their_own_commit(self):
+        expression = self.workflow_command('checkout_ref')
+        self.assertTrue(expression.startswith('${{ ') and expression.endswith(' }}'))
+        fixtures = [
+            {'event': 'push', 'update': True, 'expected': ''},
+            {'event': 'pull_request', 'update': True, 'expected': ''},
+            {'event': 'schedule', 'update': False, 'expected': 'v1.1.2'},
+            {'event': 'workflow_dispatch', 'update': False, 'expected': ''},
+            {'event': 'workflow_dispatch', 'update': True, 'expected': 'v1.1.2'},
+        ]
+        code = 'const choose = new Function("github", "inputs", "return " + process.argv[1]);' \
+            + 'console.log(JSON.stringify(JSON.parse(process.argv[2]).map(f => choose({event_name:f.event}, {update_dependencies:f.update}))));'
+        result = subprocess.run(['node', '-e', code, expression[4:-3], json.dumps(fixtures)],
+                                text=True, capture_output=True, timeout=10)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), [fixture['expected'] for fixture in fixtures])
 
 
 if __name__ == "__main__":

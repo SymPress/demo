@@ -2,46 +2,63 @@
 
 declare(strict_types=1);
 
-// Prepare a private site key before Composer/WordPress boot; never print or rotate an existing key.
-if (PHP_SAPI !== 'cli') {
-    exit(1);
-}
-$path = dirname(__DIR__) . '/.env';
-if (!is_file($path) || is_link($path)) {
-    fwrite(STDERR, "Create a regular .env from .env.example before preparing its private key.\n");
-    exit(1);
-}
-$stream = fopen($path, 'r+');
-if ($stream === false || !flock($stream, LOCK_EX)) {
-    throw new RuntimeException('Cannot lock the private environment file.');
-}
-try {
-    if (!chmod($path, 0600)) {
-        throw new RuntimeException('Cannot protect the private environment file.');
+// Run before Composer boot. Never print or rotate an existing site key.
+(static function (): void {
+    if (PHP_SAPI !== 'cli') {
+        throw new RuntimeException('Environment preparation requires CLI.');
     }
-    $contents = stream_get_contents($stream);
-    if (!is_string($contents)) {
-        throw new RuntimeException('Cannot read the private environment file.');
+    $path = dirname(__DIR__) . '/.env';
+    if (!is_file($path) || is_link($path)) {
+        throw new RuntimeException('Create a regular .env from .env.example first.');
     }
-    foreach (['APP_SECRET', 'APP_SECRET_FILE'] as $name) {
-        $processSecret = getenv($name);
-        if (is_string($processSecret) && $processSecret !== '') {
-            exit(0);
+    $stream = fopen($path, 'r+');
+    if ($stream === false || !flock($stream, LOCK_EX)) {
+        throw new RuntimeException('Cannot lock the private environment file.');
+    }
+    try {
+        if (!chmod($path, 0600)) {
+            throw new RuntimeException('Cannot protect the private environment file.');
         }
-    }
-    preg_match_all('/^\h*(?:export\h+)?APP_SECRET(?:_FILE)?\h*=([^\r\n]*)/m', $contents, $matches);
-    foreach ($matches[1] as $value) {
-        if (preg_match('/^(?:#.*|(?:""|\'\')(?:\h+#.*)?)?$/D', trim($value)) !== 1) {
-            // Invalid nonempty values are diagnosed by FrameworkBundle, never replaced here.
-            exit(0);
+        $contents = stream_get_contents($stream);
+        if (!is_string($contents)) {
+            throw new RuntimeException('Cannot read the private environment file.');
         }
+        $configured = static function (array $names) use ($contents): bool {
+            foreach ($names as $name) {
+                $processValue = getenv($name);
+                if (is_string($processValue) && $processValue !== '') {
+                    return true;
+                }
+                preg_match_all('/^\h*(?:export\h+)?' . preg_quote($name, '/') . '\h*=([^\r\n]*)/m', $contents, $matches);
+                foreach ($matches[1] as $value) {
+                    if (preg_match('/^(?:#.*|(?:""|\'\')(?:\h+#.*)?)?$/D', trim($value)) !== 1) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+        $lines = [];
+        if (!$configured(['APP_SECRET', 'APP_SECRET_FILE'])) {
+            $lines[] = 'APP_SECRET=' . bin2hex(random_bytes(32));
+        }
+        if (!$configured(['SYMPRESS_PROJECT_DIR'])) {
+            // This literal identity survives release symlinks; deploy.php supplies the deployment base.
+            $identity = dirname(__DIR__);
+            // Dotenv single quotes are literal: backslashes cannot escape an apostrophe.
+            $quoted = "'" . str_replace(["'", "\r", "\n"], ["'\"'\"'", "'\"\\r\"'", "'\"\\n\"'"], $identity) . "'";
+            $lines[] = 'SYMPRESS_PROJECT_DIR=' . $quoted;
+        }
+        if ($lines === []) {
+            return;
+        }
+        $addition = ($contents === '' || str_ends_with($contents, "\n") ? '' : "\n")
+            . implode("\n", $lines) . "\n";
+        if (fseek($stream, 0, SEEK_END) !== 0 || fwrite($stream, $addition) !== strlen($addition) || !fflush($stream)) {
+            throw new RuntimeException('Cannot persist the private site environment.');
+        }
+    } finally {
+        flock($stream, LOCK_UN);
+        fclose($stream);
     }
-    $line = ($contents === '' || str_ends_with($contents, "\n") ? '' : "\n")
-        . 'APP_SECRET=' . bin2hex(random_bytes(32)) . "\n";
-    if (fseek($stream, 0, SEEK_END) !== 0 || fwrite($stream, $line) !== strlen($line) || !fflush($stream)) {
-        throw new RuntimeException('Cannot persist the private site key.');
-    }
-} finally {
-    flock($stream, LOCK_UN);
-    fclose($stream);
-}
+})();

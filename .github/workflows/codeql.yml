@@ -11,12 +11,14 @@ on:
 
 permissions:
   contents: read
-  security-events: write
 
 jobs:
   codeql:
     name: CodeQL
-    uses: sympress/workflows/.github/workflows/codeql.yml@d38b2d9e40eb5b0cdcb84102761af748e3d155b8
+    permissions:
+      contents: read
+      security-events: write
+    uses: sympress/workflows/.github/workflows/codeql.yml@cd809f3986df3ea617d2d26bdf21ab69cae19c1e
     with:
       languages: javascript-typescript
       build_mode: none
