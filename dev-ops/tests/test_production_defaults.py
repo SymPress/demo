@@ -156,6 +156,12 @@ require $argv[1];
                                 self.assertIsNotNone(response.headers.get(name), name)
                             self.assertEqual(response.headers.get_all('Strict-Transport-Security'),
                                              ['max-age=31536000'] if enabled else None)
+                            self.assertEqual(response.headers['Permissions-Policy'],
+                                             'camera=(), microphone=(), geolocation=()')
+                            self.assertEqual(response.headers['Cross-Origin-Opener-Policy'],
+                                             'same-origin-allow-popups')
+                            self.assertIn("object-src 'none'",
+                                          response.headers['Content-Security-Policy-Report-Only'])
                         break
                     except urllib.error.URLError:
                         if nginx.poll() is not None or time.monotonic() >= deadline:
