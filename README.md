@@ -130,7 +130,7 @@ The runtime bootstrap is deliberately explicit:
 
 Published SymPress libraries are resolved from Packagist. `sympress/theme-starter` is installed from tags in its public [GitHub repository](https://github.com/SymPress/theme-starter). Installation requires no repository secret or SSH key. The path repository installs only the local demo plugin and base MU package under `packages/*`.
 
-`sympress/runtime` requires the stable `^1.1.3` release line from public Packagist and Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
+`sympress/runtime` requires the stable `^1.2.3` release line from public Packagist and Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
 
 The active theme is `sympress-starter` from `sympress/theme-starter`; the separately required `sympress/demo-plugin` owns all demo behavior. Existing installations are not reseeded or silently switched by setup. After updating an existing checkout, run `ddev composer demo:theme` to select the new theme explicitly. See [theme/plugin separation and repository tooling](docs/demo-theme-separation.md).
 
