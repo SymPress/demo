@@ -129,6 +129,8 @@ def main():
     os.chown(tool, identity.pw_uid, identity.pw_gid)
     user_run(['php', 'wp-cli.phar', 'core', 'install', '--url=https://fixture.invalid', '--title=Fixture',
               '--admin_user=probe', '--admin_password=' + secrets.token_hex(20), '--admin_email=probe@example.invalid', '--skip-email'])
+    # This demo recipe requires its shipped theme to be active on the target.
+    user_run(['php', 'wp-cli.phar', 'theme', 'activate', 'sympress-starter'])
     recipe = base / 'recipe.php'
     recipe.write_text('<?php\nnamespace Deployer;\nrequire ' + json.dumps(str(source / 'deploy.php')) + ';\n'
         + "set('bin/php', '/usr/bin/php');\n"
