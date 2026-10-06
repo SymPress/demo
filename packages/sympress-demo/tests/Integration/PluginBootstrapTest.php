@@ -114,7 +114,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('sympress/demo', $composer['name']);
         self::assertSame('project', $composer['type']);
         self::assertSame('^1.0', $composer['require']['sympress/demo-base-mu-plugins']);
-        self::assertSame('^1.0.2', $composer['require']['sympress/asset-compiler']);
+        self::assertSame('^1.0.3', $composer['require']['sympress/asset-compiler']);
         self::assertTrue($composer['config']['allow-plugins']['sympress/asset-compiler']);
         self::assertArrayNotHasKey('sympress.asset-compiler', $composer['extra']);
 
@@ -187,7 +187,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('https://github.com/SymPress/theme-starter.git', $themeRepositories[0]['url']);
         self::assertSame(['sympress/theme-starter'], $themeRepositories[0]['only']);
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
-        self::assertSame('^0.3.3', $composer['require']['sympress/orm']);
+        self::assertSame('^0.3.4', $composer['require']['sympress/orm']);
         self::assertSame('^1.0.4', $composer['require-dev']['sympress/profiler']);
         self::assertArrayNotHasKey('sympress/profiler', $composer['require']);
     }
