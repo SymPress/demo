@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5eee49f8ac702928dda603e67662a85d",
+    "content-hash": "944f7044a72e394d3785a0061c4c37ed",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5670,16 +5670,16 @@
         },
         {
             "name": "sympress/framework-bundle",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/framework-bundle.git",
-                "reference": "d81870c3f051aca9e9997efac0e0d95804133caa"
+                "reference": "c3e0f6ee12ac13251de807523378eafc91732217"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/d81870c3f051aca9e9997efac0e0d95804133caa",
-                "reference": "d81870c3f051aca9e9997efac0e0d95804133caa",
+                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/c3e0f6ee12ac13251de807523378eafc91732217",
+                "reference": "c3e0f6ee12ac13251de807523378eafc91732217",
                 "shasum": ""
             },
             "require": {
@@ -5756,9 +5756,9 @@
             "description": "SymPress FrameworkBundle bridge with Symfony Cache integration and WordPress object-cache support.",
             "support": {
                 "issues": "https://github.com/SymPress/framework-bundle/issues",
-                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.4"
+                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.5"
             },
-            "time": "2026-10-03T14:56:42+00:00"
+            "time": "2026-10-06T10:46:45+00:00"
         },
         {
             "name": "sympress/kernel",
