@@ -16,6 +16,7 @@
         "sympress/demo-base-mu-plugins": "^1.0",
         "sympress/demo-plugin": "^1.0",
         "sympress/event-dispatcher": "^1.0.5",
+        "sympress/framework-bundle": "^1.0.5",
         "sympress/kernel": "^1.1.5",
         "sympress/migration": "^1.0.8",
         "sympress/monolog-bundle": "^1.1.4",

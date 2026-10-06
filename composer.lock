@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5eee49f8ac702928dda603e67662a85d",
+    "content-hash": "942331451f51297ab328e1f50531f3aa",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5670,16 +5670,16 @@
         },
         {
             "name": "sympress/framework-bundle",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/framework-bundle.git",
-                "reference": "d81870c3f051aca9e9997efac0e0d95804133caa"
+                "reference": "c3e0f6ee12ac13251de807523378eafc91732217"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/d81870c3f051aca9e9997efac0e0d95804133caa",
-                "reference": "d81870c3f051aca9e9997efac0e0d95804133caa",
+                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/c3e0f6ee12ac13251de807523378eafc91732217",
+                "reference": "c3e0f6ee12ac13251de807523378eafc91732217",
                 "shasum": ""
             },
             "require": {
@@ -5756,9 +5756,9 @@
             "description": "SymPress FrameworkBundle bridge with Symfony Cache integration and WordPress object-cache support.",
             "support": {
                 "issues": "https://github.com/SymPress/framework-bundle/issues",
-                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.4"
+                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.5"
             },
-            "time": "2026-10-03T14:56:42+00:00"
+            "time": "2026-10-06T10:46:45+00:00"
         },
         {
             "name": "sympress/kernel",
@@ -5889,16 +5889,16 @@
         },
         {
             "name": "sympress/monolog-bundle",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/monolog-bundle.git",
-                "reference": "f9b5ece3bfb87215dabb321d703990a4307c3f4e"
+                "reference": "8e3abec193381de2eba5ead6713b05bd5e86e5c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/monolog-bundle/zipball/f9b5ece3bfb87215dabb321d703990a4307c3f4e",
-                "reference": "f9b5ece3bfb87215dabb321d703990a4307c3f4e",
+                "url": "https://api.github.com/repos/SymPress/monolog-bundle/zipball/8e3abec193381de2eba5ead6713b05bd5e86e5c8",
+                "reference": "8e3abec193381de2eba5ead6713b05bd5e86e5c8",
                 "shasum": ""
             },
             "require": {
@@ -5939,9 +5939,9 @@
             "description": "Monolog integration bundle for the WordPress kernel.",
             "support": {
                 "issues": "https://github.com/SymPress/monolog-bundle/issues",
-                "source": "https://github.com/SymPress/monolog-bundle/tree/v1.1.3"
+                "source": "https://github.com/SymPress/monolog-bundle/tree/v1.1.4"
             },
-            "time": "2026-10-03T16:53:23+00:00"
+            "time": "2026-10-05T20:18:38+00:00"
         },
         {
             "name": "sympress/orm",
@@ -6007,16 +6007,16 @@
         },
         {
             "name": "sympress/runtime",
-            "version": "v1.2.3",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/runtime.git",
-                "reference": "bfcd0541d5a29b95c2089661af668bb8558daac6"
+                "reference": "7d0658af2af55c6b34c7b271092738baa4f50068"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/runtime/zipball/bfcd0541d5a29b95c2089661af668bb8558daac6",
-                "reference": "bfcd0541d5a29b95c2089661af668bb8558daac6",
+                "url": "https://api.github.com/repos/SymPress/runtime/zipball/7d0658af2af55c6b34c7b271092738baa4f50068",
+                "reference": "7d0658af2af55c6b34c7b271092738baa4f50068",
                 "shasum": ""
             },
             "require": {
@@ -6082,7 +6082,7 @@
                 "issues": "https://github.com/SymPress/runtime/issues",
                 "source": "https://github.com/SymPress/runtime"
             },
-            "time": "2026-10-05T11:40:12+00:00"
+            "time": "2026-10-06T11:56:08+00:00"
         },
         {
             "name": "sympress/theme-starter",
