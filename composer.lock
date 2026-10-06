@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "942331451f51297ab328e1f50531f3aa",
+    "content-hash": "f30f2c4ba6ab407588e718992ebd946a",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5324,16 +5324,16 @@
         },
         {
             "name": "sympress/asset-compiler",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/asset-compiler.git",
-                "reference": "7791dbf4104b5b9aeb1ed6e1a18f48e85c83dd1d"
+                "reference": "2501a1b761805959f5e764771b6c7e7660f3daa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/asset-compiler/zipball/7791dbf4104b5b9aeb1ed6e1a18f48e85c83dd1d",
-                "reference": "7791dbf4104b5b9aeb1ed6e1a18f48e85c83dd1d",
+                "url": "https://api.github.com/repos/SymPress/asset-compiler/zipball/2501a1b761805959f5e764771b6c7e7660f3daa5",
+                "reference": "2501a1b761805959f5e764771b6c7e7660f3daa5",
                 "shasum": ""
             },
             "require": {
@@ -5375,9 +5375,9 @@
             "description": "Composer plugin for compiling frontend assets in SymPress and WordPress package workspaces.",
             "support": {
                 "issues": "https://github.com/SymPress/asset-compiler/issues",
-                "source": "https://github.com/SymPress/asset-compiler/tree/v1.0.2"
+                "source": "https://github.com/SymPress/asset-compiler/tree/v1.0.3"
             },
-            "time": "2026-10-02T11:04:56+00:00"
+            "time": "2026-10-06T15:20:43+00:00"
         },
         {
             "name": "sympress/assets",
@@ -5945,16 +5945,16 @@
         },
         {
             "name": "sympress/orm",
-            "version": "v0.3.3",
+            "version": "v0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/orm.git",
-                "reference": "86c050886b5ac53a96c136907f0201e188f3c599"
+                "reference": "01c9a401257d4af58a5f4033dfb2d0903f003e25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/orm/zipball/86c050886b5ac53a96c136907f0201e188f3c599",
-                "reference": "86c050886b5ac53a96c136907f0201e188f3c599",
+                "url": "https://api.github.com/repos/SymPress/orm/zipball/01c9a401257d4af58a5f4033dfb2d0903f003e25",
+                "reference": "01c9a401257d4af58a5f4033dfb2d0903f003e25",
                 "shasum": ""
             },
             "require": {
@@ -6001,9 +6001,9 @@
             "description": "Doctrine-inspired ORM primitives for WordPress projects that keep wpdb as the database runtime.",
             "support": {
                 "issues": "https://github.com/SymPress/orm/issues",
-                "source": "https://github.com/SymPress/orm/tree/v0.3.3"
+                "source": "https://github.com/SymPress/orm/tree/v0.3.4"
             },
-            "time": "2026-10-03T15:17:30+00:00"
+            "time": "2026-10-06T15:20:20+00:00"
         },
         {
             "name": "sympress/runtime",
