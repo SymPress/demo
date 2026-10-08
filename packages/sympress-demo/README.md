@@ -31,7 +31,7 @@ It demonstrates:
 
 ## Package Idea
 
-The plugin file is only the WordPress package entrypoint. It exposes plugin metadata and loads Composer autoloading when needed. The website itself boots the shared SymPress `SiteKernel` from `packages/base-mu-plugins/app-starter.php`, matching the real reference project shape.
+The plugin file is only the WordPress package entrypoint. It exposes plugin metadata and loads Composer autoloading when needed. The website itself boots the shared SymPress `SiteKernel` from `public/wp-content/mu-plugins/sympress-runtime-kernel.php`, matching the real reference project shape.
 
 The package becomes part of the SymPress runtime through Composer metadata:
 

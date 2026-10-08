@@ -29,7 +29,7 @@ The REST route and dynamic block are intentionally two entry points into the sam
 Before the block render callback runs, the website has already booted the shared `SiteKernel` from:
 
 ```text
-packages/base-mu-plugins/app-starter.php
+public/wp-content/mu-plugins/sympress-runtime-kernel.php
 ```
 
 That is the same website-level bootstrap shape as the reference project. The regular plugin file stays thin and does not own the kernel.
