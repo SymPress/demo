@@ -43,6 +43,8 @@ malformed, oversized and stale reports. No public REST endpoint or private packa
 is required. Test the canonical HTTPS site separately after deploying.
 The Demo recipe runs Symfony cache warmup, including Twig templates, under the
 deploy identity before sealing the release cache for read-only FPM access.
+Production Twig configuration registers the required Starter theme and WordPress
+template paths with Symfony's warmer, including templates outside bundle defaults.
 Supply independently verified `SSH_KNOWN_HOSTS`; dependency install credentials
 must be a separate read-only key and must end before any lifecycle/build code.
 

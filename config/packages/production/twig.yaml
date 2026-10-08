@@ -1,0 +1,5 @@
+# Register the Demo's fixed theme paths for Symfony's template cache warmer.
+twig:
+    paths:
+        '%kernel.project_dir%/public/wp-content/themes/sympress-starter/resources/views': theme
+        '%kernel.project_dir%/vendor/sympress/twig-bundle/Resources/views': wordpress
