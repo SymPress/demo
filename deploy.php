@@ -202,6 +202,8 @@ task('deploy:runtime', static function (): void {
     // Only an existing database may reach the normal db-check orchestration.
     run('cd {{release_path}} && {{bin/php}} vendor/bin/runtime --no-interaction');
     run('cd {{release_path}} && {{bin/php}} bin/console lint:container --no-interaction');
+    // Compile Twig templates while the deploy identity can write the release cache.
+    run('cd {{release_path}} && {{bin/php}} bin/console cache:warmup --no-interaction');
     run('cd {{release_path}} && {{bin/php}} vendor/bin/runtime dump-env ' . escapeshellarg(get('stage')) . ' --no-interaction');
     run('cd {{release_path}} && {{bin/php}} vendor/bin/runtime doctor --production --database-health --no-interaction');
 });
