@@ -47,7 +47,7 @@ final class PluginBootstrapTest extends TestCase
             flags: JSON_THROW_ON_ERROR,
         );
         self::assertTrue($config['kernel-boot']);
-        self::assertTrue($config['wp-config-autoload']);
+        self::assertFalse($config['wp-config-autoload']);
         self::assertDirectoryDoesNotExist($root . '/packages/base-mu-plugins');
         $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, flags: JSON_THROW_ON_ERROR);
         $names = array_column($lock['packages'], 'name');

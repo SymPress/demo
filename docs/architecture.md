@@ -70,8 +70,9 @@ SymPress Runtime generates `public/wp-content/mu-plugins/sympress-runtime-kernel
 The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, SymPress Runtime owns WordPress generation, DDEV provides the local runtime and Runtime generates the kernel starter.
 
 `dev-ops/runtime.json` uses the native Runtime profile and pins WP-CLI. Its
-download integrity is recorded in `sympress-runtime.lock`. The explicit `kernel-boot: true` and `wp-config-autoload: true` options
-let Runtime own kernel boot and load website dependencies first.
+download integrity is recorded in `sympress-runtime.lock`. The explicit `kernel-boot: true` option
+lets Runtime own kernel boot and load website dependencies through its generated MU loader.
+The native `wp-config-autoload: false` setting preserves the existing configuration startup order.
 The orchestration provider seeds notes and creates the demo homepage only for a
 fresh installation. Existing installations receive a database check; reseeding
 remains an explicit `composer demo:seed` operation.
