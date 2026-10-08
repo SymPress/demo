@@ -3,7 +3,6 @@ parameters:
     paths:
         - src
         - tests
-        - ../site-policy
     tmpDir: var/cache/phpstan
     bootstrapFiles:
         - tests/bootstrap.php

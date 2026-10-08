@@ -2,8 +2,11 @@
 
 The private Security package is not installed, required or loaded by Demo. Its
 enumeration guard, MIME sanitizer and nonce middleware remain outside this site.
-Existing author URLs are not changed automatically. The native MU policy keeps
-XML-RPC disabled and uses the public Runtime production configuration.
+Existing author URLs are not changed automatically. Runtime supplies the native
+production configuration; the production nginx example denies `xmlrpc.php`.
+Website health, staging mail suppression and optional WordPress XML-RPC hooks
+belong to the separately activated private Security MU loader. This public Demo
+ships no local site-policy package. Staging sync requires an active mail guard.
 
 `dev-ops/production.env.example` supplies hardening, filtered HTML/uploads and a
 narrow WordPress outbound HTTP allowlist. Replace the complete host list for

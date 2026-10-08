@@ -49,10 +49,13 @@ final class PluginBootstrapTest extends TestCase
         self::assertTrue($config['kernel-boot']);
         self::assertFalse($config['wp-config-autoload']);
         self::assertDirectoryDoesNotExist($root . '/packages/base-mu-plugins');
+        self::assertDirectoryDoesNotExist($root . '/packages/site-policy');
         $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, flags: JSON_THROW_ON_ERROR);
         $names = array_column($lock['packages'], 'name');
         self::assertNotContains('sympress/base-mu-plugin', $names);
         self::assertNotContains('sympress/demo-base-mu-plugins', $names);
+        self::assertNotContains('sympress/demo-site-policy', $names);
+        self::assertNotContains('natterer-schaeffner/bundle-security', $names);
     }
 
     public function testPackageComposerMetadataDeclaresKernelBundleEntryPoint(): void

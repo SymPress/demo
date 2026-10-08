@@ -14,7 +14,6 @@
         "sympress/asset-compiler": "^1.0.3",
         "sympress/assets": "^1.2.2",
         "sympress/demo-plugin": "^1.0",
-        "sympress/demo-site-policy": "^1.0",
         "sympress/event-dispatcher": "^1.0.5",
         "sympress/framework-bundle": "^1.0.5",
         "sympress/kernel": "^1.1.5",
@@ -106,7 +105,6 @@
         "qa:validate": "composer validate --strict --no-check-publish",
         "qa:audit": "composer audit --locked --no-interaction",
         "cs": [
-            "cd packages/site-policy && ../../vendor/bin/phpcs --standard=phpcs.xml.dist",
             "cd packages/sympress-demo && ../../vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
         "static-analysis": [
@@ -161,7 +159,6 @@
             "options": {
                 "symlink": true,
                 "versions": {
-                    "sympress/demo-site-policy": "1.0.0",
                     "sympress/demo-plugin": "1.0.0"
                 }
             }

@@ -1,8 +1,9 @@
 # SymPress Demo
 
-Runtime generates the kernel bootstrap. The public website's existing deployment
-health, staging mail and XML-RPC policies live in `packages/site-policy`; they
-do not require the private Natterer-Schaeffner base MU plugin.
+Runtime generates the kernel bootstrap. Website health, staging mail and optional
+XML-RPC policies belong to the separately activated private Natterer-Schaeffner
+Security MU loader. The public Demo has no private package dependency; deployment
+verifies the active build through the private PHP-FPM socket.
 
 **A reference WordPress website for learning structured development with SymPress and Symfony components.**
 
