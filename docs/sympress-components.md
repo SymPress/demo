@@ -7,7 +7,7 @@ This demo is designed to show every public SymPress package that belongs in a we
 | Package | Role in the demo | Start reading |
 |---|---|---|
 | `sympress/runtime` | Generates the WordPress bootstrap and orchestrates first installation. Existing installations receive a database check without resetting demo content. | `dev-ops/runtime.json`, `dev-ops/orchestrate.php` |
-| `sympress/kernel` | Boots the site kernel, discovers bundles and builds the service container. | `packages/base-mu-plugins/app-starter.php`, `packages/sympress-demo/config/services.yaml` |
+| `sympress/kernel` | Boots the site kernel, discovers bundles and builds the service container. | `public/wp-content/mu-plugins/sympress-runtime-kernel.php`, `packages/sympress-demo/config/services.yaml` |
 | `sympress/event-dispatcher` | Demonstrates optional event telemetry and subscriber registration without making read queries write data. | `src/Application/Telemetry/NoteRenderTelemetry.php`, `src/Event/NoteRenderedEvent.php`, `src/EventSubscriber/LogRenderedNoteSubscriber.php` |
 | `sympress/migration` | Models database changes as versioned migration classes. | `src/Migration/CreateDemoEventsTableMigration.php`, `src/Hook/DemoMigrations.php` |
 | `sympress/assets` | Registers Encore-built frontend and admin assets through the AssetManager. | `src/Asset/DemoAssetRegistrar.php`, `assets/entrypoints.json` |
@@ -18,14 +18,13 @@ This demo is designed to show every public SymPress package that belongs in a we
 | `sympress/theme-starter` | Owns the generic page shell, navigation, templates and theme assets, independently of the demo features. | Installed `sympress-starter` theme; `docs/demo-theme-separation.md` |
 | `sympress/twig-bundle` | Renders the active starter theme through the native WordPress template hierarchy. | Theme Starter's `resources/views/`; normal page content renders the plugin's notes block |
 | `sympress/profiler` | Adds development-time runtime inspection through the web debug toolbar, profile pages and built-in collectors. | `config/packages/development/profiler.yaml`, `src/Profiler/DemoProfilerCollector.php` |
-| `sympress/coding-standards` | Keeps the packages aligned with SymPress PHP quality conventions. | `composer qa`, `packages/sympress-demo/phpcs.xml.dist`, `packages/base-mu-plugins/phpcs.xml.dist` |
-| `sympress/starter` | Provides the project-shape conventions mirrored by the demo website. | `bin/console`, `dev-ops/runtime.json`, `packages/base-mu-plugins` |
+| `sympress/starter` | Provides the project-shape conventions mirrored by the demo website. | `bin/console`, `dev-ops/runtime.json` |
 
 ## How The Packages Work Together
 
 The packages are intentionally used together rather than listed as passive dependencies.
 
-`sympress/kernel` provides the container and hook compiler. The must-use app starter boots the site `SiteKernel`, then the plugin package contributes service configuration. Hook adapters such as `BlockRegistrar`, `TaxonomyRegistrar` and `DemoAssetRegistrar` are registered with `#[AsHook]` attributes, so WordPress hook placement stays next to the method that WordPress will call.
+`sympress/kernel` provides the container and hook compiler. The must-use generated kernel starter boots the site `SiteKernel`, then the plugin package contributes service configuration. Hook adapters such as `BlockRegistrar`, `TaxonomyRegistrar` and `DemoAssetRegistrar` are registered with `#[AsHook]` attributes, so WordPress hook placement stays next to the method that WordPress will call.
 
 `sympress/event-dispatcher` gives the note workflow an extension point without making reads unsafe. `NoteService` only returns notes. `NoteRenderTelemetry` is an explicit, disabled-by-default side-effect service that can dispatch `NoteRenderedEvent` through the PSR dispatcher. `LogRenderedNoteSubscriber` registers itself during `event_dispatcher_register` and marks its handler with `#[AsEventListener]`, so another project could add analytics, cache warming or notifications without changing the note query service.
 
@@ -45,7 +44,7 @@ The packages are intentionally used together rather than listed as passive depen
 
 `sympress/profiler` contributes the toolbar, profile pages and default request/runtime collectors in development installs when the active bundle is discovered by the kernel. The demo enables collection in development config and extends the profiler with `DemoProfilerCollector`, which records demo-specific counts and exposes them in the toolbar/profile UI. This separates the out-of-the-box profiler behavior from the application-specific extension example.
 
-`sympress/coding-standards` is part of the quality workflow. The feature plugin and the base MU package both expose Composer scripts, so developers can check application code and bootstrap/runtime files separately. The point is not only formatting; it teaches contributors what kind of PHP shape SymPress packages expect.
+`sympress/coding-standards` is part of the quality workflow. The feature plugin exposes Composer scripts for application code; Runtime maintains the generated bootstrap. The point is not only formatting; it teaches contributors what kind of PHP shape SymPress packages expect.
 
 ## Runtime Versus Development Packages
 
@@ -55,7 +54,7 @@ Most SymPress packages are runtime dependencies because the website actively use
 
 `sympress/coding-standards` and `sympress/profiler` are development dependencies. The profiler is demonstrated through development-only configuration, so local requests are inspectable without making profiling a production concern.
 
-`sympress/starter` is represented as a project convention, not as a runtime dependency. The demo keeps the same shape a starter project teaches: `bin/console` as the command surface, SymPress Runtime orchestration in `dev-ops/`, DDEV setup and a base MU package that boots the site kernel.
+`sympress/starter` is represented as a project convention, not as a runtime dependency. The demo keeps the same shape a starter project teaches: `bin/console` as the command surface, SymPress Runtime orchestration in `dev-ops/`, DDEV setup and a generated Runtime entry that boots the site kernel.
 
 ## What To Copy Into A Real Project
 

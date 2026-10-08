@@ -13,7 +13,6 @@
         "roots/wordpress": "^7.1.1",
         "sympress/asset-compiler": "^1.0.3",
         "sympress/assets": "^1.2.2",
-        "sympress/demo-base-mu-plugins": "^1.0",
         "sympress/demo-plugin": "^1.0",
         "sympress/event-dispatcher": "^1.0.5",
         "sympress/framework-bundle": "^1.0.5",
@@ -67,7 +66,6 @@
             "starter_conventions": [
                 "bin/console",
                 "dev-ops/runtime.json",
-                "packages/base-mu-plugins",
                 "public/wp-content"
             ],
             "public_components_demonstrated": [
@@ -107,11 +105,9 @@
         "qa:validate": "composer validate --strict --no-check-publish",
         "qa:audit": "composer audit --locked --no-interaction",
         "cs": [
-            "cd packages/base-mu-plugins && ../../vendor/bin/phpcs --standard=phpcs.xml.dist",
             "cd packages/sympress-demo && ../../vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
         "static-analysis": [
-            "cd packages/base-mu-plugins && ../../vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G --no-progress",
             "cd packages/sympress-demo && ../../vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G --no-progress"
         ],
         "test": "cd packages/sympress-demo && ../../vendor/bin/phpunit -c phpunit.xml.dist --no-coverage",
@@ -163,7 +159,6 @@
             "options": {
                 "symlink": true,
                 "versions": {
-                    "sympress/demo-base-mu-plugins": "1.0.0",
                     "sympress/demo-plugin": "1.0.0"
                 }
             }

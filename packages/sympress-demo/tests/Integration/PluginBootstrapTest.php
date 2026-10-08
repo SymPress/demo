@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace SymPress\Demo\Tests\Integration;
 
-use Brain\Monkey;
-use Brain\Monkey\Functions;
-use PHPUnit\Framework\Attributes\PreserveGlobalState;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
-use SymPress\Kernel\App;
 
 final class PluginBootstrapTest extends TestCase
 {
@@ -43,34 +38,21 @@ final class PluginBootstrapTest extends TestCase
         self::assertStringNotContainsString('add_shortcode(', $contents);
     }
 
-    public function testBaseMuPluginBootsTheSiteKernelLikeAWebsiteProject(): void
+    public function testRuntimeOwnsKernelBootWithoutPrivateMuPackages(): void
     {
-        $appStarter = dirname(__DIR__, 4) . '/packages/base-mu-plugins/app-starter.php';
-        $contents = (string) file_get_contents($appStarter);
-
-        self::assertFileExists($appStarter);
-        self::assertStringContainsString('Plugin Name: SymPress Demo App Starter', $contents);
-        self::assertStringContainsString('use SymPress\\Kernel\\Kernel\\SiteKernel;', $contents);
-        self::assertStringContainsString('function resolve_project_dir(string $startDir): string', $contents);
-        self::assertStringContainsString('$projectDir = resolve_project_dir(__DIR__);', $contents);
-        self::assertStringContainsString('App::bootKernel(new SiteKernel($projectDir))', $contents);
-    }
-
-    #[PreserveGlobalState(false)]
-    #[RunInSeparateProcess]
-    public function testBaseMuPluginSkipsKernelBootDuringWordPressInstallation(): void
-    {
-        define('ABSPATH', sys_get_temp_dir() . '/wordpress-install/');
-        Monkey\setUp();
-        Functions\when('wp_installing')->justReturn(true);
-
-        try {
-            require dirname(__DIR__, 4) . '/packages/base-mu-plugins/app-starter.php';
-
-            self::assertNull(App::kernel());
-        } finally {
-            Monkey\tearDown();
-        }
+        $root = dirname(__DIR__, 4);
+        $config = json_decode(
+            (string) file_get_contents($root . '/dev-ops/runtime.json'),
+            true,
+            flags: JSON_THROW_ON_ERROR,
+        );
+        self::assertTrue($config['kernel-boot']);
+        self::assertTrue($config['wp-config-autoload']);
+        self::assertDirectoryDoesNotExist($root . '/packages/base-mu-plugins');
+        $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, flags: JSON_THROW_ON_ERROR);
+        $names = array_column($lock['packages'], 'name');
+        self::assertNotContains('sympress/base-mu-plugin', $names);
+        self::assertNotContains('sympress/demo-base-mu-plugins', $names);
     }
 
     public function testPackageComposerMetadataDeclaresKernelBundleEntryPoint(): void
@@ -113,7 +95,7 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertSame('sympress/demo', $composer['name']);
         self::assertSame('project', $composer['type']);
-        self::assertSame('^1.0', $composer['require']['sympress/demo-base-mu-plugins']);
+        self::assertArrayNotHasKey('sympress/demo-base-mu-plugins', $composer['require']);
         self::assertSame('^1.0.3', $composer['require']['sympress/asset-compiler']);
         self::assertTrue($composer['config']['allow-plugins']['sympress/asset-compiler']);
         self::assertArrayNotHasKey('sympress.asset-compiler', $composer['extra']);
@@ -383,11 +365,11 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertFileExists($rootDir . '/bin/console');
         self::assertFileExists($rootDir . '/dev-ops/runtime.json');
-        self::assertDirectoryExists($rootDir . '/packages/base-mu-plugins');
+        self::assertDirectoryDoesNotExist($rootDir . '/packages/base-mu-plugins');
         self::assertFileExists($rootDir . '/.ddev/config.yaml');
         self::assertContains('bin/console', $composer['extra']['sympress']['starter_conventions']);
         self::assertContains('dev-ops/runtime.json', $composer['extra']['sympress']['starter_conventions']);
-        self::assertContains('packages/base-mu-plugins', $composer['extra']['sympress']['starter_conventions']);
+        self::assertNotContains('packages/base-mu-plugins', $composer['extra']['sympress']['starter_conventions']);
         self::assertContains('public/wp-content', $composer['extra']['sympress']['starter_conventions']);
     }
 

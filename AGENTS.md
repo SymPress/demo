@@ -41,7 +41,7 @@ workflow or the equivalent local browser test.
 
 ## Invariants
 
-- `packages/base-mu-plugins/app-starter.php` is the website kernel bootstrap.
+- SymPress Runtime generates the website kernel bootstrap with `kernel-boot: true`.
 - The demo plugin file stays a thin WordPress metadata/autoload entry point.
 - REST and block inputs share `NoteListQueryFactory`; do not fork normalization.
 - Read queries stay read-only. Telemetry and other writes remain explicit opt-ins.

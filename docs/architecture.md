@@ -28,7 +28,6 @@ demo/
 |-- config/                      Site-level SymPress configuration
 |-- dev-ops/                     WP Starter orchestration
 |-- packages/
-|   |-- base-mu-plugins/         Must-use bootstrap and runtime package
 |   `-- sympress-demo/           The reference plugin package
 |-- public/                      Web root
 |-- composer.json                Website dependencies
@@ -66,21 +65,13 @@ packages/sympress-demo/
 `-- tests/                       Unit and integration tests
 ```
 
-The website boots the SymPress site kernel from `packages/base-mu-plugins/app-starter.php`. This mirrors the real reference project: the application runtime starts in a must-use package, while feature plugins stay focused on their own bundle metadata, autoloading and service configuration.
+SymPress Runtime generates `public/wp-content/mu-plugins/sympress-runtime-kernel.php` to boot the site kernel. The public demo contains no copied or private base MU package. Feature plugins keep their bundle metadata, autoloading and service configuration.
 
-The same base MU package also contains production-shaped WordPress runtime concerns:
-
-- `000-error-reporting.php` keeps debug output useful without leaking notices into REST or JSON responses.
-- `allowed-html-tags.php` extends the WordPress sanitizer for media markup used by richer content.
-- `vardumper-integration.php` enables Symfony VarDumper output for frontend development when explicitly enabled.
-
-Project-specific MU plugins from the real website are intentionally not copied. The demo keeps only the generic runtime shape that developers can reuse.
-
-The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, SymPress Runtime owns WordPress generation, DDEV provides the local runtime and the base MU package boots the site kernel.
+The shape intentionally stays close to `sympress/starter`: `bin/console` is the command surface, SymPress Runtime owns WordPress generation, DDEV provides the local runtime and Runtime generates the kernel starter.
 
 `dev-ops/runtime.json` uses the native Runtime profile and pins WP-CLI. Its
-download integrity is recorded in `sympress-runtime.lock`. The base MU package
-declares `sympress-runtime.boots-kernel`, preserving site ownership of kernel boot.
+download integrity is recorded in `sympress-runtime.lock`. The explicit `kernel-boot: true` and `wp-config-autoload: true` options
+let Runtime own kernel boot and load website dependencies first.
 The orchestration provider seeds notes and creates the demo homepage only for a
 fresh installation. Existing installations receive a database check; reseeding
 remains an explicit `composer demo:seed` operation.
@@ -93,8 +84,8 @@ The demo intentionally keeps bootstrapping explicit instead of hiding it in a fe
 composer install
   -> installs WordPress, plugins, themes and MU plugins into public/
    -> SymPress Runtime generates the MU plugin loader
-  -> WordPress loads packages/base-mu-plugins/app-starter.php
-  -> app-starter boots SymPress\Kernel\Kernel\SiteKernel
+  -> WordPress loads public/wp-content/mu-plugins/sympress-runtime-kernel.php
+  -> Runtime kernel starter boots SymPress\Kernel\Kernel\SiteKernel
   -> the kernel discovers active SymPress packages through Composer metadata
   -> package config files register services, hooks, routes, commands and collectors
 ```
@@ -109,8 +100,7 @@ The frontend page renders a WordPress page whose content includes the demo dynam
 
 ```mermaid
 flowchart TD
-    A["WordPress request"] --> M["MU app-starter boots SiteKernel"]
-    A --> O["Base MU runtime tuning adjusts WordPress defaults"]
+    A["WordPress request"] --> M["MU Runtime kernel starter boots SiteKernel"]
     M --> B["SymPress kernel loads config/services.yaml"]
     B --> C["BlockRegistrar renders sympress-demo/notes"]
     C --> Q["NoteListQueryFactory normalizes block input"]
@@ -200,4 +190,4 @@ The local path repository is:
 }
 ```
 
-That path repository exists so the website can install the local `sympress/demo-plugin` and `sympress/demo-base-mu-plugins` packages while they are developed in the same repository.
+That path repository installs the local `sympress/demo-plugin` package while it is developed in the same repository.

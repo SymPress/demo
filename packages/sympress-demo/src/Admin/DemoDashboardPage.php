@@ -206,7 +206,7 @@ final readonly class DemoDashboardPage
         return [
             $this->starterConvention('Console entrypoint', 'sympress/starter', 'bin/console'),
             $this->starterConvention('SymPress Runtime orchestration', 'sympress/runtime', 'dev-ops/runtime.json'),
-            $this->starterConvention('Base MU package', 'sympress/starter', 'packages/base-mu-plugins'),
+            $this->starterConvention('Generated kernel bootstrap', 'sympress/runtime', 'dev-ops/runtime.json'),
             $this->starterConvention('DDEV runtime', 'sympress/starter', '.ddev/config.yaml'),
         ];
     }
