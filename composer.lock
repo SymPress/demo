@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d950207607cc9e5de4d349f1b58c9914",
+    "content-hash": "f7279d2966849764bcb4b1c06bc54f98",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5462,7 +5462,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/sympress-demo",
-                "reference": "7ef08d609174de1af239d0d22337d041e6eb1c3f"
+                "reference": "759f74641d3f10aee6058fd60cf78756b60edc01"
             },
             "require": {
                 "ext-json": "*",
@@ -5553,6 +5553,30 @@
                 "MIT"
             ],
             "description": "Reference WordPress plugin demonstrating structured development with SymPress and Symfony components.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
+            "name": "sympress/demo-site-policy",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "./packages/site-policy",
+                "reference": "f30053149458906b48537c164e4c3582c3feb6d7"
+            },
+            "require": {
+                "php": "^8.5"
+            },
+            "type": "wordpress-muplugin",
+            "extra": {
+                "installer-name": "site-policy"
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Website deployment health, staging mail and XML-RPC policies.",
             "transport-options": {
                 "symlink": true,
                 "relative": true
