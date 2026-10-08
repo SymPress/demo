@@ -41,6 +41,8 @@ to inspect the active release's actual WordPress configuration, database and bui
 ID. It requires a healthy response with the exact current build ID and rejects
 malformed, oversized and stale reports. No public REST endpoint or private package
 is required. Test the canonical HTTPS site separately after deploying.
+The Demo recipe runs Symfony cache warmup, including Twig templates, under the
+deploy identity before sealing the release cache for read-only FPM access.
 Supply independently verified `SSH_KNOWN_HOSTS`; dependency install credentials
 must be a separate read-only key and must end before any lifecycle/build code.
 
