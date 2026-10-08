@@ -215,10 +215,11 @@ def main():
         candidates = sorted((deploy_path / 'releases').glob('*'))
         if candidates and socket_path.exists():
             debug = base / 'diagnose.php'
-            debug.write_text('<?php try { require ' + json.dumps(str(candidates[-1] / 'public/wp/wp-load.php'))
-                             + '; foreach (["DISALLOW_FILE_EDIT", "DISALLOW_FILE_MODS", "WP_DEBUG_DISPLAY", "FORCE_SSL_ADMIN"] as $name) { $data[$name] = defined($name) ? constant($name) : null; } $data["environment"] = wp_get_environment_type(); echo json_encode($data); } catch (Throwable $e) { echo json_encode(["error" => get_class($e), "file" => $e->getFile(), "line" => $e->getLine()]); }')
+            debug.write_text('<?php ob_start(); try { require ' + json.dumps(str(candidates[-1] / 'public/index.php'))
+                             + '; foreach (["DISALLOW_FILE_EDIT", "DISALLOW_FILE_MODS", "WP_DEBUG_DISPLAY", "FORCE_SSL_ADMIN"] as $name) { $data[$name] = defined($name) ? constant($name) : null; } $data["environment"] = wp_get_environment_type(); } catch (Throwable $e) { $data = ["error" => get_class($e), "file" => $e->getFile(), "line" => $e->getLine()]; } while (ob_get_level()) { ob_end_clean(); } echo json_encode($data);')
             probe = subprocess.run(['cgi-fcgi', '-bind', '-connect', str(socket_path)],
-                                   env={'SCRIPT_FILENAME': str(debug), 'SCRIPT_NAME': '/diagnose.php', 'REQUEST_METHOD': 'POST', 'HTTPS': 'on', 'REDIRECT_STATUS': '200'}, text=True, capture_output=True)
+                                   env={'SCRIPT_FILENAME': str(debug), 'SCRIPT_NAME': '/index.php', 'REQUEST_METHOD': 'GET', 'REQUEST_URI': '/',
+                                        'HTTP_HOST': 'fixture.invalid', 'HTTPS': 'on', 'REDIRECT_STATUS': '200'}, text=True, capture_output=True)
             print('FPM diagnostic: ' + probe.stdout[-1800:] + probe.stderr[-500:], flush=True)
         raise
     finally:
