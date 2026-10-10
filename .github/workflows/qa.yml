@@ -26,7 +26,7 @@ jobs:
 
   root-qa:
     name: Root QA
-    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@cd809f3986df3ea617d2d26bdf21ab69cae19c1e
+    uses: sympress/workflows/.github/workflows/ddev-playwright.yml@a044303b8492b0c6be48bd9c9fccdc36fb0a9794
     with:
       php_version: '8.5'
       node_version: '24'
