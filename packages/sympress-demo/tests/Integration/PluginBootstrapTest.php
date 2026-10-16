@@ -110,8 +110,8 @@ final class PluginBootstrapTest extends TestCase
         self::assertSame('npm', $assetCompiler['package-manager']);
         self::assertTrue($assetCompiler['packages']['sympress/demo-plugin']);
         self::assertTrue($assetCompiler['packages']['sympress/theme-starter']);
-        self::assertSame('^1.1.3', $composer['require']['sympress/theme-starter']);
-        self::assertSame('^1.2.2', $composer['require']['sympress/twig-bundle']);
+        self::assertSame('^1.1.4', $composer['require']['sympress/theme-starter']);
+        self::assertSame('^1.2.3', $composer['require']['sympress/twig-bundle']);
         self::assertArrayNotHasKey('wpackagist-theme/twentytwentyfive', $composer['require']);
         self::assertArrayNotHasKey('compile-assets', $composer['scripts']);
         self::assertContains(
