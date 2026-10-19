@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41f82c956bb17359ecb765548f0a1464",
+    "content-hash": "7f7d5a681bd1f8c269c7c1728cb94392",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5381,16 +5381,16 @@
         },
         {
             "name": "sympress/assets",
-            "version": "v1.2.2",
+            "version": "v1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/assets.git",
-                "reference": "5ed0e31a4ef1d78bd2b227b7d1dcd9ee2b17e92c"
+                "reference": "20822ad7300643b4890b69baecfe3c044105c834"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/assets/zipball/5ed0e31a4ef1d78bd2b227b7d1dcd9ee2b17e92c",
-                "reference": "5ed0e31a4ef1d78bd2b227b7d1dcd9ee2b17e92c",
+                "url": "https://api.github.com/repos/SymPress/assets/zipball/20822ad7300643b4890b69baecfe3c044105c834",
+                "reference": "20822ad7300643b4890b69baecfe3c044105c834",
                 "shasum": ""
             },
             "require": {
@@ -5440,7 +5440,7 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 },
                 {
@@ -5452,9 +5452,9 @@
             "description": "WordPress asset management library with optional Symfony-kernel integration.",
             "support": {
                 "issues": "https://github.com/SymPress/assets/issues",
-                "source": "https://github.com/SymPress/assets/tree/v1.2.2"
+                "source": "https://github.com/SymPress/assets/tree/v1.2.3"
             },
-            "time": "2026-10-03T15:45:11+00:00"
+            "time": "2026-10-19T20:15:28+00:00"
         },
         {
             "name": "sympress/demo-plugin",
@@ -5462,7 +5462,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/sympress-demo",
-                "reference": "7ef08d609174de1af239d0d22337d041e6eb1c3f"
+                "reference": "7d233cb22b671da59bae11f1b92f26e418535b4d"
             },
             "require": {
                 "ext-json": "*",
@@ -5472,7 +5472,7 @@
                 "psr/log": "^3.0",
                 "symfony/console": "^8.1",
                 "symfony/dependency-injection": "^8.1",
-                "sympress/assets": "^1.2.1",
+                "sympress/assets": "^1.2.3",
                 "sympress/event-dispatcher": "^1.0.2",
                 "sympress/kernel": "^1.1.1",
                 "sympress/migration": "^1.0.2",

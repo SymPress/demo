@@ -11,7 +11,7 @@
         "psr/log": "^3.0",
         "symfony/console": "^8.1",
         "symfony/dependency-injection": "^8.1",
-        "sympress/assets": "^1.2.1",
+        "sympress/assets": "^1.2.3",
         "sympress/event-dispatcher": "^1.0.2",
         "sympress/kernel": "^1.1.1",
         "sympress/migration": "^1.0.2",
