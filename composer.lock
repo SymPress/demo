@@ -2905,16 +2905,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v8.1.6",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "7599ebb855fede59413ddb7f15198d67bfcae7ba"
+                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/7599ebb855fede59413ddb7f15198d67bfcae7ba",
-                "reference": "7599ebb855fede59413ddb7f15198d67bfcae7ba",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/43d109c803d22c00bb820ed45df250b6a8792ca2",
+                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2",
                 "shasum": ""
             },
             "require": {
@@ -2952,7 +2952,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v8.1.6"
+                "source": "https://github.com/symfony/filesystem/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -2972,7 +2972,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-23T10:06:25+00:00"
+            "time": "2026-10-06T20:05:50+00:00"
         },
         {
             "name": "symfony/finder",
@@ -4383,16 +4383,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v8.1.7",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "10823b09358e690df4ff943e24e8492bb1019fc3"
+                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/10823b09358e690df4ff943e24e8492bb1019fc3",
-                "reference": "10823b09358e690df4ff943e24e8492bb1019fc3",
+                "url": "https://api.github.com/repos/symfony/process/zipball/59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
+                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
                 "shasum": ""
             },
             "require": {
@@ -4424,7 +4424,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v8.1.7"
+                "source": "https://github.com/symfony/process/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -4444,7 +4444,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-02T12:40:29+00:00"
+            "time": "2026-10-08T16:57:43+00:00"
         },
         {
             "name": "symfony/routing",
@@ -4528,16 +4528,16 @@
         },
         {
             "name": "symfony/serializer",
-            "version": "v8.1.8",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
-                "reference": "df54c4fe859d945eb633d2c5e6a410ce535f21e4"
+                "reference": "bc6f84d67225d7a25d56af6d4bd52e9e34997a96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/serializer/zipball/df54c4fe859d945eb633d2c5e6a410ce535f21e4",
-                "reference": "df54c4fe859d945eb633d2c5e6a410ce535f21e4",
+                "url": "https://api.github.com/repos/symfony/serializer/zipball/bc6f84d67225d7a25d56af6d4bd52e9e34997a96",
+                "reference": "bc6f84d67225d7a25d56af6d4bd52e9e34997a96",
                 "shasum": ""
             },
             "require": {
@@ -4603,7 +4603,7 @@
             "description": "Handles serializing and deserializing data structures, including object graphs, into array structures or other formats like XML and JSON.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/serializer/tree/v8.1.8"
+                "source": "https://github.com/symfony/serializer/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -4623,7 +4623,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-28T09:40:25+00:00"
+            "time": "2026-10-12T19:11:16+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -5324,16 +5324,16 @@
         },
         {
             "name": "sympress/asset-compiler",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/asset-compiler.git",
-                "reference": "2501a1b761805959f5e764771b6c7e7660f3daa5"
+                "reference": "90e42007fc23a2a1f6065e84ffb0d672964c8bce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/asset-compiler/zipball/2501a1b761805959f5e764771b6c7e7660f3daa5",
-                "reference": "2501a1b761805959f5e764771b6c7e7660f3daa5",
+                "url": "https://api.github.com/repos/SymPress/asset-compiler/zipball/90e42007fc23a2a1f6065e84ffb0d672964c8bce",
+                "reference": "90e42007fc23a2a1f6065e84ffb0d672964c8bce",
                 "shasum": ""
             },
             "require": {
@@ -5344,7 +5344,7 @@
                 "php": "^8.5",
                 "symfony/filesystem": "^8.0",
                 "symfony/finder": "^8.0",
-                "symfony/process": "^5.4.47 || ^6.4.25 || ^7.1.10 || ^8.0",
+                "symfony/process": "^5.4.51 || ^6.4.33 || ~7.3.11 || ^7.4.5 || ^8.0.5",
                 "symfony/serializer": "^8.0"
             },
             "require-dev": {
@@ -5368,16 +5368,16 @@
             "authors": [
                 {
                     "name": "Brian Schaffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "Composer plugin for compiling frontend assets in SymPress and WordPress package workspaces.",
             "support": {
                 "issues": "https://github.com/SymPress/asset-compiler/issues",
-                "source": "https://github.com/SymPress/asset-compiler/tree/v1.0.3"
+                "source": "https://github.com/SymPress/asset-compiler/tree/v1.0.4"
             },
-            "time": "2026-10-06T15:20:43+00:00"
+            "time": "2026-10-09T11:33:44+00:00"
         },
         {
             "name": "sympress/assets",
