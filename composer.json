@@ -12,7 +12,7 @@
         "ext-zip": "*",
         "roots/wordpress": "^7.1.1",
         "sympress/asset-compiler": "^1.0.3",
-        "sympress/assets": "^1.2.2",
+        "sympress/assets": "^1.2.3",
         "sympress/demo-plugin": "^1.0",
         "sympress/event-dispatcher": "^1.0.5",
         "sympress/framework-bundle": "^1.0.7",
