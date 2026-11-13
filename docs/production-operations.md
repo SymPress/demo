@@ -120,7 +120,15 @@ is not automatically migrated or rolled back.
 
 The deploy identity owns release files. The permission step assigns the selected
 PHP group, makes directories 0750 and code/config 0640 (executables 0750), makes
-shared uploads/logs 2770/0660, then runs doctor for the selected PHP identity.
+shared uploads/logs 2770/0660, then runs Doctor as the selected PHP identity.
+Grant the deploy user passwordless sudo for the Doctor command after provisioning
+release permissions. Substitute the configured deploy user, PHP user, PHP binary
+and release path when they differ from these example values.
+
+```sudoers
+deploy ALL=(www-data) NOPASSWD: /usr/bin/php /srv/sympress/releases/*/vendor/bin/runtime doctor --production --database-health --php-user=www-data --json --no-interaction
+```
+
 PHP-FPM receives read/execute access to
 code/config and write access only to uploads/logs/runtime cache as required. Warm
 and seal release-specific compiled kernel caches where supported; use Runtime's
