@@ -406,7 +406,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-06-24T20:46:46+00:00"
+            "time": "2024-06-24T20:46:46+00:00",
+            "published-time": "2024-06-24T21:01:36+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -1297,7 +1298,8 @@
                 "issues": "https://github.com/php-fig/clock/issues",
                 "source": "https://github.com/php-fig/clock/tree/1.0.0"
             },
-            "time": "2022-11-25T14:36:26+00:00"
+            "time": "2022-11-25T14:36:26+00:00",
+            "published-time": "2022-11-25T14:59:22+00:00"
         },
         {
             "name": "psr/container",
@@ -1504,7 +1506,8 @@
             "support": {
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
-            "time": "2021-10-29T13:26:27+00:00"
+            "time": "2021-10-29T13:26:27+00:00",
+            "published-time": "2021-10-29T13:27:19+00:00"
         },
         {
             "name": "react/promise",
@@ -2189,7 +2192,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00"
+            "time": "2026-05-29T05:06:50+00:00",
+            "published-time": "2026-05-29T08:53:14+00:00"
         },
         {
             "name": "symfony/config",
@@ -2368,7 +2372,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-18T16:00:27+00:00"
+            "time": "2026-09-18T16:00:27+00:00",
+            "published-time": "2026-09-29T14:09:30+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -2913,7 +2918,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-09T13:58:01+00:00"
+            "time": "2026-10-09T13:58:01+00:00",
+            "published-time": "2026-10-14T06:48:30+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -3826,7 +3832,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:46:47+00:00"
+            "time": "2026-09-25T15:46:47+00:00",
+            "published-time": "2026-09-30T10:23:37+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -3911,7 +3918,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T22:02:09+00:00"
+            "time": "2026-09-23T22:02:09+00:00",
+            "published-time": "2026-09-30T10:23:47+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -4077,7 +4085,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-09T11:45:10+00:00"
+            "time": "2024-09-09T11:45:10+00:00",
+            "published-time": "2026-04-26T14:44:49+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -4827,7 +4836,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-11T14:51:16+00:00"
+            "time": "2026-09-11T14:51:16+00:00",
+            "published-time": "2026-09-15T07:14:10+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -4909,7 +4919,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T06:23:12+00:00"
+            "time": "2026-06-05T06:23:12+00:00",
+            "published-time": "2026-06-27T21:46:40+00:00"
         },
         {
             "name": "symfony/twig-bridge",
@@ -5017,7 +5028,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-14T12:20:25+00:00"
+            "time": "2026-09-14T12:20:25+00:00",
+            "published-time": "2026-09-15T07:15:21+00:00"
         },
         {
             "name": "symfony/twig-bundle",
@@ -5101,7 +5113,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-11T14:51:16+00:00"
+            "time": "2026-09-11T14:51:16+00:00",
+            "published-time": "2026-09-15T07:15:24+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -5484,7 +5497,8 @@
                 "issues": "https://github.com/SymPress/assets/issues",
                 "source": "https://github.com/SymPress/assets/tree/v1.2.3"
             },
-            "time": "2026-10-19T20:15:28+00:00"
+            "time": "2026-10-19T20:15:28+00:00",
+            "published-time": "2026-10-19T20:17:01+00:00"
         },
         {
             "name": "sympress/demo-plugin",
@@ -5734,20 +5748,21 @@
                 "issues": "https://github.com/SymPress/framework-bundle/issues",
                 "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.7"
             },
-            "time": "2026-10-16T12:40:01+00:00"
+            "time": "2026-10-16T12:40:01+00:00",
+            "published-time": "2026-10-16T12:41:07+00:00"
         },
         {
             "name": "sympress/kernel",
-            "version": "v1.1.10",
+            "version": "v1.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/kernel.git",
-                "reference": "1e6d052e7d18f1dd96efa06712f81ae50a1972e5"
+                "reference": "624319ca58894747e6b8c066db6a93201aa5c41c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/kernel/zipball/1e6d052e7d18f1dd96efa06712f81ae50a1972e5",
-                "reference": "1e6d052e7d18f1dd96efa06712f81ae50a1972e5",
+                "url": "https://api.github.com/repos/SymPress/kernel/zipball/624319ca58894747e6b8c066db6a93201aa5c41c",
+                "reference": "624319ca58894747e6b8c066db6a93201aa5c41c",
                 "shasum": ""
             },
             "require": {
@@ -5758,17 +5773,17 @@
                 "psr/event-dispatcher": "^1.0",
                 "psr/log": "^3.0",
                 "symfony/clock": "^8.0",
-                "symfony/config": "^8.0",
+                "symfony/config": "^8.1.11",
                 "symfony/console": "^8.0",
                 "symfony/dependency-injection": "^8.1.8",
                 "symfony/event-dispatcher": "^8.0",
                 "symfony/expression-language": "^8.1.9",
-                "symfony/filesystem": "^8.0",
-                "symfony/http-foundation": "^8.1.9",
-                "symfony/http-kernel": "^8.1",
-                "symfony/routing": "^8.1",
+                "symfony/filesystem": "^8.1.11",
+                "symfony/http-foundation": "^8.1.11",
+                "symfony/http-kernel": "^8.1.11",
+                "symfony/routing": "^8.1.11",
                 "symfony/service-contracts": "^3.6",
-                "symfony/yaml": "^8.1.6"
+                "symfony/yaml": "^8.1.11"
             },
             "require-dev": {
                 "composer/semver": "^3.4",
@@ -5799,9 +5814,10 @@
             "description": "WordPress kernel and shared service container built on Symfony DependencyInjection.",
             "support": {
                 "issues": "https://github.com/SymPress/kernel/issues",
-                "source": "https://github.com/SymPress/kernel/tree/v1.1.10"
+                "source": "https://github.com/SymPress/kernel/tree/v1.1.14"
             },
-            "time": "2026-10-16T12:33:55+00:00"
+            "time": "2026-11-06T08:26:29+00:00",
+            "published-time": "2026-11-06T08:26:41+00:00"
         },
         {
             "name": "sympress/migration",
@@ -6063,23 +6079,23 @@
         },
         {
             "name": "sympress/theme-starter",
-            "version": "v1.1.4",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/theme-starter.git",
-                "reference": "221b023a69cb4083bba9a480623f421b1a484675"
+                "reference": "8347f1503df72750e30e9123a161e6ec667b855d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/theme-starter/zipball/221b023a69cb4083bba9a480623f421b1a484675",
-                "reference": "221b023a69cb4083bba9a480623f421b1a484675",
+                "url": "https://api.github.com/repos/SymPress/theme-starter/zipball/8347f1503df72750e30e9123a161e6ec667b855d",
+                "reference": "8347f1503df72750e30e9123a161e6ec667b855d",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^2.3",
                 "php": "^8.5",
                 "symfony/dependency-injection": "^8.1",
-                "sympress/assets": "^1.2.1",
+                "sympress/assets": "^1.2.3",
                 "sympress/kernel": "^1.1.10",
                 "sympress/twig-bundle": "^1.2.3",
                 "twig/twig": "^3.22"
@@ -6092,7 +6108,7 @@
             "type": "wordpress-theme",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.1.x-dev"
+                    "dev-main": "1.2.x-dev"
                 },
                 "installer-name": "sympress-starter",
                 "kernel": {
@@ -6168,26 +6184,27 @@
             ],
             "description": "An editorial WordPress starter theme with SymPress Twig, Tailwind CSS and Webpack Encore.",
             "support": {
-                "source": "https://github.com/SymPress/theme-starter/tree/v1.1.4",
+                "source": "https://github.com/SymPress/theme-starter/tree/v1.2.2",
                 "issues": "https://github.com/SymPress/theme-starter/issues"
             },
-            "time": "2026-10-16T12:58:44+00:00"
+            "time": "2026-11-06T08:40:07+00:00"
         },
         {
             "name": "sympress/twig-bundle",
-            "version": "v1.2.3",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/twig-bundle.git",
-                "reference": "148c3d6cb513b136282991b52b4d49b7d8040a15"
+                "reference": "ce0c1a6eaadddc9c36d2e8a4ea44fb47fb8dacf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/twig-bundle/zipball/148c3d6cb513b136282991b52b4d49b7d8040a15",
-                "reference": "148c3d6cb513b136282991b52b4d49b7d8040a15",
+                "url": "https://api.github.com/repos/SymPress/twig-bundle/zipball/ce0c1a6eaadddc9c36d2e8a4ea44fb47fb8dacf6",
+                "reference": "ce0c1a6eaadddc9c36d2e8a4ea44fb47fb8dacf6",
                 "shasum": ""
             },
             "require": {
+                "ext-dom": "*",
                 "php": "^8.5",
                 "symfony/config": "^8.0",
                 "symfony/dependency-injection": "^8.0",
@@ -6246,9 +6263,10 @@
             "description": "Twig integration bundle for SymPress with Symfony TwigBundle feature parity.",
             "support": {
                 "issues": "https://github.com/SymPress/twig-bundle/issues",
-                "source": "https://github.com/SymPress/twig-bundle/tree/v1.2.3"
+                "source": "https://github.com/SymPress/twig-bundle/tree/v1.3.0"
             },
-            "time": "2026-10-16T12:53:31+00:00"
+            "time": "2026-10-25T20:46:58+00:00",
+            "published-time": "2026-10-25T20:47:34+00:00"
         },
         {
             "name": "sympress/wp-cli-console",
@@ -6381,7 +6399,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T13:20:01+00:00"
+            "time": "2026-09-25T13:20:01+00:00",
+            "published-time": "2026-09-25T13:20:14+00:00"
         }
     ],
     "packages-dev": [
@@ -9282,16 +9301,16 @@
         },
         {
             "name": "sympress/profiler",
-            "version": "v1.0.4",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/profiler.git",
-                "reference": "e34627273e3443dd30eaea05720da6b82968d717"
+                "reference": "cb11f8ad3c04d9c2e7962a494227b4f6d69beba5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/profiler/zipball/e34627273e3443dd30eaea05720da6b82968d717",
-                "reference": "e34627273e3443dd30eaea05720da6b82968d717",
+                "url": "https://api.github.com/repos/SymPress/profiler/zipball/cb11f8ad3c04d9c2e7962a494227b4f6d69beba5",
+                "reference": "cb11f8ad3c04d9c2e7962a494227b4f6d69beba5",
                 "shasum": ""
             },
             "require": {
@@ -9326,16 +9345,17 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "Profiler and web debug toolbar for the WordPress kernel.",
             "support": {
                 "issues": "https://github.com/SymPress/profiler/issues",
-                "source": "https://github.com/SymPress/profiler/tree/v1.0.4"
+                "source": "https://github.com/SymPress/profiler/tree/v1.0.7"
             },
-            "time": "2026-10-03T16:11:43+00:00"
+            "time": "2026-11-06T08:36:35+00:00",
+            "published-time": "2026-11-06T08:36:47+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
