@@ -122,11 +122,12 @@ The deploy identity owns release files. The permission step assigns the selected
 PHP group, makes directories 0750 and code/config 0640 (executables 0750), makes
 shared uploads/logs 2770/0660, then runs Doctor as the selected PHP identity.
 Grant the deploy user passwordless sudo for the Doctor command after provisioning
-release permissions. Substitute the configured deploy user, PHP user, PHP binary
-and release path when they differ from these example values.
+release permissions. This example uses sudo 1.9.10 or newer and matches one
+release directory name. Substitute the configured deploy user, PHP user, PHP
+binary and release path when they differ from these example values.
 
 ```sudoers
-deploy ALL=(www-data) NOPASSWD: /usr/bin/php /srv/sympress/releases/*/vendor/bin/runtime doctor --production --database-health --php-user=www-data --json --no-interaction
+deploy ALL=(www-data) NOPASSWD: /usr/bin/php ^/srv/sympress/releases/[A-Za-z0-9][A-Za-z0-9._-]*/vendor/bin/runtime doctor --production --database-health --php-user=www-data --json --no-interaction$
 ```
 
 PHP-FPM receives read/execute access to
