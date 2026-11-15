@@ -49,6 +49,7 @@ final class WordPressNoteRepository implements NoteRepositoryInterface
         return array_values(array_filter(array_map([$this, 'mapPost'], get_posts(array_merge([
             'post_type'        => Note::POST_TYPE,
             'post_status'      => 'publish',
+            'has_password'     => false,
             'orderby'          => 'date',
             'order'            => 'DESC',
             'suppress_filters' => false,
@@ -84,6 +85,11 @@ final class WordPressNoteRepository implements NoteRepositoryInterface
 
     private function postExcerpt(int $postId, string $content): string
     {
+        // The fallback below reads raw post_content, so protected notes must never reach it.
+        if (function_exists('post_password_required') && post_password_required($postId)) {
+            return '';
+        }
+
         if (function_exists('has_excerpt') && has_excerpt($postId) && function_exists('get_the_excerpt')) {
             return (string) get_the_excerpt($postId);
         }
