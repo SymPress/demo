@@ -18,7 +18,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
-    uses: sympress/workflows/.github/workflows/codeql.yml@9ab936c5ff11667908252eb1b788fffe00ef5ed8
+    uses: sympress/workflows/.github/workflows/codeql.yml@2ebe47e2bc6d402c172015b64c0f5a9f2bf0c322 # v1.3.2
     with:
       languages: javascript-typescript
       build_mode: none
