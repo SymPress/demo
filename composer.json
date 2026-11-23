@@ -139,13 +139,9 @@
             "sympress/asset-compiler": true,
             "sympress/runtime": true
         },
-        "policy": {
-            "advisories": {
-                "block": true,
-                "audit": "fail",
-                "ignore-id": {
-                    "CVE-2017-14990": "Wordfence marks every WordPress version affected and no patched release exists; production multisite signup is disabled."
-                }
+        "audit": {
+            "ignore": {
+                "CVE-2017-14990": "Wordfence marks every WordPress version affected and no patched release exists; production multisite signup is disabled."
             }
         }
     },
