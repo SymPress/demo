@@ -12,13 +12,15 @@ final class PluginBootstrapTest extends TestCase
     {
         $root = dirname(__DIR__, 4);
         $composer = json_decode((string) file_get_contents($root . '/composer.json'), true, flags: JSON_THROW_ON_ERROR);
-        self::assertSame('^1.2.4', $composer['require']['sympress/runtime']);
+        // Runtime < 1.3.4 reports kernel.cache unknown for kernel >= 1.1.16/1.1.17 caches; keep the floors coupled.
+        self::assertSame('^1.3.4', $composer['require']['sympress/runtime']);
+        self::assertSame('^1.1.17', $composer['require']['sympress/kernel']);
         $lock = json_decode((string) file_get_contents($root . '/composer.lock'), true, flags: JSON_THROW_ON_ERROR);
         $packages = array_column($lock['packages'], null, 'name');
         self::assertArrayHasKey('sympress/runtime', $packages);
         $runtime = $packages['sympress/runtime'];
         self::assertStringNotContainsString('dev', $runtime['version']);
-        self::assertTrue(version_compare(ltrim($runtime['version'], 'v'), '1.2.4', '>='));
+        self::assertTrue(version_compare(ltrim($runtime['version'], 'v'), '1.3.4', '>='));
         self::assertSame('https://github.com/SymPress/runtime.git', $runtime['source']['url']);
         self::assertStringStartsWith('https://api.github.com/repos/SymPress/runtime/zipball/', $runtime['dist']['url']);
     }
