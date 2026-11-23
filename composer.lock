@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f7d5a681bd1f8c269c7c1728cb94392",
+    "content-hash": "18b66f386af36640abbcf6d0d6c9d57a",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -151,16 +151,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.11.1",
+            "version": "2.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "472b418967419c6124edd91dc6310a3bec091dae"
+                "reference": "12c820dbc3f030954b1d09f5884fcf1e9d29d6cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/472b418967419c6124edd91dc6310a3bec091dae",
-                "reference": "472b418967419c6124edd91dc6310a3bec091dae",
+                "url": "https://api.github.com/repos/composer/composer/zipball/12c820dbc3f030954b1d09f5884fcf1e9d29d6cb",
+                "reference": "12c820dbc3f030954b1d09f5884fcf1e9d29d6cb",
                 "shasum": ""
             },
             "require": {
@@ -250,7 +250,7 @@
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
                 "security": "https://github.com/composer/composer/security/policy",
-                "source": "https://github.com/composer/composer/tree/2.11.1"
+                "source": "https://github.com/composer/composer/tree/2.11.2"
             },
             "funding": [
                 {
@@ -262,8 +262,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-30T13:52:10+00:00",
-            "published-time": "2026-10-30T14:03:09+00:00"
+            "time": "2026-11-10T09:09:37+00:00",
+            "published-time": "2026-11-10T09:12:59+00:00"
         },
         {
             "name": "composer/installers",
@@ -475,7 +475,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-30T11:34:59+00:00"
+            "time": "2026-06-30T11:34:59+00:00",
+            "published-time": "2026-06-30T11:37:18+00:00"
         },
         {
             "name": "composer/pcre",
@@ -551,7 +552,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-07T11:47:49+00:00"
+            "time": "2026-06-07T11:47:49+00:00",
+            "published-time": "2026-06-11T12:12:37+00:00"
         },
         {
             "name": "composer/semver",
@@ -705,7 +707,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-08T20:18:39+00:00"
+            "time": "2026-04-08T20:18:39+00:00",
+            "published-time": "2026-04-08T20:19:56+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -771,7 +774,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-06T16:37:16+00:00"
+            "time": "2024-05-06T16:37:16+00:00",
+            "published-time": "2024-05-06T17:01:42+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -910,20 +914,21 @@
                 "issues": "https://github.com/marc-mabe/php-enum/issues",
                 "source": "https://github.com/marc-mabe/php-enum/tree/v4.7.2"
             },
-            "time": "2025-09-14T11:18:39+00:00"
+            "time": "2025-09-14T11:18:39+00:00",
+            "published-time": "2025-09-14T11:32:17+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "3.12.1",
+            "version": "3.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "d7059e4c691d05ea1222b5124bed0f961be46e15"
+                "reference": "1f5f55bb4a9a230ff6d8a4ceccea31d10b0142ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d7059e4c691d05ea1222b5124bed0f961be46e15",
-                "reference": "d7059e4c691d05ea1222b5124bed0f961be46e15",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1f5f55bb4a9a230ff6d8a4ceccea31d10b0142ac",
+                "reference": "1f5f55bb4a9a230ff6d8a4ceccea31d10b0142ac",
                 "shasum": ""
             },
             "require": {
@@ -1003,7 +1008,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.12.1"
+                "source": "https://github.com/Seldaek/monolog/tree/3.13.0"
             },
             "funding": [
                 {
@@ -1015,20 +1020,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-29T19:21:12+00:00"
+            "time": "2026-11-16T10:43:05+00:00",
+            "published-time": "2026-11-16T10:45:37+00:00"
         },
         {
             "name": "opis/json-schema",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opis/json-schema.git",
-                "reference": "7d8685a78db131eb6a1571cc7b4db8f4b59e8628"
+                "reference": "b87b424da3fbeaab09567910fda48dc88d9dcbd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opis/json-schema/zipball/7d8685a78db131eb6a1571cc7b4db8f4b59e8628",
-                "reference": "7d8685a78db131eb6a1571cc7b4db8f4b59e8628",
+                "url": "https://api.github.com/repos/opis/json-schema/zipball/b87b424da3fbeaab09567910fda48dc88d9dcbd8",
+                "reference": "b87b424da3fbeaab09567910fda48dc88d9dcbd8",
                 "shasum": ""
             },
             "require": {
@@ -1078,10 +1084,10 @@
             ],
             "support": {
                 "issues": "https://github.com/opis/json-schema/issues",
-                "source": "https://github.com/opis/json-schema/tree/2.6.1"
+                "source": "https://github.com/opis/json-schema/tree/2.6.2"
             },
-            "time": "2026-11-06T04:25:16+00:00",
-            "published-time": "2026-11-06T04:35:54+00:00"
+            "time": "2026-11-08T08:09:42+00:00",
+            "published-time": "2026-11-11T10:35:41+00:00"
         },
         {
             "name": "opis/string",
@@ -1143,7 +1149,8 @@
                 "issues": "https://github.com/opis/string/issues",
                 "source": "https://github.com/opis/string/tree/2.1.0"
             },
-            "time": "2025-10-17T12:38:41+00:00"
+            "time": "2025-10-17T12:38:41+00:00",
+            "published-time": "2025-10-17T12:40:48+00:00"
         },
         {
             "name": "opis/uri",
@@ -1206,7 +1213,8 @@
                 "issues": "https://github.com/opis/uri/issues",
                 "source": "https://github.com/opis/uri/tree/1.1.0"
             },
-            "time": "2021-05-22T15:57:08+00:00"
+            "time": "2021-05-22T15:57:08+00:00",
+            "published-time": "2021-05-22T16:01:15+00:00"
         },
         {
             "name": "psr/cache",
@@ -1586,11 +1594,12 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-08-19T18:57:03+00:00"
+            "time": "2025-08-19T18:57:03+00:00",
+            "published-time": "2025-08-19T19:13:36+00:00"
         },
         {
             "name": "roots/wordpress",
-            "version": "7.1.4",
+            "version": "7.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress.git",
@@ -1621,7 +1630,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress/issues",
-                "source": "https://github.com/roots/wordpress/tree/7.1.4"
+                "source": "https://github.com/roots/wordpress/tree/7.1.5"
             },
             "funding": [
                 {
@@ -1629,7 +1638,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-22T13:26:54+00:00"
+            "time": "2026-03-22T13:26:54+00:00",
+            "published-time": "2026-11-18T17:14:22+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -1696,27 +1706,28 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-22T03:17:23+00:00"
+            "time": "2026-03-22T03:17:23+00:00",
+            "published-time": "2026-03-22T03:22:05+00:00"
         },
         {
             "name": "roots/wordpress-no-content",
-            "version": "7.1.4",
+            "version": "7.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "7.1.4"
+                "reference": "7.1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.w.org/release/wordpress-7.1.4-no-content.zip",
-                "reference": "7.1.4",
-                "shasum": "1dd4bfa7b13dec725c0062a3fb62ba0536cb8699"
+                "url": "https://downloads.w.org/release/wordpress-7.1.5-no-content.zip",
+                "reference": "7.1.5",
+                "shasum": "360c3644ce4e382e254aa4f0c1e56d5082efe2ff"
             },
             "require": {
                 "php": ">= 7.4"
             },
             "provide": {
-                "wordpress/core-implementation": "7.1.4"
+                "wordpress/core-implementation": "7.1.5"
             },
             "suggest": {
                 "ext-curl": "Performs remote request operations.",
@@ -1767,7 +1778,8 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-28T17:15:58+00:00"
+            "time": "2026-11-18T17:13:39+00:00",
+            "published-time": "2026-11-18T17:13:48+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -1880,7 +1892,8 @@
                 "issues": "https://github.com/Seldaek/phar-utils/issues",
                 "source": "https://github.com/Seldaek/phar-utils/tree/1.2.3"
             },
-            "time": "2026-10-01T08:16:23+00:00"
+            "time": "2026-10-01T08:16:23+00:00",
+            "published-time": "2026-10-01T08:17:41+00:00"
         },
         {
             "name": "seld/signal-handler",
@@ -1941,20 +1954,21 @@
                 "issues": "https://github.com/Seldaek/signal-handler/issues",
                 "source": "https://github.com/Seldaek/signal-handler/tree/2.0.2"
             },
-            "time": "2023-09-03T09:24:00+00:00"
+            "time": "2023-09-03T09:24:00+00:00",
+            "published-time": "2023-09-03T09:24:36+00:00"
         },
         {
             "name": "symfony/cache",
-            "version": "v8.1.8",
+            "version": "v8.1.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "8888daf06a2fc8440346215d3b52f3c611cc486d"
+                "reference": "60b6bfd51e671219b1ab9066b94c617d1760d7cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/8888daf06a2fc8440346215d3b52f3c611cc486d",
-                "reference": "8888daf06a2fc8440346215d3b52f3c611cc486d",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/60b6bfd51e671219b1ab9066b94c617d1760d7cf",
+                "reference": "60b6bfd51e671219b1ab9066b94c617d1760d7cf",
                 "shasum": ""
             },
             "require": {
@@ -1963,7 +1977,7 @@
                 "psr/log": "^1.1|^2|^3",
                 "symfony/cache-contracts": "^3.6",
                 "symfony/service-contracts": "^2.5|^3",
-                "symfony/var-exporter": "^8.1"
+                "symfony/var-exporter": "^8.1.1"
             },
             "conflict": {
                 "ext-redis": "<6.1",
@@ -2020,7 +2034,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v8.1.8"
+                "source": "https://github.com/symfony/cache/tree/v8.1.11"
             },
             "funding": [
                 {
@@ -2040,21 +2054,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-29T12:38:40+00:00",
-            "published-time": "2026-09-29T14:09:50+00:00"
+            "time": "2026-11-01T22:27:46+00:00",
+            "published-time": "2026-11-04T11:31:57+00:00"
         },
         {
             "name": "symfony/cache-contracts",
-            "version": "v3.7.1",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache-contracts.git",
-                "reference": "9789738bc19af1106dc54d6afba9a0b467516cf2"
+                "reference": "af26a91232085b7edd4e04be62f75e7c25159ece"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/9789738bc19af1106dc54d6afba9a0b467516cf2",
-                "reference": "9789738bc19af1106dc54d6afba9a0b467516cf2",
+                "url": "https://api.github.com/repos/symfony/cache-contracts/zipball/af26a91232085b7edd4e04be62f75e7c25159ece",
+                "reference": "af26a91232085b7edd4e04be62f75e7c25159ece",
                 "shasum": ""
             },
             "require": {
@@ -2068,7 +2082,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.7-dev"
+                    "dev-main": "3.8-dev"
                 }
             },
             "autoload": {
@@ -2101,7 +2115,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache-contracts/tree/v3.7.1"
+                "source": "https://github.com/symfony/cache-contracts/tree/v3.8.1"
             },
             "funding": [
                 {
@@ -2121,21 +2135,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T06:23:12+00:00",
-            "published-time": "2026-06-27T21:46:33+00:00"
+            "time": "2026-09-26T07:05:14+00:00",
+            "published-time": "2026-11-04T11:25:38+00:00"
         },
         {
             "name": "symfony/clock",
-            "version": "v8.1.0",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/clock.git",
-                "reference": "701ef4de9705d6c32292ebee5e8044094a09fbf6"
+                "reference": "945ea3b64d6da9c1c2c354fe5c07b27455df6442"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/clock/zipball/701ef4de9705d6c32292ebee5e8044094a09fbf6",
-                "reference": "701ef4de9705d6c32292ebee5e8044094a09fbf6",
+                "url": "https://api.github.com/repos/symfony/clock/zipball/945ea3b64d6da9c1c2c354fe5c07b27455df6442",
+                "reference": "945ea3b64d6da9c1c2c354fe5c07b27455df6442",
                 "shasum": ""
             },
             "require": {
@@ -2179,7 +2193,7 @@
                 "time"
             ],
             "support": {
-                "source": "https://github.com/symfony/clock/tree/v8.1.0"
+                "source": "https://github.com/symfony/clock/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -2199,8 +2213,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00",
-            "published-time": "2026-05-29T08:53:14+00:00"
+            "time": "2026-10-12T14:32:04+00:00",
+            "published-time": "2026-10-14T06:48:32+00:00"
         },
         {
             "name": "symfony/config",
@@ -2608,20 +2622,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-26T10:31:34+00:00"
+            "time": "2026-07-26T10:31:34+00:00",
+            "published-time": "2026-08-30T21:43:37+00:00"
         },
         {
             "name": "symfony/error-handler",
-            "version": "v8.1.8",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/error-handler.git",
-                "reference": "c146daceccd5d4f864c051b233c276641cec527b"
+                "reference": "84c6d73f990ae22dbd45625c056d7ff99ca6810d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/error-handler/zipball/c146daceccd5d4f864c051b233c276641cec527b",
-                "reference": "c146daceccd5d4f864c051b233c276641cec527b",
+                "url": "https://api.github.com/repos/symfony/error-handler/zipball/84c6d73f990ae22dbd45625c056d7ff99ca6810d",
+                "reference": "84c6d73f990ae22dbd45625c056d7ff99ca6810d",
                 "shasum": ""
             },
             "require": {
@@ -2669,7 +2684,7 @@
             "description": "Provides tools to manage errors and ease debugging PHP code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/error-handler/tree/v8.1.8"
+                "source": "https://github.com/symfony/error-handler/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -2689,8 +2704,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-22T18:58:53+00:00",
-            "published-time": "2026-09-29T14:10:14+00:00"
+            "time": "2026-10-25T14:40:25+00:00",
+            "published-time": "2026-10-28T18:24:13+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -4258,7 +4273,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-26T12:45:58+00:00"
+            "time": "2026-05-26T12:45:58+00:00",
+            "published-time": "2026-05-26T13:40:34+00:00"
         },
         {
             "name": "symfony/polyfill-php84",
@@ -4338,20 +4354,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T22:01:09+00:00"
+            "time": "2026-09-23T22:01:09+00:00",
+            "published-time": "2026-09-30T10:23:33+00:00"
         },
         {
             "name": "symfony/polyfill-php85",
-            "version": "v1.43.0",
+            "version": "v1.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php85.git",
-                "reference": "86a42cbcc07adc331481a5ab310a4024bfc227f6"
+                "reference": "94c794cb5ba51784bc259f11e9f128593297d8dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/86a42cbcc07adc331481a5ab310a4024bfc227f6",
-                "reference": "86a42cbcc07adc331481a5ab310a4024bfc227f6",
+                "url": "https://api.github.com/repos/symfony/polyfill-php85/zipball/94c794cb5ba51784bc259f11e9f128593297d8dc",
+                "reference": "94c794cb5ba51784bc259f11e9f128593297d8dc",
                 "shasum": ""
             },
             "require": {
@@ -4398,7 +4415,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php85/tree/v1.43.0"
+                "source": "https://github.com/symfony/polyfill-php85/tree/v1.44.0"
             },
             "funding": [
                 {
@@ -4418,8 +4435,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:46:47+00:00",
-            "published-time": "2026-09-30T10:23:32+00:00"
+            "time": "2026-10-30T15:20:09+00:00",
+            "published-time": "2026-11-15T14:20:22+00:00"
         },
         {
             "name": "symfony/process",
@@ -4484,7 +4501,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-25T14:40:25+00:00"
+            "time": "2026-10-25T14:40:25+00:00",
+            "published-time": "2026-10-28T18:25:20+00:00"
         },
         {
             "name": "symfony/routing",
@@ -4848,16 +4866,16 @@
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v3.7.1",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "ccb206b98faccc511ebae8e5fad50f2dc0b30621"
+                "reference": "0a3ae917402632fcba2aeddae9c98332f3d7dd05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/ccb206b98faccc511ebae8e5fad50f2dc0b30621",
-                "reference": "ccb206b98faccc511ebae8e5fad50f2dc0b30621",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/0a3ae917402632fcba2aeddae9c98332f3d7dd05",
+                "reference": "0a3ae917402632fcba2aeddae9c98332f3d7dd05",
                 "shasum": ""
             },
             "require": {
@@ -4870,7 +4888,7 @@
                     "name": "symfony/contracts"
                 },
                 "branch-alias": {
-                    "dev-main": "3.7-dev"
+                    "dev-main": "3.8-dev"
                 }
             },
             "autoload": {
@@ -4906,7 +4924,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/translation-contracts/tree/v3.7.1"
+                "source": "https://github.com/symfony/translation-contracts/tree/v3.8.1"
             },
             "funding": [
                 {
@@ -4926,21 +4944,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T06:23:12+00:00",
-            "published-time": "2026-06-27T21:46:40+00:00"
+            "time": "2026-10-03T08:17:19+00:00",
+            "published-time": "2026-11-04T11:25:31+00:00"
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v8.1.7",
+            "version": "v8.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
-                "reference": "7d9f1e128b44e37170f424046d23a48a3e545ad4"
+                "reference": "934f61e24587a2028ea920b651257faf293ccb11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/7d9f1e128b44e37170f424046d23a48a3e545ad4",
-                "reference": "7d9f1e128b44e37170f424046d23a48a3e545ad4",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/934f61e24587a2028ea920b651257faf293ccb11",
+                "reference": "934f61e24587a2028ea920b651257faf293ccb11",
                 "shasum": ""
             },
             "require": {
@@ -5015,7 +5033,7 @@
             "description": "Provides integration for Twig with various Symfony components",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/twig-bridge/tree/v8.1.7"
+                "source": "https://github.com/symfony/twig-bridge/tree/v8.1.10"
             },
             "funding": [
                 {
@@ -5035,21 +5053,21 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-14T12:20:25+00:00",
-            "published-time": "2026-09-15T07:15:21+00:00"
+            "time": "2026-10-15T16:00:52+00:00",
+            "published-time": "2026-10-28T18:24:45+00:00"
         },
         {
             "name": "symfony/twig-bundle",
-            "version": "v8.1.7",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bundle.git",
-                "reference": "71648fac591a675b91ae408f03a3d95a3f98b436"
+                "reference": "127b678d3c8afc3639eea44a212d7db565a45509"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/71648fac591a675b91ae408f03a3d95a3f98b436",
-                "reference": "71648fac591a675b91ae408f03a3d95a3f98b436",
+                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/127b678d3c8afc3639eea44a212d7db565a45509",
+                "reference": "127b678d3c8afc3639eea44a212d7db565a45509",
                 "shasum": ""
             },
             "require": {
@@ -5100,7 +5118,7 @@
             "description": "Provides a tight integration of Twig into the Symfony full-stack framework",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/twig-bundle/tree/v8.1.7"
+                "source": "https://github.com/symfony/twig-bundle/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -5120,8 +5138,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-11T14:51:16+00:00",
-            "published-time": "2026-09-15T07:15:24+00:00"
+            "time": "2026-10-09T16:13:24+00:00",
+            "published-time": "2026-10-14T06:48:49+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -5374,16 +5392,16 @@
         },
         {
             "name": "sympress/asset-compiler",
-            "version": "v1.0.4",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/asset-compiler.git",
-                "reference": "90e42007fc23a2a1f6065e84ffb0d672964c8bce"
+                "reference": "9fb74e7883fb8440e58d708d40a46a7abd90c22e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/asset-compiler/zipball/90e42007fc23a2a1f6065e84ffb0d672964c8bce",
-                "reference": "90e42007fc23a2a1f6065e84ffb0d672964c8bce",
+                "url": "https://api.github.com/repos/SymPress/asset-compiler/zipball/9fb74e7883fb8440e58d708d40a46a7abd90c22e",
+                "reference": "9fb74e7883fb8440e58d708d40a46a7abd90c22e",
                 "shasum": ""
             },
             "require": {
@@ -5392,10 +5410,10 @@
                 "ext-json": "*",
                 "ext-zip": "*",
                 "php": "^8.5",
-                "symfony/filesystem": "^8.0",
+                "symfony/filesystem": "^8.1.11",
                 "symfony/finder": "^8.0",
                 "symfony/process": "^5.4.51 || ^6.4.33 || ~7.3.11 || ^7.4.5 || ^8.0.5",
-                "symfony/serializer": "^8.0"
+                "symfony/serializer": "^8.1.11"
             },
             "require-dev": {
                 "composer/composer": "^2.10",
@@ -5425,29 +5443,30 @@
             "description": "Composer plugin for compiling frontend assets in SymPress and WordPress package workspaces.",
             "support": {
                 "issues": "https://github.com/SymPress/asset-compiler/issues",
-                "source": "https://github.com/SymPress/asset-compiler/tree/v1.0.4"
+                "source": "https://github.com/SymPress/asset-compiler/tree/v1.0.6"
             },
-            "time": "2026-10-09T11:33:44+00:00"
+            "time": "2026-11-16T14:03:31+00:00",
+            "published-time": "2026-11-16T14:03:42+00:00"
         },
         {
             "name": "sympress/assets",
-            "version": "v1.2.3",
+            "version": "v1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/assets.git",
-                "reference": "20822ad7300643b4890b69baecfe3c044105c834"
+                "reference": "7bff9cf1ebaccacd5c3e6b43bacb490f19002203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/assets/zipball/20822ad7300643b4890b69baecfe3c044105c834",
-                "reference": "20822ad7300643b4890b69baecfe3c044105c834",
+                "url": "https://api.github.com/repos/SymPress/assets/zipball/7bff9cf1ebaccacd5c3e6b43bacb490f19002203",
+                "reference": "7bff9cf1ebaccacd5c3e6b43bacb490f19002203",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-json": "*",
                 "php": "^8.5",
-                "symfony/filesystem": "^8.0",
+                "symfony/filesystem": "^8.1.11",
                 "symfony/finder": "^8.0"
             },
             "require-dev": {
@@ -5502,10 +5521,10 @@
             "description": "WordPress asset management library with optional Symfony-kernel integration.",
             "support": {
                 "issues": "https://github.com/SymPress/assets/issues",
-                "source": "https://github.com/SymPress/assets/tree/v1.2.3"
+                "source": "https://github.com/SymPress/assets/tree/v1.2.6"
             },
-            "time": "2026-10-19T20:15:28+00:00",
-            "published-time": "2026-10-19T20:17:01+00:00"
+            "time": "2026-11-16T13:48:09+00:00",
+            "published-time": "2026-11-16T13:48:20+00:00"
         },
         {
             "name": "sympress/demo-plugin",
@@ -5611,21 +5630,23 @@
         },
         {
             "name": "sympress/event-dispatcher",
-            "version": "v1.0.5",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/event-dispatcher.git",
-                "reference": "e8a02a90bd246b87a04c706f0f6340f4b8e4e602"
+                "reference": "675af6f9bccdfffacd720a05c027ee8cef67dd46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/event-dispatcher/zipball/e8a02a90bd246b87a04c706f0f6340f4b8e4e602",
-                "reference": "e8a02a90bd246b87a04c706f0f6340f4b8e4e602",
+                "url": "https://api.github.com/repos/SymPress/event-dispatcher/zipball/675af6f9bccdfffacd720a05c027ee8cef67dd46",
+                "reference": "675af6f9bccdfffacd720a05c027ee8cef67dd46",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.5",
+                "psr/container": "^2.0",
                 "psr/event-dispatcher": "^1.0",
+                "symfony/dependency-injection": "^8.1",
                 "sympress/kernel": "^1.1.1"
             },
             "require-dev": {
@@ -5653,29 +5674,30 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "MU plugin for class-based WordPress events, listeners, and subscribers.",
             "support": {
                 "issues": "https://github.com/SymPress/event-dispatcher/issues",
-                "source": "https://github.com/SymPress/event-dispatcher/tree/v1.0.5"
+                "source": "https://github.com/SymPress/event-dispatcher/tree/v1.0.7"
             },
-            "time": "2026-10-03T15:18:38+00:00"
+            "time": "2026-11-23T03:32:14+00:00",
+            "published-time": "2026-11-23T03:32:26+00:00"
         },
         {
             "name": "sympress/framework-bundle",
-            "version": "v1.0.7",
+            "version": "v1.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/framework-bundle.git",
-                "reference": "863e750bbb5913175c4c3220b88234ffb537301d"
+                "reference": "b3eb0e6be2e771eb1a0f022d5ccf314d4f222177"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/863e750bbb5913175c4c3220b88234ffb537301d",
-                "reference": "863e750bbb5913175c4c3220b88234ffb537301d",
+                "url": "https://api.github.com/repos/SymPress/framework-bundle/zipball/b3eb0e6be2e771eb1a0f022d5ccf314d4f222177",
+                "reference": "b3eb0e6be2e771eb1a0f022d5ccf314d4f222177",
                 "shasum": ""
             },
             "require": {
@@ -5684,22 +5706,23 @@
                 "psr/simple-cache": "^3.0",
                 "symfony/cache": "^8.1",
                 "symfony/cache-contracts": "^3.6",
-                "symfony/config": "^8.1",
+                "symfony/config": "^8.1.11",
                 "symfony/console": "^8.1",
                 "symfony/dependency-injection": "^8.1.8",
                 "symfony/error-handler": "^8.1",
                 "symfony/expression-language": "^8.1.9",
-                "symfony/filesystem": "^8.0",
-                "symfony/framework-bundle": "^8.1.8",
-                "symfony/http-kernel": "^8.1",
-                "symfony/routing": "^8.1",
+                "symfony/filesystem": "^8.1.11",
+                "symfony/framework-bundle": "^8.1.11",
+                "symfony/http-kernel": "^8.1.11",
+                "symfony/routing": "^8.1.11",
                 "symfony/service-contracts": "^3.6",
-                "symfony/yaml": "^8.1.6",
-                "sympress/kernel": "^1.1.10"
+                "symfony/yaml": "^8.1.11",
+                "sympress/kernel": "^1.1.14"
             },
             "require-dev": {
                 "brain/monkey": "^2.6",
                 "composer/semver": "^3.4",
+                "symfony/stopwatch": "^8.1",
                 "sympress/qa": "^0.1.2"
             },
             "suggest": {
@@ -5753,23 +5776,23 @@
             "description": "SymPress FrameworkBundle bridge with Symfony Cache integration and WordPress object-cache support.",
             "support": {
                 "issues": "https://github.com/SymPress/framework-bundle/issues",
-                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.7"
+                "source": "https://github.com/SymPress/framework-bundle/tree/v1.0.11"
             },
-            "time": "2026-10-16T12:40:01+00:00",
-            "published-time": "2026-10-16T12:41:07+00:00"
+            "time": "2026-11-16T13:46:43+00:00",
+            "published-time": "2026-11-16T13:46:52+00:00"
         },
         {
             "name": "sympress/kernel",
-            "version": "v1.1.14",
+            "version": "v1.1.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/kernel.git",
-                "reference": "624319ca58894747e6b8c066db6a93201aa5c41c"
+                "reference": "b0bd89256d930d967f09f47581af0ded1660f0a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/kernel/zipball/624319ca58894747e6b8c066db6a93201aa5c41c",
-                "reference": "624319ca58894747e6b8c066db6a93201aa5c41c",
+                "url": "https://api.github.com/repos/SymPress/kernel/zipball/b0bd89256d930d967f09f47581af0ded1660f0a8",
+                "reference": "b0bd89256d930d967f09f47581af0ded1660f0a8",
                 "shasum": ""
             },
             "require": {
@@ -5821,23 +5844,23 @@
             "description": "WordPress kernel and shared service container built on Symfony DependencyInjection.",
             "support": {
                 "issues": "https://github.com/SymPress/kernel/issues",
-                "source": "https://github.com/SymPress/kernel/tree/v1.1.14"
+                "source": "https://github.com/SymPress/kernel/tree/v1.1.17"
             },
-            "time": "2026-11-06T08:26:29+00:00",
-            "published-time": "2026-11-06T08:26:41+00:00"
+            "time": "2026-11-16T13:47:08+00:00",
+            "published-time": "2026-11-16T13:47:18+00:00"
         },
         {
             "name": "sympress/migration",
-            "version": "v1.0.8",
+            "version": "v1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/migration.git",
-                "reference": "6d007cfec6e519c4133d37ee1c8bf71d9497ecc6"
+                "reference": "01aa3a8cf814535c20acc9673a214c95ea2e08e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/migration/zipball/6d007cfec6e519c4133d37ee1c8bf71d9497ecc6",
-                "reference": "6d007cfec6e519c4133d37ee1c8bf71d9497ecc6",
+                "url": "https://api.github.com/repos/SymPress/migration/zipball/01aa3a8cf814535c20acc9673a214c95ea2e08e9",
+                "reference": "01aa3a8cf814535c20acc9673a214c95ea2e08e9",
                 "shasum": ""
             },
             "require": {
@@ -5876,29 +5899,30 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "MU plugin for handling migrations on website level",
             "support": {
                 "issues": "https://github.com/SymPress/migration/issues",
-                "source": "https://github.com/SymPress/migration/tree/v1.0.8"
+                "source": "https://github.com/SymPress/migration/tree/v1.0.10"
             },
-            "time": "2026-10-03T15:10:37+00:00"
+            "time": "2026-11-16T14:02:04+00:00",
+            "published-time": "2026-11-16T14:02:16+00:00"
         },
         {
             "name": "sympress/monolog-bundle",
-            "version": "v1.1.4",
+            "version": "v1.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/monolog-bundle.git",
-                "reference": "8e3abec193381de2eba5ead6713b05bd5e86e5c8"
+                "reference": "e2ff4cf7f7a00961061713b5b374e574d7652b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/monolog-bundle/zipball/8e3abec193381de2eba5ead6713b05bd5e86e5c8",
-                "reference": "8e3abec193381de2eba5ead6713b05bd5e86e5c8",
+                "url": "https://api.github.com/repos/SymPress/monolog-bundle/zipball/e2ff4cf7f7a00961061713b5b374e574d7652b13",
+                "reference": "e2ff4cf7f7a00961061713b5b374e574d7652b13",
                 "shasum": ""
             },
             "require": {
@@ -5932,29 +5956,30 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "Monolog integration bundle for the WordPress kernel.",
             "support": {
                 "issues": "https://github.com/SymPress/monolog-bundle/issues",
-                "source": "https://github.com/SymPress/monolog-bundle/tree/v1.1.4"
+                "source": "https://github.com/SymPress/monolog-bundle/tree/v1.1.9"
             },
-            "time": "2026-10-05T20:18:38+00:00"
+            "time": "2026-11-23T03:32:48+00:00",
+            "published-time": "2026-11-23T03:32:57+00:00"
         },
         {
             "name": "sympress/orm",
-            "version": "v0.3.4",
+            "version": "v0.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/orm.git",
-                "reference": "01c9a401257d4af58a5f4033dfb2d0903f003e25"
+                "reference": "59bda087356fb3e92dac9430280aa6064f75996e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/orm/zipball/01c9a401257d4af58a5f4033dfb2d0903f003e25",
-                "reference": "01c9a401257d4af58a5f4033dfb2d0903f003e25",
+                "url": "https://api.github.com/repos/SymPress/orm/zipball/59bda087356fb3e92dac9430280aa6064f75996e",
+                "reference": "59bda087356fb3e92dac9430280aa6064f75996e",
                 "shasum": ""
             },
             "require": {
@@ -5994,29 +6019,30 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "Doctrine-inspired ORM primitives for WordPress projects that keep wpdb as the database runtime.",
             "support": {
                 "issues": "https://github.com/SymPress/orm/issues",
-                "source": "https://github.com/SymPress/orm/tree/v0.3.4"
+                "source": "https://github.com/SymPress/orm/tree/v0.3.7"
             },
-            "time": "2026-10-06T15:20:20+00:00"
+            "time": "2026-11-16T14:02:17+00:00",
+            "published-time": "2026-11-16T14:02:28+00:00"
         },
         {
             "name": "sympress/runtime",
-            "version": "v1.3.1",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/runtime.git",
-                "reference": "ac812fa0691f9c477f97652e183ef3fa99375650"
+                "reference": "d6025d21d988ce56b96916b945ec9df7cefc3f24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/runtime/zipball/ac812fa0691f9c477f97652e183ef3fa99375650",
-                "reference": "ac812fa0691f9c477f97652e183ef3fa99375650",
+                "url": "https://api.github.com/repos/SymPress/runtime/zipball/d6025d21d988ce56b96916b945ec9df7cefc3f24",
+                "reference": "d6025d21d988ce56b96916b945ec9df7cefc3f24",
                 "shasum": ""
             },
             "require": {
@@ -6082,30 +6108,30 @@
                 "issues": "https://github.com/SymPress/runtime/issues",
                 "source": "https://github.com/SymPress/runtime"
             },
-            "time": "2026-11-06T08:36:16+00:00",
-            "published-time": "2026-11-06T08:36:29+00:00"
+            "time": "2026-11-16T14:17:58+00:00",
+            "published-time": "2026-11-16T14:18:39+00:00"
         },
         {
             "name": "sympress/theme-starter",
-            "version": "v1.2.2",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/theme-starter.git",
-                "reference": "8347f1503df72750e30e9123a161e6ec667b855d"
+                "reference": "b4d402e9ebc47ad2925c8d9670f9fc58e0f272a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/theme-starter/zipball/8347f1503df72750e30e9123a161e6ec667b855d",
-                "reference": "8347f1503df72750e30e9123a161e6ec667b855d",
+                "url": "https://api.github.com/repos/SymPress/theme-starter/zipball/b4d402e9ebc47ad2925c8d9670f9fc58e0f272a8",
+                "reference": "b4d402e9ebc47ad2925c8d9670f9fc58e0f272a8",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^2.3",
                 "php": "^8.5",
                 "symfony/dependency-injection": "^8.1",
-                "sympress/assets": "^1.2.3",
-                "sympress/kernel": "^1.1.10",
-                "sympress/twig-bundle": "^1.2.3",
+                "sympress/assets": "^1.2.5",
+                "sympress/kernel": "^1.1.16",
+                "sympress/twig-bundle": "^1.3.1",
                 "twig/twig": "^3.22"
             },
             "require-dev": {
@@ -6116,7 +6142,7 @@
             "type": "wordpress-theme",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.2.x-dev"
+                    "dev-main": "1.3.x-dev"
                 },
                 "installer-name": "sympress-starter",
                 "kernel": {
@@ -6192,32 +6218,32 @@
             ],
             "description": "An editorial WordPress starter theme with SymPress Twig, Tailwind CSS and Webpack Encore.",
             "support": {
-                "source": "https://github.com/SymPress/theme-starter/tree/v1.2.2",
+                "source": "https://github.com/SymPress/theme-starter/tree/v1.3.2",
                 "issues": "https://github.com/SymPress/theme-starter/issues"
             },
-            "time": "2026-11-06T08:40:07+00:00"
+            "time": "2026-11-16T13:46:10+00:00"
         },
         {
             "name": "sympress/twig-bundle",
-            "version": "v1.3.0",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/twig-bundle.git",
-                "reference": "ce0c1a6eaadddc9c36d2e8a4ea44fb47fb8dacf6"
+                "reference": "18b2b272f2157d69d7009a3a2f0817447c426ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/twig-bundle/zipball/ce0c1a6eaadddc9c36d2e8a4ea44fb47fb8dacf6",
-                "reference": "ce0c1a6eaadddc9c36d2e8a4ea44fb47fb8dacf6",
+                "url": "https://api.github.com/repos/SymPress/twig-bundle/zipball/18b2b272f2157d69d7009a3a2f0817447c426ac6",
+                "reference": "18b2b272f2157d69d7009a3a2f0817447c426ac6",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "php": "^8.5",
-                "symfony/config": "^8.0",
-                "symfony/dependency-injection": "^8.0",
-                "symfony/http-foundation": "^8.1.9",
-                "symfony/http-kernel": "^8.1",
+                "symfony/config": "^8.1.11",
+                "symfony/dependency-injection": "^8.1.11",
+                "symfony/http-foundation": "^8.1.11",
+                "symfony/http-kernel": "^8.1.11",
                 "symfony/twig-bridge": "^8.1",
                 "symfony/twig-bundle": "^8.1",
                 "sympress/framework-bundle": "^1.0.7",
@@ -6271,23 +6297,23 @@
             "description": "Twig integration bundle for SymPress with Symfony TwigBundle feature parity.",
             "support": {
                 "issues": "https://github.com/SymPress/twig-bundle/issues",
-                "source": "https://github.com/SymPress/twig-bundle/tree/v1.3.0"
+                "source": "https://github.com/SymPress/twig-bundle/tree/v1.3.2"
             },
-            "time": "2026-10-25T20:46:58+00:00",
-            "published-time": "2026-10-25T20:47:34+00:00"
+            "time": "2026-11-23T03:34:44+00:00",
+            "published-time": "2026-11-23T03:34:53+00:00"
         },
         {
             "name": "sympress/wp-cli-console",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/wp-cli-console.git",
-                "reference": "e043369cfd1247268da5ea5b629009fa092fb1de"
+                "reference": "0fa93b7b913186e8d73862455eccb177c07f9ebd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/wp-cli-console/zipball/e043369cfd1247268da5ea5b629009fa092fb1de",
-                "reference": "e043369cfd1247268da5ea5b629009fa092fb1de",
+                "url": "https://api.github.com/repos/SymPress/wp-cli-console/zipball/0fa93b7b913186e8d73862455eccb177c07f9ebd",
+                "reference": "0fa93b7b913186e8d73862455eccb177c07f9ebd",
                 "shasum": ""
             },
             "require": {
@@ -6318,16 +6344,17 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "role": "Developer"
                 }
             ],
             "description": "Symfony Console wrappers for useful WP-CLI workflows.",
             "support": {
                 "issues": "https://github.com/SymPress/wp-cli-console/issues",
-                "source": "https://github.com/SymPress/wp-cli-console/tree/v1.0.4"
+                "source": "https://github.com/SymPress/wp-cli-console/tree/v1.0.5"
             },
-            "time": "2026-10-02T20:39:58+00:00"
+            "time": "2026-11-06T08:36:16+00:00",
+            "published-time": "2026-11-06T08:36:29+00:00"
         },
         {
             "name": "twig/twig",
@@ -6512,7 +6539,8 @@
                 "source": "https://github.com/Automattic/VIP-Coding-Standards",
                 "wiki": "https://github.com/Automattic/VIP-Coding-Standards/wiki"
             },
-            "time": "2026-07-27T14:33:48+00:00"
+            "time": "2026-07-27T14:33:48+00:00",
+            "published-time": "2026-07-27T14:37:08+00:00"
         },
         {
             "name": "brain/monkey",
@@ -6678,7 +6706,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-05-06T08:26:05+00:00"
+            "time": "2026-05-06T08:26:05+00:00",
+            "published-time": "2026-05-06T12:56:03+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -7164,7 +7193,8 @@
                 "issues": "https://github.com/PHPCompatibility/PHPCompatibility/issues",
                 "source": "https://github.com/PHPCompatibility/PHPCompatibility"
             },
-            "time": "2019-12-27T09:44:58+00:00"
+            "time": "2019-12-27T09:44:58+00:00",
+            "published-time": "2019-12-27T10:11:56+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
@@ -7246,7 +7276,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-07-27T11:13:17+00:00"
+            "time": "2026-07-27T11:13:17+00:00",
+            "published-time": "2026-07-27T11:19:59+00:00"
         },
         {
             "name": "phpcsstandards/phpcsutils",
@@ -7339,7 +7370,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-07-27T10:28:41+00:00"
+            "time": "2026-07-27T10:28:41+00:00",
+            "published-time": "2026-07-27T10:36:31+00:00"
         },
         {
             "name": "phpstan/extension-installer",
@@ -7391,16 +7423,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "2.3.6",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "1427af4647235b4a73b13940b1f1258d3584f36e"
+                "reference": "af8e840551031d254cfdb3a18a62c3470a309c10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/1427af4647235b4a73b13940b1f1258d3584f36e",
-                "reference": "1427af4647235b4a73b13940b1f1258d3584f36e",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/af8e840551031d254cfdb3a18a62c3470a309c10",
+                "reference": "af8e840551031d254cfdb3a18a62c3470a309c10",
                 "shasum": ""
             },
             "require": {
@@ -7432,9 +7464,10 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.3.6"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.4.1"
             },
-            "time": "2026-09-27T20:07:45+00:00"
+            "time": "2026-10-30T19:36:28+00:00",
+            "published-time": "2026-10-30T19:37:11+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -9040,7 +9073,8 @@
                 "source": "https://github.com/sirbrillig/phpcs-variable-analysis",
                 "wiki": "https://github.com/sirbrillig/phpcs-variable-analysis/wiki"
             },
-            "time": "2025-09-30T22:22:48+00:00"
+            "time": "2025-09-30T22:22:48+00:00",
+            "published-time": "2025-09-30T22:24:41+00:00"
         },
         {
             "name": "slevomat/coding-standard",
@@ -9105,7 +9139,8 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-13T08:53:30+00:00"
+            "time": "2025-09-13T08:53:30+00:00",
+            "published-time": "2025-09-13T08:55:12+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -9184,7 +9219,8 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-08-06T00:17:32+00:00"
+            "time": "2026-08-06T00:17:32+00:00",
+            "published-time": "2026-08-06T01:05:02+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
@@ -9306,25 +9342,27 @@
                 "issues": "https://github.com/SymPress/coding-standards/issues",
                 "source": "https://github.com/SymPress/coding-standards/tree/v1.1.1"
             },
-            "time": "2026-10-02T10:13:10+00:00"
+            "time": "2026-10-02T10:13:10+00:00",
+            "published-time": "2026-10-02T10:19:07+00:00"
         },
         {
             "name": "sympress/profiler",
-            "version": "v1.0.7",
+            "version": "v1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/profiler.git",
-                "reference": "cb11f8ad3c04d9c2e7962a494227b4f6d69beba5"
+                "reference": "a7d32183247936edeee92727f98c923bf96d413c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/profiler/zipball/cb11f8ad3c04d9c2e7962a494227b4f6d69beba5",
-                "reference": "cb11f8ad3c04d9c2e7962a494227b4f6d69beba5",
+                "url": "https://api.github.com/repos/SymPress/profiler/zipball/a7d32183247936edeee92727f98c923bf96d413c",
+                "reference": "a7d32183247936edeee92727f98c923bf96d413c",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^8.5",
+                "symfony/filesystem": "^8.1.11",
                 "sympress/kernel": "^1.1.1"
             },
             "require-dev": {
@@ -9361,10 +9399,10 @@
             "description": "Profiler and web debug toolbar for the WordPress kernel.",
             "support": {
                 "issues": "https://github.com/SymPress/profiler/issues",
-                "source": "https://github.com/SymPress/profiler/tree/v1.0.7"
+                "source": "https://github.com/SymPress/profiler/tree/v1.4.3"
             },
-            "time": "2026-11-06T08:36:35+00:00",
-            "published-time": "2026-11-06T08:36:47+00:00"
+            "time": "2026-11-16T13:46:55+00:00",
+            "published-time": "2026-11-16T13:47:05+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
@@ -9543,7 +9581,8 @@
                     "type": "custom"
                 }
             ],
-            "time": "2026-07-27T11:53:23+00:00"
+            "time": "2026-07-27T11:53:23+00:00",
+            "published-time": "2026-07-27T11:55:52+00:00"
         }
     ],
     "aliases": [],
