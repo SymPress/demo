@@ -69,6 +69,15 @@ require $argv[1];
             server = (Path(directory) / 'production-server.conf').read_text()
             self.assertIn('fastcgi_pass unix:' + default.group(1) + ';', server)
 
+    def test_debug_log_stays_outside_the_public_root(self):
+        # Runtime's staging default WP_DEBUG_LOG=true writes public/wp-content/debug.log.
+        root = Path(__file__).resolve().parents[2]
+        for path in ['dev-ops/production.env.example', 'docs/production-operations.md']:
+            with self.subTest(path=path):
+                text = (root / path).read_text()
+                self.assertRegex(text, r'(?m)^WP_DEBUG_LOG=/srv/sympress/shared/var/log/\S+$')
+                self.assertNotRegex(text, r'(?mi)^WP_DEBUG_LOG=(?:true|1|\S*/public/\S*)$')
+
     def test_hsts_is_explicit_and_shared_headers_cover_all_locations(self):
         root = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as directory:
