@@ -62,4 +62,19 @@ final class WordPressNoteRepositoryTest extends TestCase
         self::assertSame('', $notes[0]->excerpt);
         self::assertSame('Public note body', $notes[1]->excerpt);
     }
+
+    #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    public function testTitleIsPlainTextForJsonConsumers(): void
+    {
+        Functions\when('get_posts')->justReturn([
+            (object) ['ID' => 3, 'post_content' => '', 'post_date_gmt' => '2026-11-15 10:00:00'],
+        ]);
+        Functions\when('get_the_title')->justReturn('O&#8217;Brien &amp; <em>Co</em> &#8220;Notes&#8221;');
+        Functions\when('wp_strip_all_tags')->alias('strip_tags');
+
+        $notes = (new WordPressNoteRepository())->findLatest(1);
+
+        self::assertSame("O\u{2019}Brien & Co \u{201C}Notes\u{201D}", $notes[0]->title);
+    }
 }
