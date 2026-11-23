@@ -166,6 +166,16 @@ existing keys remain unchanged. Retain that key across deployments. Set
 `WP_ADMIN_PASSWORD` privately before the first installation; a blank value
 generates a random password, with no shared default admin password.
 
+Log in at `https://sympress-demo.test/wp-admin/` as `admin` (or your
+`WP_ADMIN_USERNAME`). If you left `WP_ADMIN_PASSWORD` blank, set and print a new
+password:
+
+```bash
+ddev exec php wp-cli.phar user reset-password admin --skip-email --show-password
+```
+
+The first installation seeds 18 quote notes and a homepage with the notes block.
+
 ## Local Development
 
 ```bash
@@ -319,7 +329,7 @@ The QA command runs repository and package checks:
 - Runtime smoke command through WP-CLI
 - Browser smoke test through Playwright in DDEV
 
-The base MU package and feature plugin both run through the root QA command. JavaScript type checking and npm audit are exposed as separate npm scripts and GitHub workflow jobs. The DDEV Playwright smoke test opens the demo homepage and fails when the rendered response contains PHP or WordPress fatal errors.
+The base MU package and feature plugin both run through the root QA command. JavaScript type checking and npm audit are exposed as separate npm scripts and GitHub workflow jobs. The DDEV Playwright smoke test opens the demo homepage and fails when the rendered response contains PHP or WordPress fatal errors. A second browser test logs in with the reset admin password and checks the seeded `SymPress Demo` dashboard; it is skipped unless `WP_ADMIN_PASSWORD` is set.
 
 The tests focus on read-only service behavior, opt-in telemetry dispatching, bootstrap shape and live WordPress registration. The runtime smoke command verifies REST route registration, block registration and block rendering against the DDEV WordPress runtime.
 
