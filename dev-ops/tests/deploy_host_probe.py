@@ -184,6 +184,10 @@ def main():
             if iteration:
                 previous = current
                 user_run(['php', 'wp-cli.phar', 'option', 'update', 'permalink_structure', '/%postname%/'], cwd=current)
+                # Media and logs written by FPM must not break the next deploy's permission step.
+                for directory in [deploy_path / 'shared/public/wp-content/uploads/2026/11', deploy_path / 'shared/var/log']:
+                    run(['sudo', '-u', 'www-data', 'mkdir', '-p', str(directory)])
+                    run(['sudo', '-u', 'www-data', 'touch', str(directory / 'fpm-owned')])
             output = user_run(['php', str(source / 'deployment/vendor/bin/dep'), '-f', str(recipe), 'deploy', 'production', '-n', '--no-ansi'], cwd=source)
             print(output[-600:])
             current = (deploy_path / 'current').resolve(strict=True)
