@@ -1,11 +1,25 @@
 # SymPress Demo
 
-Runtime generates the kernel bootstrap. Website health, staging mail and optional
-XML-RPC policies belong to the separately activated private Natterer-Schaeffner
-Security MU loader. The public Demo has no private package dependency; deployment
-verifies the active build through the private PHP-FPM socket.
-
 **A reference WordPress website for learning structured development with SymPress and Symfony components.**
+
+## In 30 Seconds
+
+- **WordPress stays the runtime.** Admin, content, themes, blocks and plugins work as usual.
+- **SymPress adds the structure.** A kernel with a service container, migrations, ORM, logging, console commands and a profiler.
+- **One small feature shows it end to end.** "Knowledge Notes" runs through a dynamic block, a REST endpoint, a WP-CLI seeder, an admin dashboard and a profiler panel.
+- **One DDEV install.** [Installation](#installation) gives you a seeded site with demo content and the starter theme.
+
+**The block flow on the homepage:** the `sympress-demo/notes` block renders seeded notes through `NoteService` and the repository ([mobile view](docs/images/frontend-mobile.png)).
+
+![Homepage with the Knowledge Notes block](docs/images/frontend-desktop.png)
+
+**The admin UI:** `WP Admin -> SymPress Demo` shows component status, the service container map and links from each UI concept to its source file.
+
+![SymPress Demo admin dashboard](docs/images/admin-dashboard.png)
+
+**The profiler:** the development profiler adds a `SymPress Demo` panel next to the default collectors.
+
+![SymPress Demo profiler panel](docs/images/profiler-sympress-demo.png)
 
 SymPress Demo is the central demo project for the public SymPress repositories. It is a complete Composer-based WordPress website with a real demo plugin, DDEV setup, WP-CLI seed workflow, admin UI, frontend output, migrations, optional event telemetry, ORM-mapped demo event records, logging, Composer-driven Encore/TypeScript assets and development profiler integration.
 
@@ -151,19 +165,6 @@ The setup command generates a private `APP_SECRET` when it is missing or blank;
 existing keys remain unchanged. Retain that key across deployments. Set
 `WP_ADMIN_PASSWORD` privately before the first installation; a blank value
 generates a random password, with no shared default admin password.
-
-## Screenshots
-
-The repository includes fresh screenshots from the DDEV site:
-
-- [Frontend desktop](docs/images/frontend-desktop.png)
-- [Frontend mobile](docs/images/frontend-mobile.png)
-- [Admin dashboard with source-code links](docs/images/admin-dashboard.png)
-- [SymPress Demo profiler panel](docs/images/profiler-sympress-demo.png)
-
-![Frontend desktop](docs/images/frontend-desktop.png)
-
-![Admin dashboard](docs/images/admin-dashboard.png)
 
 ## Local Development
 
@@ -366,8 +367,15 @@ database-migrations
 developer-tools
 ```
 
+## Production Operations
+
+Runtime generates the kernel bootstrap. Website health, staging mail and optional
+XML-RPC policies belong to the separately activated private Natterer-Schaeffner
+Security MU loader. The public Demo has no private package dependency; deployment
+verifies the active build through the private PHP-FPM socket.
+
+See [production operations](docs/production-operations.md) for the executable deploy, backup, staging-sync and monitoring recipes.
+
 ## License
 
 This project is licensed under the MIT License.
-
-See [production operations](docs/production-operations.md) for the executable deploy, backup, staging-sync and monitoring recipes.
