@@ -120,6 +120,11 @@ def restore(settings, archive, identity, confirm, *, staging=False, scrub_script
             previous = uploads.with_name('uploads.before-' + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f'))
             uploads.rename(previous)
             shutil.copytree(payload / 'uploads', uploads)
+            # The 077 umask leaves 0700/0640 media; nginx and FPM need the old group and mode back.
+            old = previous.stat()
+            for path in [uploads, *uploads.rglob('*')]:
+                os.chown(path, -1, old.st_gid)
+                path.chmod(old.st_mode & (0o7777 if path.is_dir() else 0o666))
             if staging:
                 wp(settings, 'eval-file', str(Path(scrub_script).resolve(strict=True)))
                 wp(settings, 'option', 'update', 'blog_public', '0')
