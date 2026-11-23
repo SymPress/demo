@@ -80,7 +80,8 @@ final class WordPressNoteRepository implements NoteRepositoryInterface
             return sprintf('Note #%d', $postId);
         }
 
-        return (string) get_the_title($postId);
+        // get_the_title() returns texturized HTML (O&#8217;Brien); every consumer escapes for its own context.
+        return html_entity_decode(wp_strip_all_tags((string) get_the_title($postId)), ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
 
     private function postExcerpt(int $postId, string $content): string
