@@ -2,8 +2,7 @@
 
 ## Supported Versions
 
-Security updates are provided for the latest `main` branch until the first stable
-release line exists.
+Security updates are provided for the latest tagged `1.x` release line.
 
 ## Reporting a Vulnerability
 
