@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf910b53f825680a76563f4321818925",
+    "content-hash": "740578d251a0a8af691d0ab9275305ac",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -5462,7 +5462,7 @@
             "dist": {
                 "type": "path",
                 "url": "./packages/sympress-demo",
-                "reference": "7d233cb22b671da59bae11f1b92f26e418535b4d"
+                "reference": "d192ea66c431847a2b89cd3f0117b05bc81a31d9"
             },
             "require": {
                 "ext-json": "*",
@@ -5477,7 +5477,7 @@
                 "sympress/kernel": "^1.1.1",
                 "sympress/migration": "^1.0.2",
                 "sympress/monolog-bundle": "^1.0.2",
-                "sympress/orm": "^0.3.0",
+                "sympress/orm": "^1.0",
                 "sympress/wp-cli-console": "^1.0.2"
             },
             "require-dev": {
@@ -5895,16 +5895,16 @@
         },
         {
             "name": "sympress/orm",
-            "version": "v0.3.7",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/orm.git",
-                "reference": "59bda087356fb3e92dac9430280aa6064f75996e"
+                "reference": "a4ceefcd48f5a6df78efc1cb86cf88a50fc134ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/orm/zipball/59bda087356fb3e92dac9430280aa6064f75996e",
-                "reference": "59bda087356fb3e92dac9430280aa6064f75996e",
+                "url": "https://api.github.com/repos/SymPress/orm/zipball/a4ceefcd48f5a6df78efc1cb86cf88a50fc134ac",
+                "reference": "a4ceefcd48f5a6df78efc1cb86cf88a50fc134ac",
                 "shasum": ""
             },
             "require": {
@@ -5951,9 +5951,10 @@
             "description": "Doctrine-inspired ORM primitives for WordPress projects that keep wpdb as the database runtime.",
             "support": {
                 "issues": "https://github.com/SymPress/orm/issues",
-                "source": "https://github.com/SymPress/orm/tree/v0.3.7"
+                "source": "https://github.com/SymPress/orm/tree/v1.0.0"
             },
-            "time": "2026-11-16T14:02:17+00:00"
+            "time": "2026-11-23T23:24:15+00:00",
+            "published-time": "2026-11-23T23:24:36+00:00"
         },
         {
             "name": "sympress/runtime",
@@ -9509,5 +9510,5 @@
     "platform-overrides": {
         "php": "8.5"
     },
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }

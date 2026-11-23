@@ -168,7 +168,7 @@ final class PluginBootstrapTest extends TestCase
         self::assertContains('path', $repositoryTypes);
         self::assertNotContains('vcs', $repositoryTypes, 'Published SymPress packages must resolve from Packagist.');
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
-        self::assertSame('^0.3.4', $composer['require']['sympress/orm']);
+        self::assertSame('^1.0', $composer['require']['sympress/orm']);
         self::assertSame('^1.0.4', $composer['require-dev']['sympress/profiler']);
         self::assertArrayNotHasKey('sympress/profiler', $composer['require']);
     }
@@ -188,7 +188,7 @@ final class PluginBootstrapTest extends TestCase
         );
 
         self::assertSame('^1.0.3', $composer['require-dev']['sympress/profiler']);
-        self::assertSame('^0.3.0', $composer['require']['sympress/orm']);
+        self::assertSame('^1.0', $composer['require']['sympress/orm']);
         self::assertSame('build', $composer['extra']['sympress']['asset-compiler']['script']['$mode']['$default']);
         self::assertSame(
             'build:production',
