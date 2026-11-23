@@ -50,6 +50,8 @@ The packages are intentionally used together rather than listed as passive depen
 
 The root project requires Runtime 1.1.3 or later so pre-install database observations stay out of persistent environment caches and diagnostics see the installed site.
 
+The root project and the demo plugin require ORM 1.0 or later. The 0.3 line passes unvalidated query fragments and nested array parameters through to SQL; the demo's own queries are not affected, but code copied from it should not inherit that.
+
 Most SymPress packages are runtime dependencies because the website actively uses them while serving requests.
 
 `sympress/coding-standards` and `sympress/profiler` are development dependencies. The profiler is demonstrated through development-only configuration, so local requests are inspectable without making profiling a production concern.
