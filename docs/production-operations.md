@@ -120,7 +120,9 @@ is not automatically migrated or rolled back.
 
 The deploy identity owns release files. The permission step assigns the selected
 PHP group, makes directories 0750 and code/config 0640 (executables 0750), makes
-shared uploads/logs 2770/0660, then runs Doctor as the selected PHP identity.
+the shared uploads/logs entries it owns 2770/0660 (files written by PHP-FPM keep
+their owner and inherit the group from the setgid directories), then runs Doctor
+as the selected PHP identity.
 Grant the deploy user passwordless sudo for the Doctor command after provisioning
 release permissions. This example uses sudo 1.9.10 or newer and matches one
 release directory name. Substitute the configured deploy user, PHP user, PHP

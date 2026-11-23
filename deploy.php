@@ -219,10 +219,11 @@ task('deploy:permissions', static function (): void {
     run('find {{release_path}} -type f ! -perm /111 -exec chmod 0640 {} +');
     run('find {{release_path}} -type f -perm /111 -exec chmod 0750 {} +');
     foreach (['public/wp-content/uploads' => '{{php_group}}', 'var/log' => '{{log_group}}'] as $path => $group) {
-        $shared = '{{deploy_path}}/shared/' . $path;
-        run('chgrp -R ' . $group . ' ' . $shared);
-        run('find ' . $shared . ' -type d -exec chmod 2770 {} +');
-        run('find ' . $shared . ' -type f -exec chmod 0660 {} +');
+        // Only the owner may chgrp/chmod: skip entries FPM wrote; setgid dirs already pass the group on.
+        $owned = '{{deploy_path}}/shared/' . $path . ' -user "$(id -un)"';
+        run('find ' . $owned . ' -exec chgrp ' . $group . ' {} +');
+        run('find ' . $owned . ' -type d -exec chmod 2770 {} +');
+        run('find ' . $owned . ' -type f -exec chmod 0660 {} +');
     }
     // Release-specific warmed kernel cache is read-only to FPM under build-ID policy.
     // Exit 1 (fail) aborts here; exit 2 (unknown) is evaluated check by check below.
