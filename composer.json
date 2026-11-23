@@ -19,7 +19,7 @@
         "sympress/kernel": "^1.1.17",
         "sympress/migration": "^1.0.8",
         "sympress/monolog-bundle": "^1.1.4",
-        "sympress/orm": "^0.3.4",
+        "sympress/orm": "^1.0",
         "sympress/theme-starter": "^1.1.4",
         "sympress/twig-bundle": "^1.2.3",
         "sympress/wp-cli-console": "^1.0.4",
