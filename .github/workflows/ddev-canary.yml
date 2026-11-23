@@ -37,7 +37,13 @@ jobs:
         ddev composer runtime:setup --no-interaction
         ddev composer compile-assets --mode production
       playwright_install_command: ddev exec bash -lc "cd packages/sympress-demo && npm ci" && cd packages/sympress-demo && npx playwright install --with-deps chromium
-      playwright_run_command: ddev composer qa && cd packages/sympress-demo && npx playwright test
+      # The admin test logs in with the password from the documented README reset command.
+      playwright_run_command: |
+        set -euo pipefail
+        ddev composer qa
+        WP_ADMIN_PASSWORD="$(ddev exec php -d display_errors=stderr wp-cli.phar user reset-password admin --skip-email --porcelain)"
+        export WP_ADMIN_PASSWORD
+        cd packages/sympress-demo && npx playwright test
       playwright_artifact_name: sympress-demo-playwright
       playwright_artifact_path: |
         composer.lock
