@@ -166,13 +166,7 @@ final class PluginBootstrapTest extends TestCase
 
         self::assertContains('composer', $repositoryTypes);
         self::assertContains('path', $repositoryTypes);
-        $themeRepositories = array_values(array_filter(
-            $composer['repositories'],
-            static fn (array $repository): bool => $repository['type'] === 'vcs',
-        ));
-        self::assertCount(1, $themeRepositories);
-        self::assertSame('https://github.com/SymPress/theme-starter.git', $themeRepositories[0]['url']);
-        self::assertSame(['sympress/theme-starter'], $themeRepositories[0]['only']);
+        self::assertNotContains('vcs', $repositoryTypes, 'Published SymPress packages must resolve from Packagist.');
         self::assertNotContains('https://github.com/SymPress/orm', $repositoryUrls);
         self::assertSame('^0.3.4', $composer['require']['sympress/orm']);
         self::assertSame('^1.0.4', $composer['require-dev']['sympress/profiler']);

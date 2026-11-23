@@ -20,11 +20,10 @@ installation directory, and the bundle contributes its own ORM entity mapping.
 
 ## Installation and existing sites
 
-The theme is installed from tags in the public
+The theme is installed from Packagist as `sympress/theme-starter`, like every
+other published SymPress package; its source lives in the public
 [Theme Starter repository](https://github.com/SymPress/theme-starter).
-Installation requires no repository secret or SSH key. The VCS repository is
-scoped to this one package. Published library packages continue to resolve
-through Packagist.
+Installation requires no repository secret or SSH key.
 
 The dependency canary requests `composer_update` in the reusable workflow for
 scheduled and explicitly requested manual updates. It resolves the latest

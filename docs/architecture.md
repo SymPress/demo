@@ -180,7 +180,7 @@ The demo does not try to turn WordPress into Symfony. The content model, admin s
 
 ## Packagist First
 
-Published SymPress libraries are resolved from Packagist. Local path packages contain the demo plugin and base MU bootstrap; the single scoped VCS repository installs the tagged `sympress/theme-starter` package. Theme rendering is independent of the demo plugin. WPackagist remains available for ordinary WordPress packages.
+Published SymPress packages, including `sympress/theme-starter`, are resolved from Packagist. Local path packages contain the demo plugin and base MU bootstrap. Theme rendering is independent of the demo plugin. WPackagist remains available for ordinary WordPress packages.
 
 The local path repository is:
 
