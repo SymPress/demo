@@ -133,7 +133,7 @@ The runtime bootstrap is deliberately explicit:
 5. The kernel discovers active SymPress bundles through Composer metadata and WordPress plugin state.
 6. Bundle and site configuration register hooks, routes, commands, collectors and services.
 
-Published SymPress libraries are resolved from Packagist. `sympress/theme-starter` is installed from tags in its public [GitHub repository](https://github.com/SymPress/theme-starter). Installation requires no repository secret or SSH key. The path repository installs only the local demo plugin and base MU package under `packages/*`.
+Published SymPress packages, including `sympress/theme-starter`, are resolved from Packagist. Installation requires no repository secret or SSH key. The path repository installs only the local demo plugin and base MU package under `packages/*`.
 
 `sympress/runtime` requires the stable `^1.2.3` release line from public Packagist and Composer 2.10.3 or later. WP-CLI runs from the SHA512-verified root `wp-cli.phar` because the Composer WP-CLI bundle conflicts with Symfony 8.1 Process.
 

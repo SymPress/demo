@@ -159,13 +159,6 @@
             }
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/SymPress/theme-starter.git",
-            "only": [
-                "sympress/theme-starter"
-            ]
-        },
-        {
             "type": "composer",
             "url": "https://wpackagist.org"
         },
