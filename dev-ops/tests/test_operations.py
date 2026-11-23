@@ -1,6 +1,8 @@
+import hashlib
 import importlib.util
 import io
 import json
+import os
 from pathlib import Path
 import subprocess
 import tarfile
@@ -109,6 +111,35 @@ class OperationsTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'database backup manifest'):
                     ops.restore({}, archive, identity, 'https://target.test')
                 self.assertEqual(wp.call_count, 2)
+
+    def test_restored_uploads_keep_web_group_and_mode_under_private_umask(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            sql = b'SELECT 1;'
+            archive = tmp / 'source.tar.gz'
+            with tarfile.open(archive, 'w:gz') as tar:
+                manifest = json.dumps({'version': 1, 'home': 'https://source.test',
+                                       'database_sha256': hashlib.sha256(sql).hexdigest()}).encode()
+                for name, data in [('database.sql', sql), ('manifest.json', manifest), ('uploads/2026/11/a.jpg', b'jpg')]:
+                    member = tarfile.TarInfo(name);member.size = len(data);tar.addfile(member, io.BytesIO(data))
+            identity = tmp / 'key';identity.write_text('test')
+            group = ([g for g in os.getgroups() if g != os.getgid()] or [os.getgid()])[0]
+            uploads = tmp / 'site/uploads';uploads.mkdir(parents=True)
+            os.chown(uploads, -1, group);uploads.chmod(0o2770)
+            def decrypt(argv):
+                import shutil
+                shutil.copyfile(archive, argv[argv.index('--output') + 1])
+            def wp(settings, *args):
+                return {('option', 'get', 'home'): b'https://target.test'}.get(args[:3], b'staging' if args[0] == 'eval' else b'')
+            previous_umask = os.umask(0o077)
+            try:
+                with patch.object(ops, 'wp', side_effect=wp), patch.object(ops, 'command', side_effect=decrypt):
+                    ops.restore({'project': tmp, 'uploads': str(uploads)}, archive, identity, 'https://target.test')
+            finally:
+                os.umask(previous_umask)
+            for path, mode in [(uploads, 0o2770), (uploads / '2026/11', 0o2770), (uploads / '2026/11/a.jpg', 0o660)]:
+                self.assertEqual(path.stat().st_mode & 0o7777, mode, path)
+                self.assertEqual(path.stat().st_gid, group, path)
 
     def test_log_monitor_uses_cursor_and_sends_only_generic_alert(self):
         with tempfile.TemporaryDirectory() as tmp:
