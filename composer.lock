@@ -5953,8 +5953,7 @@
                 "issues": "https://github.com/SymPress/orm/issues",
                 "source": "https://github.com/SymPress/orm/tree/v1.0.0"
             },
-            "time": "2026-11-23T23:24:15+00:00",
-            "published-time": "2026-11-23T23:24:36+00:00"
+            "time": "2026-11-23T23:24:15+00:00"
         },
         {
             "name": "sympress/runtime",
@@ -7450,16 +7449,16 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.1.1",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "8d16b8478e523a47f8c02e83bce8981b5b5a3b03"
+                "reference": "3912977f00552c85adcf7ca0960e49bdce95b36f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/8d16b8478e523a47f8c02e83bce8981b5b5a3b03",
-                "reference": "8d16b8478e523a47f8c02e83bce8981b5b5a3b03",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/3912977f00552c85adcf7ca0960e49bdce95b36f",
+                "reference": "3912977f00552c85adcf7ca0960e49bdce95b36f",
                 "shasum": ""
             },
             "require": {
@@ -7502,9 +7501,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.1"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.3"
             },
-            "time": "2026-10-06T18:12:32+00:00"
+            "time": "2026-11-24T08:18:33+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -9510,5 +9509,5 @@
     "platform-overrides": {
         "php": "8.5"
     },
-    "plugin-api-version": "2.11.0"
+    "plugin-api-version": "2.9.0"
 }
