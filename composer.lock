@@ -5953,8 +5953,7 @@
                 "issues": "https://github.com/SymPress/orm/issues",
                 "source": "https://github.com/SymPress/orm/tree/v1.0.0"
             },
-            "time": "2026-11-23T23:24:15+00:00",
-            "published-time": "2026-11-23T23:24:36+00:00"
+            "time": "2026-11-23T23:24:15+00:00"
         },
         {
             "name": "sympress/runtime",
@@ -7339,16 +7338,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "af8e840551031d254cfdb3a18a62c3470a309c10"
+                "reference": "f80e753caa465ab4f93cb265ae32e2e8cb02c3f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/af8e840551031d254cfdb3a18a62c3470a309c10",
-                "reference": "af8e840551031d254cfdb3a18a62c3470a309c10",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/f80e753caa465ab4f93cb265ae32e2e8cb02c3f3",
+                "reference": "f80e753caa465ab4f93cb265ae32e2e8cb02c3f3",
                 "shasum": ""
             },
             "require": {
@@ -7380,9 +7379,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.4.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/2.4.2"
             },
-            "time": "2026-10-30T19:36:28+00:00"
+            "time": "2026-11-25T13:45:51+00:00"
         },
         {
             "name": "phpstan/phpstan",
@@ -9187,16 +9186,16 @@
         },
         {
             "name": "sympress/coding-standards",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SymPress/coding-standards.git",
-                "reference": "a3460f1ba83e3f4aa99611bb0aa669b61197466c"
+                "reference": "a8391643baad2458645bc2c45c5ea8d2f6b47030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SymPress/coding-standards/zipball/a3460f1ba83e3f4aa99611bb0aa669b61197466c",
-                "reference": "a3460f1ba83e3f4aa99611bb0aa669b61197466c",
+                "url": "https://api.github.com/repos/SymPress/coding-standards/zipball/a8391643baad2458645bc2c45c5ea8d2f6b47030",
+                "reference": "a8391643baad2458645bc2c45c5ea8d2f6b47030",
                 "shasum": ""
             },
             "require": {
@@ -9230,7 +9229,7 @@
             "authors": [
                 {
                     "name": "Brian Schäffner",
-                    "email": "brian.schaeffner@sympress.de",
+                    "email": "brian.schaeffner@sympress.io",
                     "homepage": "https://sympress.de",
                     "role": "Developer"
                 },
@@ -9251,9 +9250,9 @@
             ],
             "support": {
                 "issues": "https://github.com/SymPress/coding-standards/issues",
-                "source": "https://github.com/SymPress/coding-standards/tree/v1.1.1"
+                "source": "https://github.com/SymPress/coding-standards/tree/v1.1.2"
             },
-            "time": "2026-10-02T10:13:10+00:00"
+            "time": "2026-11-23T14:14:27+00:00"
         },
         {
             "name": "sympress/profiler",
@@ -9510,5 +9509,5 @@
     "platform-overrides": {
         "php": "8.5"
     },
-    "plugin-api-version": "2.11.0"
+    "plugin-api-version": "2.9.0"
 }
