@@ -15,7 +15,7 @@ permissions:
 jobs:
   website-ci:
     name: Website CI
-    uses: sympress/workflows/.github/workflows/composer-validate.yml@2ebe47e2bc6d402c172015b64c0f5a9f2bf0c322 # v1.3.2
+    uses: sympress/workflows/.github/workflows/composer-validate.yml@4d668133403d357d8335fdbfb850bb13a9105ece # v2.0.0
     with:
       php_version: '8.5'
       php_extensions: curl, dom, json, libxml, zip
